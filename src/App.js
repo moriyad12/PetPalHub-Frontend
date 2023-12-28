@@ -1,11 +1,16 @@
 import './App.css';
+import Dashboard from "./Dashboard/Dashboard";
 
 function App() {
-  return (
-    <div className="App">
 
-    </div>
-  );
+    const getDtoListFromBackEnd = async () => {
+    }
+
+    return (
+        <div className="App">
+            <Dashboard getDtoListFromBackEnd={getDtoListFromBackEnd}/>
+        </div>
+    );
 }
 
 export default App;
