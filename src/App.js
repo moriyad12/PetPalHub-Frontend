@@ -16,7 +16,7 @@ function App() {
     <div className="App">
         <Router>
             <Routes>
-                <Route path={"/"} element={<Dashboard filterEnabled={true} getDtoListFromBackEnd={getDtoListFromBackEnd}/>} />
+                <Route path={"/"} element={<Dashboard filterEnabled={true} getDtoListFromBackEnd={getDtoListFromBackEnd} viewComponentIndex={1}/>} />
                 <Route path={"/petview"} element={<Pet />} />
             </Routes>
         </Router>
