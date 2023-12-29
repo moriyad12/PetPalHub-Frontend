@@ -5,6 +5,7 @@ import TablePagination from "@mui/material/TablePagination";
 import Tabs from "./Tabs";
 import PetHeader from "../Headers/PetHeader";
 import ApplicationHeader from "../Headers/ApplicationHeader";
+import Header from "../Header/Header";
 
 
 function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
