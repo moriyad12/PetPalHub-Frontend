@@ -18,8 +18,9 @@ export default function Tabs({setTabIndex}) {
             <TabContext value={value}>
                 <Box sx={{borderBottom: 1, borderColor: 'divider', width: '100%'}}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab sx={{width: '50%',maxWidth:"100%"}} label="Launched Events" value="1"/>
-                        <Tab sx={{width: '50%',maxWidth:"100%"}} label="Drafted Events" value="2"/>
+                        <Tab sx={{width: '33%',maxWidth:"100%"}} label="Pending Applications" value="1"/>
+                        <Tab sx={{width: '33%',maxWidth:"100%"}} label="Accepted Applications" value="2"/>
+                        <Tab sx={{width: '33%',maxWidth:"100%"}} label="Rejected Applications" value="3"/>
                     </TabList>
                 </Box>
             </TabContext>

@@ -45,6 +45,9 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         setRowsPerPage(parseInt(event.target.value));
         setPage(0);
     };
+    const isTabsEnabled = () => {
+        return viewComponentIndex === 2;
+    }
 
     // to be implemented
     const viewData = (d, i) => {
@@ -80,9 +83,12 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                 </div>
             </nav>
             <div className="content-container center">
-                <div className="content-header">
-                    <Tabs setTabIndex={setTabIndex}/>
-                </div>
+                {isTabsEnabled() ?
+                    <div className="content-header">
+                        <Tabs setTabIndex={setTabIndex}/>
+                    </div>
+                    : null}
+
                 <div className="content-body flex">
                     {
                         data.map((d, i) =>
