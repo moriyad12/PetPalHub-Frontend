@@ -56,7 +56,7 @@ function ValidationPage() {
     return (
         <div className="body">
             <div className="container">
-                <h2>Verify Account</h2>
+                <h2 style={{ color:"#fdffff" }}>VERIFY ACCOUNT</h2>
                 <div className="code">
                     <input type="number" value={first}
                            onChange={(event)=>{
