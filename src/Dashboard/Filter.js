@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {ImEqualizer} from "react-icons/im";
 import TextField from "@mui/material/TextField";
+import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
 
 export default function Filter( {getDtoListFromBackEnd} )
 {
@@ -20,7 +21,6 @@ export default function Filter( {getDtoListFromBackEnd} )
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleClose = () => {
         setAnchorEl(null);
 
@@ -34,8 +34,23 @@ export default function Filter( {getDtoListFromBackEnd} )
     };
 
     const handleFilter = (e) => {
+        const filters = {
+            filters: [
+                {
+                    "first": "NAME",
+                    "second": "AND",
+                    "third": name
+                },
+                {
+                    "first": "GENDER",
+                    "second": "AND",
+                    "third": gender
+                },
+            ]
+        }
+
         e.preventDefault();
-        getDtoListFromBackEnd();
+        getDtoListFromBackEnd(filters);
         handleClose();
     };
 
@@ -79,7 +94,22 @@ export default function Filter( {getDtoListFromBackEnd} )
                                 value={name}
                                 onChange={(event) => setName(event.target.value)}
                             />
-
+                            <FormControl sx={{maxWidth: 200}}>
+                                <InputLabel id="demo-simple-select-helper-label">gender</InputLabel>
+                                <Select
+                                    labelId = "demo-simple-select-helper-label"
+                                    id = "demo-simple-select-helper"
+                                    label = "gender"
+                                    value = {gender}
+                                    onChange = { (event) => setGender(event.target.value) }
+                                >
+                                    <MenuItem value="MALE">Male</MenuItem>
+                                    <MenuItem value="FEMALE">Female</MenuItem>
+                                </Select>
+                                <FormHelperText>
+                                    select Gender of your choice
+                                </FormHelperText>
+                            </FormControl>
 
                             <div className="filter-tab-footer">
                                 <Button type="submit" value="Submit" variant="contained">

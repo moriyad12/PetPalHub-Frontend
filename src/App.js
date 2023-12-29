@@ -3,12 +3,13 @@ import Dashboard from "./Dashboard/Dashboard";
 
 function App() {
 
-    const getDtoListFromBackEnd = async () => {
+    const getDtoListFromBackEnd = async (filters) => {
+        // alert(JSON.stringify(filters));
     }
 
     return (
         <div className="App">
-            <Dashboard getDtoListFromBackEnd={getDtoListFromBackEnd}/>
+            <Dashboard filterEnabled={true} getDtoListFromBackEnd={getDtoListFromBackEnd}/>
         </div>
     );
 }

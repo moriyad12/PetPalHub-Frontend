@@ -10,15 +10,16 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [tabIndex, setTabIndex] = React.useState([]);
+    const [data, SetData] = React.useState([]);
 
     useEffect(() => {
-        getDtoListFromBackEnd();
+        getDtoListFromBackEnd([]);
     }, [page]);
     useEffect(() => {
-        getDtoListFromBackEnd();
+        getDtoListFromBackEnd([]);
     }, [rowsPerPage]);
     useEffect(() => {
-        getDtoListFromBackEnd();
+        getDtoListFromBackEnd([]);
     }, [tabIndex]);
 
 
@@ -36,17 +37,17 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
                 <div className="middle flex">
                     <input type="text" placeholder="Search"/>
                     <i className="space-icon">
+                        {filterEnabled ?
                         <Filter
                             getDtoListFromBackEnd={getDtoListFromBackEnd}
-                        />
+                        /> : null}
                     </i>
                 </div>
                 <div className="right flex">
                     <div className="content-header-breadcrumb">
                         <TablePagination
                             component="div"
-                            // count={events.length}
-                            count={10}
+                            count={data.length}
                             page={page}
                             onPageChange={handleChangePage}
                             rowsPerPage={rowsPerPage}
