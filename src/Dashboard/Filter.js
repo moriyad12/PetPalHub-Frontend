@@ -18,8 +18,8 @@ export default function Filter( {getDtoListFromBackEnd} )
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleClick = (e) => {
+        setAnchorEl(e.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
