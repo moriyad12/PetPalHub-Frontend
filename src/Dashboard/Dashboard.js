@@ -18,7 +18,6 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
     const getDtoListFromBackEnd = async (filters) => {
         try {
             if (viewComponentIndex === 1) {
-                //alert(JSON.stringify(filters))
                 const response = await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
                 SetData(response.data);
             } else {

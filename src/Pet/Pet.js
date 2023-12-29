@@ -26,12 +26,12 @@ function Pet() {
     const params = location.state;
     // let id = params.id
 
-    const[id,setId] =useState(params.id);
+    const id=params.id;
 
     const fetchpets = async () => {
         const data = {
-            name: "y",
-            description: "tz fa",
+            name: "",
+            description: "",
             species: "",
             dateOfBirth: "",
             shelterName: "",
