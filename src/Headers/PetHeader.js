@@ -4,10 +4,10 @@ import CardContent from '@mui/material/CardContent';
 
 import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
+import {useNavigate} from "react-router-dom";
 
 
-function PetHeader(props) {
-    let petHeader = props.petHeader;
+function PetHeader({petHeader}) {
     // const petHeader = {
     //     id: 1,
     //     name: 'Sample Pet',
@@ -17,11 +17,12 @@ function PetHeader(props) {
     //     shelterName: 'Sample Shelter',
     // };
 
-
+     const navigate = useNavigate();
     const handleSeeMore = () => {
         const params = {
             id: petHeader.id,
         };
+        navigate("petview", {state: params});
     }
 
     return (

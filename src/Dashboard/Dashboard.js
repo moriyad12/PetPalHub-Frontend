@@ -3,6 +3,8 @@ import "./Dashboard.css";
 import Filter from "./Filter";
 import TablePagination from "@mui/material/TablePagination";
 import Tabs from "./Tabs";
+import PetHeader from "../Headers/PetHeader";
+import ApplicationHeader from "../Headers/ApplicationHeader";
 
 
 function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
@@ -10,7 +12,52 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [tabIndex, setTabIndex] = React.useState([]);
-    const [data, SetData] = React.useState([]);
+    const [data, SetData] = React.useState([
+        // {
+        //     id: 1,
+        //     name: 'hosny',
+        //     species: 'Dog',
+        //     healthStatus: 'Good',
+        //     gender: 'Male',
+        //     shelterName: 'Sample Shelter'
+        // }
+        // ,
+        // {
+        //     id: 2,
+        //     name: 'faros',
+        //     species: 'Dog',
+        //     healthStatus: 'Good',
+        //     gender: 'Male',
+        //     shelterName: 'Sample Shelter'
+        // },
+        // {
+        //     id: 3,
+        //     name: 'micol',
+        //     species: 'Dog',
+        //     healthStatus: 'Good',
+        //     gender: 'Male',
+        //     shelterName: 'Sample Shelter'
+        // }
+         {
+                adpterId: 1,
+                petId: 1,
+                adopterName: "ryad",
+                petName: "faris",
+                status: "Pending",
+                shelterName: "Sample Shelter",
+                applicationDate: "2021-10-10"
+        },
+        {
+            adpterId: 2,
+            petId: 2,
+            adopterName: "ryad",
+            petName: "faris",
+            status: "Pending",
+            shelterName: "Sample Shelter",
+            applicationDate: "2021-10-10"
+        }
+
+    ]);
 
     useEffect(() => {
         getDtoListFromBackEnd([]);
@@ -33,6 +80,9 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
 
     // to be implemented
     const viewData = (d, i) => {
+        if(viewComponentIndex ===1)
+            return <PetHeader key={i} petHeader={d} />
+        return <ApplicationHeader key={i} ApplicationHeader={d} />
 
     }
 

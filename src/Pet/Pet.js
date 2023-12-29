@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./Pet.css";
 import PetAttribute from "./PetAttribute";
+import {useLocation} from "react-router-dom";
 
 
 function Pet() {
@@ -20,21 +21,39 @@ function Pet() {
         behaviour: "",
         vaccineStatus: "",
     });
-    // const[id,setId] =useState(params.id);
+    const location = useLocation();
+    const params = location.state;
+    // let id = params.id
 
-    // const fetchpets = async () => {
-    //     try {
-    //         const response =[];
-    //         const newId = response.data.id;
-    //         setId(newId);
-    //         setAttributes(response.data)
-    //     } catch (error) {
-    //         alert(error.response.data.message)
-    //     }
-    // }
-    // useEffect(() => {
-    //     fetchpets()
-    // }, []);
+    const[id,setId] =useState(params.id);
+
+    const fetchpets = async () => {
+        const data = {
+            name: "y",
+            description: "tz fa",
+            species: "",
+            dateOfBirth: "",
+            shelterName: "",
+            gender: "",
+            healthStatus: "",
+            availability: "",
+            breed: "",
+            behaviour: "",
+            vaccineStatus: "",
+        };
+        setAttributes(data);
+        // try {
+        //     const response =[];
+        //     const newId = response.data.id;
+        //     setId(newId);
+        //     setAttributes(response.data)
+        // } catch (error) {
+        //     alert(error.response.data.message)
+        // }
+    }
+    useEffect(() => {
+        fetchpets()
+    }, []);
 
     return <div className="pet-container">
         <div className="pet">
