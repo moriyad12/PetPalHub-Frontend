@@ -11,12 +11,12 @@ import {getUserId} from "../Authentication/UserAuthentication";
 function Profile() {
 
     const [profileAttributes, setProfileAttributes] = React.useState({
-        firstName:"faris",
-        lastName:"mohamed",
-        email:"Faris007@gmail.com",
-        role:"Adopter",
-        gender:"Male",
-        phoneNumber:"01204554352",
+        firstName:"",
+        lastName:"",
+        email:"",
+        role:"",
+        gender:"",
+        phoneNumber:"",
     });
 
     useEffect(() => {
@@ -44,9 +44,9 @@ function Profile() {
                     <div className="header-btns">
                         <BasicModal
                             defaultFirstName={profileAttributes.firstName}
-                            defaultGender={profileAttributes.gender}
                             defaultLastName={profileAttributes.lastName}
-                            defaultPaypalAccount={profileAttributes.phoneNumber}/>
+                            defaultGender={profileAttributes.gender}
+                            defaultPhoneNumber={profileAttributes.phoneNumber}/>
                     </div>
                 </div>
                 <div className="profile-main-content-body">

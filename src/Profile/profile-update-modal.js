@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import informationApis from "../../../src/Apis/UserApis/InformationApis";
 import {FaPen} from "react-icons/fa6";
 
 import {
@@ -14,6 +13,8 @@ import {
     TextField,
     Typography
 } from '@mui/material';
+import {getUserId} from "../Authentication/UserAuthentication";
+import userApis from "../Apis/UserApis/UserApis";
 
 // import {getUserId} from "../../../src/Authentication/UserAuthentication";
 
@@ -47,15 +48,15 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
     const handleClose = () => setOpen(false);
 
     const handleInformationChange = async () => {
-        // const newInformation = {
-        //     id: getUserId(),
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     gender: gender,
-        //     payPalAccount: paypalAccount,
-        // }
+        const newInformation = {
+            id: getUserId(),
+            firstName: firstName,
+            lastName: lastName,
+            gender: gender,
+            phoneNumber: phoneNumber,
+        }
         try {
-            //  await informationApis.put("updateInformation", newInformation);
+              await userApis.post("updateUserProfile", newInformation);
         } catch (error) {
             alert(error.response.data.message)
         }
