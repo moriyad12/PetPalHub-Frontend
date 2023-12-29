@@ -17,6 +17,10 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
     useEffect(() => {
         getDtoListFromBackEnd();
     }, [rowsPerPage]);
+    useEffect(() => {
+        getDtoListFromBackEnd();
+    }, [tabIndex]);
+
 
     const handleChangePage = async (event, newPage) => {
         setPage(newPage);

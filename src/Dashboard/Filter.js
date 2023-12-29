@@ -7,8 +7,15 @@ import TextField from "@mui/material/TextField";
 
 export default function Filter( {getDtoListFromBackEnd} )
 {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [availability, setAvailability] = React.useState(null);
+    const [dateOfBirth, setDateOfBirth] = React.useState(null);
+    const [gender, setGender] = React.useState(null);
     const [name, setName] = React.useState("");
+    const [healthStatus, setHealthStatus] = React.useState(null);
+    const [species, setSpecies] = React.useState(null);
+    const [behaviour, setBehaviour] = React.useState(null);
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -16,14 +23,14 @@ export default function Filter( {getDtoListFromBackEnd} )
 
     const handleClose = () => {
         setAnchorEl(null);
-        // setAddress("");
-        // setCountry("");
-        // setState("");
-        // setStatesInCountry([]);
-        // setEventCategory("");
-        // setEventSubCategory("");
-        // setName("");
-        // setOrganizerName("");
+
+        setAvailability(null)
+        setDateOfBirth(null)
+        setGender(null)
+        setName("")
+        setHealthStatus(null)
+        setSpecies(null)
+        setBehaviour(null)
     };
 
     const handleFilter = (e) => {
@@ -72,16 +79,8 @@ export default function Filter( {getDtoListFromBackEnd} )
                                 value={name}
                                 onChange={(event) => setName(event.target.value)}
                             />
-                            {/*<TextField*/}
-                            {/*    id="outlined-basic"*/}
-                            {/*    label="Organizer Name"*/}
-                            {/*    variant="outlined"*/}
-                            {/*    helperText="please enter the Organizer Name"*/}
-                            {/*    value={organizerName}*/}
-                            {/*    onChange={(event) => {*/}
-                            {/*        setOrganizerName(event.target.value);*/}
-                            {/*    }}*/}
-                            {/*/>*/}
+
+
                             <div className="filter-tab-footer">
                                 <Button type="submit" value="Submit" variant="contained">
                                     Submit
