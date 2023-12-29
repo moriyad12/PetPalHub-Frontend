@@ -7,7 +7,7 @@ import Shelter from "./Shelter/Shelter";
 function App() {
   return (
     <div className="App">
-      <Shelter/>
+      <Pet/>
     </div>
   );
 }

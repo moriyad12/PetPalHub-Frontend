@@ -44,8 +44,8 @@ function Pet() {
                     <span>represents</span>
                 </div>
             </div>
-            <div className="pet-body">
-                <PetAttribute label={"pet Name"} value={attributes.name}/>
+             <div className="pet-body">
+                <PetAttribute label={"Pet Name"} value={attributes.name}/>
                 <PetAttribute label={"Species"} value={attributes.species}/>
                 <PetAttribute label={"Date Of Birth"} value={attributes.dateOfBirth}/>
                 <PetAttribute label={"Gender"} value={attributes.gender}/>
