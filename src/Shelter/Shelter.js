@@ -1,13 +1,29 @@
 import ShelterAttribute from "./ShelterAttribute";
-import React from "react";
+import React, {useEffect} from "react";
+import {getUserId} from "../Authentication/UserAuthentication";
+import masterApis from "../Apis/MasterApis";
 
 function Shelter() {
     const [attributes, setAttributes] = React.useState({
         name: "Alex",
         phoneNumber: "01204554352",
-        location:{Country:"",City:"",Address:""},
+        shelterLocation:{country:"",city:"",address:""},
         code: "123456",
     });
+
+    useEffect(() => {
+        const sendInformationRequest = async() => {
+            try {
+                const response = await masterApis.get("getShelterDto/"+getUserId());
+                console.log(response);
+                setAttributes(response.data)
+            } catch (error) {
+                // alert(error)
+                alert(error.response.data.message)
+            }
+        }
+        sendInformationRequest()
+    }, []);
 
     return (
         <div className="shelter-container">
@@ -20,10 +36,9 @@ function Shelter() {
                 <div className="shelter-body">
                     <ShelterAttribute label={"Shelter Name"} value={attributes.name}/>
                     <ShelterAttribute label={"phone Number"} value={attributes.phoneNumber}/>
-                    <ShelterAttribute label={"Country"} value={attributes.location.Country}/>
-                    <ShelterAttribute label={"City"} value={attributes.location.City}/>
-                    <ShelterAttribute label={"Address"} value={attributes.location.Address}/>
-                    <ShelterAttribute label={"code"} value={attributes.code}/>
+                    <ShelterAttribute label={"Country"} value={attributes.shelterLocation.country}/>
+                    <ShelterAttribute label={"City"} value={attributes.shelterLocation.city}/>
+                    <ShelterAttribute label={"Address"} value={attributes.shelterLocation.address}/>
                     <div className="shelter-description">
                         <span>{attributes.description}</span>
                     </div>

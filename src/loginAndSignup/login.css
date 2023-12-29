@@ -27,7 +27,7 @@
     max-width: 100%;
     outline: none;
     border: none;
-    min-height: 700px;
+    min-height: 620px;
 }
 
 .subTitle {
@@ -86,7 +86,7 @@
     border: none;
     padding: 10px 15px;
     border-radius: 8px;
-    margin: 10px 0;
+    margin: 7px 0;
     width: 100%;
     font-size: 14px;
     letter-spacing: 1px;
