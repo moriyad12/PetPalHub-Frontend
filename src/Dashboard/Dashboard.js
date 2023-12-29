@@ -10,6 +10,7 @@ import AdopterApi from "../Apis/AdopterApi";
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes, DashboardTypes} from "./DashboardTypes";
 import {isUserAdopter} from "../Authentication/UserAuthentication";
+import PetCreation from "../Pet/PetCreation";
 
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
@@ -99,6 +100,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                             </div>)
                     }
                 </div>
+                 <PetCreation  buttonName="Create Pet"/>
             </div>
         </div>
     </div>
