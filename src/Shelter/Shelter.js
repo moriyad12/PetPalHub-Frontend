@@ -6,17 +6,18 @@ import {useNavigate, useNavigation} from "react-router-dom";
 
 function Shelter() {
     const [attributes, setAttributes] = React.useState({
-        name: "Alex",
-        phoneNumber: "01204554352",
-        shelterLocation:{country:"",city:"",address:""},
-        code: "123456",
+        id: 0,
+        name: "",
+        phoneNumber: "",
+        shelterLocation: {country: "", city: "", address: ""},
+        code: "",
     });
     const navigate = useNavigate();
 
     useEffect(() => {
-        const sendInformationRequest = async() => {
+        const sendInformationRequest = async () => {
             try {
-                const response = await masterApis.get("getShelterDto/"+getUserId());
+                const response = await masterApis.get("getShelterDto/" + getUserId());
                 console.log(response);
                 setAttributes(response.data)
             } catch (error) {
