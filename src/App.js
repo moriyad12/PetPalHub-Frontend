@@ -1,11 +1,14 @@
 import './App.css';
-import Login from "./loginAndSignup/login";
-import ValidationPage from "./validation/validationPage";
+
+import Pet from "./Pet/Pet";
+import PetHeader from "./Headers/PetHeader";
+import ApplicationHeader from "./Headers/ApplicationHeader";
+import Shelter from "./Shelter/Shelter";
 
 function App() {
   return (
     <div className="App">
-        <Login/>
+      <Pet/>
     </div>
   );
 }
