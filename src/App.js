@@ -1,4 +1,5 @@
 import './App.css';
+import Pet from "./Pet/Pet";
 
 import Login from "./loginAndSignup/login";
 import ValidationPage from "./validation/validationPage";
