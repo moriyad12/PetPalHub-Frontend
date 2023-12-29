@@ -1,10 +1,11 @@
 import './App.css';
-import React from "react";
-import Profile from "./Profile/Profile";
+
+import Login from "./loginAndSignup/login";
+import ValidationPage from "./validation/validationPage";
 function App() {
   return (
     <div className="App">
-        <Profile> </Profile>
+        <Login/>
     </div>
   );
 }
