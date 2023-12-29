@@ -162,7 +162,24 @@ function Login() {
                         {signupFormik.touched.confirmPassword && signupFormik.errors.confirmPassword ? (
                             <div className=" text-error">{signupFormik.errors.confirmPassword}</div>) : null}
                         {
-                            signupFormik.values.role === "STAFF" ? (
+                            signupFormik.values.role === "STAFF" ?
+                                (
+                                    <>
+                                        <input name={"shelterId"}
+                                               onChange={signupFormik.handleChange}
+                                               onBlur={signupFormik.handleBlur}
+                                               className={
+                                                   signupFormik.touched.shelterId && signupFormik.errors.shelterId ? "Input error" : "Input"
+                                               }
+                                               type="number" placeholder={"Shelter Id"}/>
+                                        {signupFormik.touched.shelterId && signupFormik.errors.shelterId ? (
+                                            <div className="text-error">{signupFormik.errors.shelterId}</div>
+                                        ) : null}
+                                    </>
+                                ):null
+                        }
+                        {
+                            (signupFormik.values.role === "STAFF" || signupFormik.values.role === "MANAGER") ? (
                                 <>
                                     <input
                                         name={"shelterCode"}
@@ -182,23 +199,7 @@ function Login() {
                                 </>
                             ) : null
                         }
-                        {
-                            signupFormik.values.role === "ADOPTER" ? null :
-                                (
-                                    <>
-                                        <input name={"shelterId"}
-                                               onChange={signupFormik.handleChange}
-                                               onBlur={signupFormik.handleBlur}
-                                               className={
-                                                   signupFormik.touched.shelterId && signupFormik.errors.shelterId ? "Input error" : "Input"
-                                               }
-                                               type="number" placeholder={0}/>
-                                        {signupFormik.touched.shelterId && signupFormik.errors.shelterId ? (
-                                            <div className="text-error">{signupFormik.errors.shelterId}</div>
-                                        ) : null}
-                                    </>
-                                )
-                        }
+
                         <Button style={{
                             borderRadius: 30,
                             backgroundColor: "#495e57",

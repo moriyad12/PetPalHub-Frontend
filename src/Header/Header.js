@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { CSSTransition } from "react-transition-group";
 import {Link} from "react-router-dom";
+import {removeUserLocalStorageData} from "../Authentication/UserAuthentication";
 
 export default function Header() {
     const [isNavVisible, setNavVisibility] = useState(false);
@@ -44,7 +45,9 @@ export default function Header() {
                     <a href="/profile">Profile</a>
                     <a href="/shelter">Shelter</a>
                     <Link to="/login">
-                        <button>Logout</button>
+                        <button onClick={
+                            removeUserLocalStorageData
+                        }>Logout </button>
                     </Link>
                 </nav>
             </CSSTransition>
