@@ -6,68 +6,38 @@ import Tabs from "./Tabs";
 import PetHeader from "../Headers/PetHeader";
 import ApplicationHeader from "../Headers/ApplicationHeader";
 import Header from "../Header/Header";
+import AdopterApi from "../Apis/AdopterApi";
 
 
-function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
+function Dashboard({filterEnabled, viewComponentIndex}) {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [tabIndex, setTabIndex] = React.useState([]);
-    const [data, SetData] = React.useState([
-        // {
-        //     id: 1,
-        //     name: 'hosny',
-        //     species: 'Dog',
-        //     healthStatus: 'Good',
-        //     gender: 'Male',
-        //     shelterName: 'Sample Shelter'
-        // }
-        // ,
-        // {
-        //     id: 2,
-        //     name: 'faros',
-        //     species: 'Dog',
-        //     healthStatus: 'Good',
-        //     gender: 'Male',
-        //     shelterName: 'Sample Shelter'
-        // },
-        // {
-        //     id: 3,
-        //     name: 'micol',
-        //     species: 'Dog',
-        //     healthStatus: 'Good',
-        //     gender: 'Male',
-        //     shelterName: 'Sample Shelter'
-        // }
-         {
-                adpterId: 1,
-                petId: 1,
-                adopterName: "ryad",
-                petName: "faris",
-                status: "Pending",
-                shelterName: "Sample Shelter",
-                applicationDate: "2021-10-10"
-        },
-        {
-            adpterId: 2,
-            petId: 2,
-            adopterName: "ryad",
-            petName: "faris",
-            status: "Pending",
-            shelterName: "Sample Shelter",
-            applicationDate: "2021-10-10"
+    const [data, SetData] = React.useState([]);
+    const getDtoListFromBackEnd = async (filters) => {
+        try {
+            if (viewComponentIndex === 1) {
+                //alert(JSON.stringify(filters))
+                const response = await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
+                SetData(response.data);
+            } else {
+
+            }
+        } catch (error) {
+            alert(error.response.data.message)
         }
 
-    ]);
-
+    }
+    const emptyFilters={filters: []}
     useEffect(() => {
-        getDtoListFromBackEnd([]);
+        getDtoListFromBackEnd(emptyFilters);
     }, [page]);
     useEffect(() => {
-        getDtoListFromBackEnd([]);
+        getDtoListFromBackEnd(emptyFilters);
     }, [rowsPerPage]);
     useEffect(() => {
-        getDtoListFromBackEnd([]);
+        getDtoListFromBackEnd(emptyFilters);
     }, [tabIndex]);
 
 
