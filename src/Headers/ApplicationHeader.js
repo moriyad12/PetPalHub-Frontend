@@ -7,18 +7,8 @@ import {Button, CardActionArea, CardActions} from '@mui/material';
 
 
 function ApplicationHeader(props) {
+
     let ApplicationHeader = props.ApplicationHeader;
-    // const ApplicationHeader = {
-    //         adpterId: 1,
-    //         petId: 1,
-    //         adopterName: "Sample Adopter",
-    //         petName: "Sample Pet",
-    //         status: "Pending",
-    //         shelterName: "Sample Shelter",
-    //         applicationDate: "2021-10-10"
-    // };
-
-
     const handleSeeMore = () => {
         const params = {
             id: ApplicationHeader.id,

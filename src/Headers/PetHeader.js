@@ -8,14 +8,6 @@ import {useNavigate} from "react-router-dom";
 
 
 function PetHeader({petHeader}) {
-    // const petHeader = {
-    //     id: 1,
-    //     name: 'Sample Pet',
-    //     species: 'Dog',
-    //     healthStatus: 'Good',
-    //     gender: 'Male',
-    //     shelterName: 'Sample Shelter',
-    // };
 
      const navigate = useNavigate();
     const handleSeeMore = () => {

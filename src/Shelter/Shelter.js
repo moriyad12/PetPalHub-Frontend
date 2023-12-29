@@ -2,6 +2,7 @@ import ShelterAttribute from "./ShelterAttribute";
 import React, {useEffect} from "react";
 import {getUserId} from "../Authentication/UserAuthentication";
 import masterApis from "../Apis/MasterApis";
+import {useNavigate, useNavigation} from "react-router-dom";
 
 function Shelter() {
     const [attributes, setAttributes] = React.useState({
@@ -10,6 +11,7 @@ function Shelter() {
         shelterLocation:{country:"",city:"",address:""},
         code: "123456",
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const sendInformationRequest = async() => {
@@ -18,8 +20,8 @@ function Shelter() {
                 console.log(response);
                 setAttributes(response.data)
             } catch (error) {
-                // alert(error)
-                alert(error.response.data.message)
+                navigate("/")
+                // alert(error.response.data.message)
             }
         }
         sendInformationRequest()
