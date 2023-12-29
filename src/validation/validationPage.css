@@ -3,7 +3,7 @@
 /*}*/
 
 .body{
-    background-image: url("./image2.png");
+    background-image: url("./pexels-elina-volkova-16366943.jpg");
     background-size: cover;
     background-position: center;
     filter: saturate(1.1);
@@ -18,8 +18,8 @@
 }
 
 .container{
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 10px;
+    background-color: rgba(5, 5, 5, 0.5);
+    border-radius: 30px;
     padding: 30px;
     max-width: 1000px;
     text-align: center;
@@ -34,12 +34,12 @@
 .codeInput{
     caret-color: transparent;
     background-color: rgba(255,255,255,0.6);
-    border-radius: 10px;
+    border-radius: 40px;
     border: 1px solid #eee;
-    font-size: 30px;
-    font-family: "Times New Roman", sans-serif;
-    width: 75px;
-    height: 80px;
+    font-size: 40px;
+    font-family: '"Lucida Console", "Courier New", monospace';
+    width: 70px;
+    height: 70px;
     margin:10px;
     text-align: center;
     font-weight: 300;
@@ -50,12 +50,12 @@
     -webkit-appearance: none;
 }
 .codeInput:valid{
-    border-color: #6495ED;
+    border-color: #176B87;
     box-shadow: 0 10px 10px -5px rgba(0,0,0,.25);
 }
 .btn{
-    font-family: "Times New Roman", sans-serif;
-    min-width: 400px;
+    font-family: '"Lucida Console", "Courier New", monospace';
+    min-width: 150px;
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -67,12 +67,12 @@
     padding: .775rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: 10px;
+    border-radius: 30px;
     text-transform: uppercase;
     letter-spacing: .1rem;
 }
 .btn-primary{
     color: #fff;
-    background-color: #6495ED;
-    border-color: #185df3;
+    background-color: #47A992;
+    /*border-color: #000000;*/
 }

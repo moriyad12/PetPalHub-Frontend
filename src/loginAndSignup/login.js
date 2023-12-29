@@ -72,7 +72,6 @@ function Login() {
             }
             try {
                 // const response =await ProxyApi.post("basicSignUp", informationDto)
-
                 // setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
                 // navigate(RoutePathNames.validation)
                 console.log(userDto)
@@ -87,31 +86,17 @@ function Login() {
         <div className="Body">
             <div className={classNames({"Container": true, "active": isLoginActive})} id="container">
                 <div className="form-container sign-up-container">
-                    <form onSubmit={signupFormik.handleSubmit}>
-                        <h2>Create Account</h2>
-
-                        {/*will be added in the next phase*/}
-                        {/*{*/}
-                        {/*    false ? (*/}
-                        {/*        <div>*/}
-                        {/*            <div className="social-container">*/}
-                        {/*            <a href="#" className="social"><FaGoogle className="social-icon"/></a>*/}
-                        {/*            </div>*/}
-                        {/*            <span>or use your Gmail to register</span>*/}
-                        {/*        </div>*/}
-                        {/*    ) : null*/}
-                        {/*}*/}
-
+                    <form style={{
+                        backgroundColor: "#F5F7F8",
+                    }} onSubmit={signupFormik.handleSubmit}>
+                        <h2>Sign Up</h2>
                         <FormControl sx={{minWidth: 300}}>
-                            <InputLabel id="demo-simple-select-helper-label">Role</InputLabel>
                             <Select
                                 required={true}
                                 value={signupFormik.values.role}
                                 onChange={signupFormik.handleChange}
                                 onBlur={signupFormik.handleBlur}
-                                name={"role"}
-                                label="Role"
-                            >
+                                name={"role"}>
                                 <MenuItem value="ROLE_ADOPTER"> ADOPTER </MenuItem>
                                 <MenuItem value="ROLE_STAFF">STAFF</MenuItem>
                                 <MenuItem value="ROLE_MANAGER"> MANAGER </MenuItem>
@@ -195,39 +180,34 @@ function Login() {
                             ) : null
                         }
                         {
-                            signupFormik.values.role === "ROLE_ADOPTER" ? null:
+                            signupFormik.values.role === "ROLE_ADOPTER" ? null :
                                 (
                                     <>
-                                    <input name={"shelterId"}
-                                           onChange={signupFormik.handleChange}
-                                           onBlur={signupFormik.handleBlur}
-                                           className={
-                                               signupFormik.touched.shelterId && signupFormik.errors.shelterId ? "Input error" : "Input"
-                                           }
-                                           type="number" placeholder={0} />
+                                        <input name={"shelterId"}
+                                               onChange={signupFormik.handleChange}
+                                               onBlur={signupFormik.handleBlur}
+                                               className={
+                                                   signupFormik.touched.shelterId && signupFormik.errors.shelterId ? "Input error" : "Input"
+                                               }
+                                               type="number" placeholder={0}/>
                                         {signupFormik.touched.shelterId && signupFormik.errors.shelterId ? (
                                             <div className="text-error">{signupFormik.errors.shelterId}</div>
                                         ) : null}
                                     </>
                                 )
                         }
-                        <Button variant="contained" type="submit">Sign up</Button>
+                        <Button style={{
+                            borderRadius: 30,
+                            backgroundColor: "#495e57",
+                            padding: "18px 36px",
+                        }} variant="contained" type="submit">Sign up</Button>
                     </form>
                 </div>
                 <div className="form-container sign-in-container">
-                    <form onSubmit={loginFormik.handleSubmit}>
-                        <h2>Sign in</h2>
-                        {/*for another phase when we add the Google authentication */}
-                        {/*{*/}
-                        {/*    false ? (*/}
-                        {/*        <div>*/}
-                        {/*            <div className="social-container">*/}
-                        {/*                <a href="#" className="social"><FaGoogle className="social-icon"/></a>*/}
-                        {/*            </div>*/}
-                        {/*            <span>use your account</span>*/}
-                        {/*        </div>*/}
-                        {/*    ) : null*/}
-                        {/*}*/}
+                    <form style={{
+                        backgroundColor: "#F5F7F8",
+                    }} onSubmit={loginFormik.handleSubmit}>
+                        <h2>Sign In</h2>
                         <input
                             name={"email"}
                             value={loginFormik.values.email}
@@ -247,28 +227,34 @@ function Login() {
                             type="password" placeholder="Password"/>
                         {loginFormik.touched.password && loginFormik.errors.password ? (
                             <div className=" text-error">{loginFormik.errors.password}</div>) : null}
-                        {/*{*/}
-                        {/*    false ? (*/}
-                        {/*        <a href="#">Forgot your password?</a>*/}
-                        {/*    ) : null*/}
-                        {/*}*/}
-                        <Button variant="contained" type="submit">
-                            >Sign In</Button>
+                        <Button style={{
+                            borderRadius: 30,
+                            backgroundColor: "#495e57",
+                            padding: "18px 36px",
+                        }}
+                                variant="contained" type="submit">
+                            Sign In</Button>
                     </form>
                 </div>
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">
-                            <h2>Welcome Back!</h2>
-                            <p className="subTitle">To keep connected with us please login with your personal info</p>
-                            <Button variant="contained" className="ghost" id="signIn"
-                                    onClick={() => setIsLoginActive(false)}>Sign In</Button>
+                            <h2 style={{ fontFamily: '"Lucida Console", "Courier New", monospace' }}>Hey There, Buddy!</h2>
+                            <Button style={{
+                                borderRadius: 30,
+                                backgroundColor: "#495e57",
+                                padding: "18px 36px",
+                            }} variant="contained" className="ghost" id="signIn"
+                                    onClick={() => setIsLoginActive(false)}>Login Gateway</Button>
                         </div>
                         <div className="overlay-panel overlay-right">
-                            <h2>Hello, My Friend!</h2>
-                            <p className="subTitle">Enter your details and start journey with us</p>
-                            <Button variant="contained" className="ghost" id="signUp"
-                                    onClick={() => setIsLoginActive(true)}>Sign Up</Button>
+                            <h2 style={{ fontFamily: '"Lucida Console", "Courier New", monospace' }}>Hi Again!</h2>
+                            <Button style={{
+                                borderRadius: 30,
+                                backgroundColor: "#495e57",
+                                padding: "18px 36px",
+                            }} variant="contained" className="ghost" id="signUp"
+                                    onClick={() => setIsLoginActive(true)}>Sign Up and Explore</Button>
                         </div>
                     </div>
                 </div>
