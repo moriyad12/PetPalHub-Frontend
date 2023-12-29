@@ -37,7 +37,7 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
     const [firstName, setFirstName] = React.useState(defaultFirstName || '');
     const [lastName, setLastName] = React.useState(defaultLastName);
     const [gender, setGender] = React.useState(defaultGender);
-    const [paypalAccount, setPaypalAccount] = React.useState(defaultPhoneNumber);
+    const [phoneNumber, setPhoneNumber] = React.useState(defaultPhoneNumber);
 
     const [open, setOpen] = React.useState(false);
 
@@ -94,11 +94,11 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
                                        }}
                             />
                             {/*defaultValue={defaultPaypalAccount}*/}
-                            <TextField variant={"outlined"} label={"Paypal Account"}
+                            <TextField variant={"outlined"} label={"Phone Number"}
 
-                                       value={paypalAccount}
+                                       value={phoneNumber}
                                        onChange={(event) => {
-                                           setPaypalAccount(event.target.value)
+                                           setPhoneNumber(event.target.value)
                                        }}
                             />
                             <FormControl sx={{maxWidth: 200}}>

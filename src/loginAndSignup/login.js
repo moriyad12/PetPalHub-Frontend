@@ -6,14 +6,13 @@ import classNames from "classnames";
 import {loginValidation} from "./validations/loginValidation";
 import {signupValidation} from "./validations/signupValidation";
 import {useFormik} from "formik";
-// import ProxyApi from "../Apis/ProxyApis/ProxyApis";
-import {InputLabel} from "@mui/material";
+import ProxyApi from "../Apis/ProxyApis/ProxyApis";
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useNavigate} from "react-router-dom";
-// import {useNavigate} from "react-router-dom";
+import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
 // import {isUserLoggedIn, setUserLocalStorageData} from "../Authentication/UserAuthentication";
 // import {RoutePathNames} from "../Routes/RoutePathNames";
 
@@ -34,11 +33,11 @@ function Login() {
                 "password": values.password
             }
             try {
-                // const response = await ProxyApi.post("basicSignIn", authenticationRequest)
-                // setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
+                const response = await ProxyApi.post("basicSignIn", authenticationRequest)
+                setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
                 navigate("/");
             } catch (error) {
-                actions.resetForm();
+               // actions.resetForm();
                 alert(error.response.data.message)
             }
         }
@@ -54,7 +53,7 @@ function Login() {
             confirmPassword: "",
             shelterCode: "",
             shelterId: 0,
-            role: "ROLE_ADOPTER"
+            role: "ADOPTER"
         },
         validationSchema: signupValidation,
         onSubmit: async (values, actions) => {
@@ -73,13 +72,13 @@ function Login() {
                 "signInWithEmail": false
             }
             try {
-                // const response =await ProxyApi.post("basicSignUp", informationDto)
-                // setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
+                const response =await ProxyApi.post("basicSignUp", userDto)
+                setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
                 alert("Please check your email for validation")
                 navigate("/validation");
                 console.log(userDto)
             } catch (error) {
-                actions.resetForm();
+               // actions.resetForm();
                 alert(error.response.data.message)
             }
         },
@@ -100,9 +99,10 @@ function Login() {
                                 onChange={signupFormik.handleChange}
                                 onBlur={signupFormik.handleBlur}
                                 name={"role"}>
-                                <MenuItem value="ROLE_ADOPTER"> ADOPTER </MenuItem>
-                                <MenuItem value="ROLE_STAFF">STAFF</MenuItem>
-                                <MenuItem value="ROLE_MANAGER"> MANAGER </MenuItem>
+
+                                <MenuItem value="ADOPTER"> ADOPTER </MenuItem>
+                                <MenuItem value="STAFF">STAFF</MenuItem>
+                                <MenuItem value="MANAGER"> MANAGER </MenuItem>
                             </Select>
                         </FormControl>
 
@@ -162,7 +162,7 @@ function Login() {
                         {signupFormik.touched.confirmPassword && signupFormik.errors.confirmPassword ? (
                             <div className=" text-error">{signupFormik.errors.confirmPassword}</div>) : null}
                         {
-                            signupFormik.values.role === "ROLE_STAFF" ? (
+                            signupFormik.values.role === "STAFF" ? (
                                 <>
                                     <input
                                         name={"shelterCode"}
@@ -183,7 +183,7 @@ function Login() {
                             ) : null
                         }
                         {
-                            signupFormik.values.role === "ROLE_ADOPTER" ? null :
+                            signupFormik.values.role === "ADOPTER" ? null :
                                 (
                                     <>
                                         <input name={"shelterId"}

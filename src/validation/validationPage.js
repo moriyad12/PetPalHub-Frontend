@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-// import {useNavigate} from "react-router-dom";
-// import ProxyApi from "../Apis/ProxyApis/ProxyApis";
+import ProxyApi from "../Apis/ProxyApis/ProxyApis";
 // import {RoutePathNames} from "../Routes/RoutePathNames";
 import "./validationPage.css"
 import {useNavigate} from "react-router-dom";
@@ -46,9 +45,9 @@ function ValidationPage() {
         }
         try {
 
-            // console.log(verifyRequest)
-            // const response = await ProxyApi.post("verifyMail", verifyRequest)
-            // console.log(response)
+            console.log(verifyRequest)
+            const response = await ProxyApi.post("verifyMail", verifyRequest)
+            console.log(response)
             navigate("/")
         } catch (error) {
             alert("not valid verification code")
