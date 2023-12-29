@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import Filter from "./Filter";
 import TablePagination from "@mui/material/TablePagination";
 import Tabs from "./Tabs";
+import PetHeader from "../Headers/PetHeader";
 
 
 function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
@@ -10,7 +11,33 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [tabIndex, setTabIndex] = React.useState([]);
-    const [data, SetData] = React.useState([]);
+    const [data, SetData] = React.useState([
+        {
+            id: 1,
+            name: 'hosny',
+            species: 'Dog',
+            healthStatus: 'Good',
+            gender: 'Male',
+            shelterName: 'Sample Shelter'
+        }
+        ,
+        {
+            id: 2,
+            name: 'faros',
+            species: 'Dog',
+            healthStatus: 'Good',
+            gender: 'Male',
+            shelterName: 'Sample Shelter'
+        },
+        {
+            id: 3,
+            name: 'micol',
+            species: 'Dog',
+            healthStatus: 'Good',
+            gender: 'Male',
+            shelterName: 'Sample Shelter'
+        }
+    ]);
 
     useEffect(() => {
         getDtoListFromBackEnd([]);
@@ -33,6 +60,7 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
 
     // to be implemented
     const viewData = (d, i) => {
+        return <PetHeader key={i} petHeader={d} />
 
     }
 
