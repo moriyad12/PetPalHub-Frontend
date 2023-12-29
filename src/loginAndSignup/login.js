@@ -34,10 +34,12 @@ function Login() {
             }
             try {
                 const response = await ProxyApi.post("basicSignIn", authenticationRequest)
-                setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
+                setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
+                console.log(response)
                 navigate("/");
+
             } catch (error) {
-               // actions.resetForm();
+                // actions.resetForm();
                 alert(error.response.data.message)
             }
         }
@@ -73,12 +75,13 @@ function Login() {
             }
             try {
                 const response =await ProxyApi.post("basicSignUp", userDto)
-                setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
+                setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
                 alert("Please check your email for validation")
                 navigate("/validation");
-                console.log(userDto)
+                // console.log(userDto)
+                console.log(response)
             } catch (error) {
-               // actions.resetForm();
+                // actions.resetForm();
                 alert(error.response.data.message)
             }
         },

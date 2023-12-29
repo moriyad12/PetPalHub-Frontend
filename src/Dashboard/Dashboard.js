@@ -9,6 +9,7 @@ import Header from "../Header/Header";
 import AdopterApi from "../Apis/AdopterApi";
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes, DashboardTypes} from "./DashboardTypes";
+import {isUserAdopter} from "../Authentication/UserAuthentication";
 
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
@@ -46,7 +47,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         setPage(0);
     };
     const isTabsEnabled = () => {
-        return viewComponentIndex === 2;
+        return viewComponentIndex === 2 && isUserAdopter();
     }
 
     // to be implemented
@@ -65,7 +66,8 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                         {filterEnabled ?
                         <Filter
                             getDtoListFromBackEnd={getDtoListFromBackEnd}
-                        /> : null}
+                        />
+                            : null}
                     </i>
                 </div>
                 <div className="right flex">

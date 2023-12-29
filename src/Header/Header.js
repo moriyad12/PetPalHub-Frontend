@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { CSSTransition } from "react-transition-group";
 import {Link} from "react-router-dom";
-import {removeUserLocalStorageData} from "../Authentication/UserAuthentication";
+import {isUserStaffOrManager, removeUserLocalStorageData} from "../Authentication/UserAuthentication";
+import Filter from "../Dashboard/Filter";
 
 export default function Header() {
     const [isNavVisible, setNavVisibility] = useState(false);
@@ -43,8 +44,12 @@ export default function Header() {
                 <nav className="Nav">
                     <a href="/">Home</a>
                     <a href="/profile">Profile</a>
-                    <a href="/shelter">Shelter</a>
-                    <a href="/myPets">My Pets</a>
+                    {isUserStaffOrManager() ?
+                            <a href="/shelter">Shelter</a>
+                        : null}
+                    {isUserStaffOrManager() ?
+                            <a href="/myPets">My Pets</a>
+                        : null}
                     <a href="/myApplications">My Applications</a>
                     <Link to="/login">
                         <button onClick={
