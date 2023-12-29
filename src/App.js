@@ -1,17 +1,15 @@
 import './App.css';
-import Dashboard from "./Dashboard/Dashboard";
+import Pet from "./Pet/Pet";
+import PetHeader from "./Headers/PetHeader";
+import ApplicationHeader from "./Headers/ApplicationHeader";
+import Shelter from "./Shelter/Shelter";
 
 function App() {
-
-    const getDtoListFromBackEnd = async (filters) => {
-        // alert(JSON.stringify(filters));
-    }
-
-    return (
-        <div className="App">
-            <Dashboard filterEnabled={true} getDtoListFromBackEnd={getDtoListFromBackEnd}/>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Pet/>
+    </div>
+  );
 }
 
 export default App;
