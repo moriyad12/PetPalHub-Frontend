@@ -18,15 +18,20 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
     const [data, SetData] = React.useState([]);
     const getDtoListFromBackEnd = async (filters) => {
         try {
-
+            let response=0;
             if (viewComponentIndex === 1) {///allPets
-                const response = await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
-                SetData(response.data);
+                 response = await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
             } else {//allApplications
-                const response
-                    = await MasterApi.get("getPendingApplicationByShelterID/" + page + "/" + rowsPerPage+"/"+1)
-                SetData(response.data);
+                const userType = 2;
+                if (userType === 1) {
+                     response
+                        = await AdopterApi.get("getApplications/" + page + "/" + rowsPerPage + "/" + 1)
+                } else {
+                     response
+                        = await MasterApi.get("getPendingApplicationByShelterID/" + page + "/" + rowsPerPage + "/" + 1)
+                }
             }
+            SetData(response.data);
         } catch (error) {
             alert(error.response.data.message)
         }
