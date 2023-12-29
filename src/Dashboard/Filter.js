@@ -37,15 +37,13 @@ export default function Filter( {getDtoListFromBackEnd} )
         const filters = {
             filters: [
                 {
-                    "first": "NAME",
-                    "second": "AND",
-                    "third": name
+                    "first": 4,
+                    "second": name,
                 },
-                {
-                    "first": "GENDER",
-                    "second": "AND",
-                    "third": gender
-                },
+                // {
+                //     "first": "GENDER",
+                //     "second": gender,
+                // },
             ]
         }
 

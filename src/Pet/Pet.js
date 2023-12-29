@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./Pet.css";
 import PetAttribute from "./PetAttribute";
 import {useLocation} from "react-router-dom";
+import AdopterApi from "../Apis/AdopterApi";
 
 
 function Pet() {
@@ -25,12 +26,12 @@ function Pet() {
     const params = location.state;
     // let id = params.id
 
-    const[id,setId] =useState(params.id);
+    const id=params.id;
 
     const fetchpets = async () => {
         const data = {
-            name: "y",
-            description: "tz fa",
+            name: "",
+            description: "",
             species: "",
             dateOfBirth: "",
             shelterName: "",
@@ -42,14 +43,12 @@ function Pet() {
             vaccineStatus: "",
         };
         setAttributes(data);
-        // try {
-        //     const response =[];
-        //     const newId = response.data.id;
-        //     setId(newId);
-        //     setAttributes(response.data)
-        // } catch (error) {
-        //     alert(error.response.data.message)
-        // }
+        try {
+            const response = await AdopterApi.get("petForUser/" + id);
+            setAttributes(response.data)
+        } catch (error) {
+            alert(error.response.data.message)
+        }
     }
     useEffect(() => {
         fetchpets()

@@ -44,6 +44,8 @@ export default function Header() {
                     <a href="/">Home</a>
                     <a href="/profile">Profile</a>
                     <a href="/shelter">Shelter</a>
+                    <a href="/myPets">My Pets</a>
+                    <a href="/myApplications">My Applications</a>
                     <Link to="/login">
                         <button onClick={
                             removeUserLocalStorageData

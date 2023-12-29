@@ -14,20 +14,21 @@ import Header from "./Header/Header";
 import React from "react";
 
 function App() {
-    const getDtoListFromBackEnd = async (filters) => {
-        // alert(JSON.stringify(filters));
-    }
   return (
     <div className="App">
         <Router>
             <Header />
             <Routes>
-                <Route path={"/"} element={<Dashboard filterEnabled={true} getDtoListFromBackEnd={getDtoListFromBackEnd} viewComponentIndex={1}/>} />
+                <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
+                <Route path={"/myApplications"} element={<Dashboard filterEnabled={true}  viewComponentIndex={2}/>}  />
+                {/*//for shelter not adopter*/}
+                <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
                 <Route path={"/login"} element={<Login />} />
                 <Route path={"/profile"} element={<Profile />} />
                 <Route path={"/validation"} element={<ValidationPage />} />
                 <Route path={"/shelter"} element={<Shelter />} />
                 <Route path={"/petview"} element={<Pet />} />
+                <Route path={"/myPets/petview"} element={<Pet />} />
             </Routes>
         </Router>
     </div>
