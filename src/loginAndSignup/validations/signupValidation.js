@@ -18,14 +18,14 @@ export const signupValidation = Yup.object().shape({
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required("Required"),
-    phoneNumber: Yup.string()
-        .min(11, "Phone number must be at least 11 characters")
-        .max(11, "Phone number must be at most 11 characters")
-        .required("Required"),
-    shelterCode: Yup.string()
-        .min(6, "Last name must be at least 6 characters")
-        .required("Required"),
-    shelterId: Yup.number()
-        .positive("Shelter id must be positive")
-        .required("Required")
+    // phoneNumber: Yup.string()
+    //     .min(11, "Phone number must be at least 11 characters")
+    //     .max(11, "Phone number must be at most 11 characters")
+    //     .required("Required"),
+    // shelterCode: Yup.string()
+    //     .min(6, "Last name must be at least 6 characters")
+    //     .required("Required"),
+    // shelterId: Yup.number()
+    //     .positive("Shelter id must be positive")
+    //     .required("Required")
 });

@@ -12,13 +12,14 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {useNavigate} from "react-router-dom";
 // import {useNavigate} from "react-router-dom";
 // import {isUserLoggedIn, setUserLocalStorageData} from "../Authentication/UserAuthentication";
 // import {RoutePathNames} from "../Routes/RoutePathNames";
 
 
 function Login() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [isLoginActive, setIsLoginActive] = useState(false);
     const loginFormik = useFormik({
@@ -35,9 +36,9 @@ function Login() {
             try {
                 // const response = await ProxyApi.post("basicSignIn", authenticationRequest)
                 // setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
-                // navigate(RoutePathNames.dashboard);
+                navigate("/");
             } catch (error) {
-                // actions.resetForm();
+                actions.resetForm();
                 alert(error.response.data.message)
             }
         }
@@ -57,6 +58,7 @@ function Login() {
         },
         validationSchema: signupValidation,
         onSubmit: async (values, actions) => {
+            alert(JSON.stringify(values))
             const userDto = {
                 "id": 0,
                 "firstName": values.firstName,
@@ -73,10 +75,11 @@ function Login() {
             try {
                 // const response =await ProxyApi.post("basicSignUp", informationDto)
                 // setUserLocalStorageData(response.data.id, response.data.token, response.data.role)
-                // navigate(RoutePathNames.validation)
+                alert("Please check your email for validation")
+                navigate("/validation");
                 console.log(userDto)
             } catch (error) {
-                // actions.resetForm();
+                actions.resetForm();
                 alert(error.response.data.message)
             }
         },
