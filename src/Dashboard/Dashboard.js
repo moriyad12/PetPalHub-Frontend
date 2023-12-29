@@ -15,11 +15,11 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [tabIndex, setTabIndex] = React.useState([]);
+    const [tabIndex, setTabIndex] = React.useState("1");
     const [data, SetData] = React.useState([]);
     const getDtoListFromBackEnd = async (filters) => {
         try {
-            const response = await dashboardTypes(filters, viewComponentIndex, page, rowsPerPage);
+            const response = await dashboardTypes(filters, viewComponentIndex, page, rowsPerPage,tabIndex);
             SetData(response.data);
         } catch (error) {
             alert(error.response.data.message)
