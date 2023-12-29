@@ -31,6 +31,11 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
         setPage(0);
     };
 
+    // to be implemented
+    const viewData = (d, i) => {
+
+    }
+
     return <div className="dashboard">
         <div className="main center">
             <nav className="navbar flex">
@@ -62,10 +67,11 @@ function Dashboard({filterEnabled, viewComponentIndex, getDtoListFromBackEnd}) {
                 </div>
                 <div className="content-body flex">
                     {
-                        // events.map((e, i) =>
-                        //     <div className="card-container center">
-                        //         <MultiActionAreaCard key={i} eventHeader={e}/>
-                        //     </div>)
+                        data.map((d, i) =>
+                            <div className="card-container center">
+                                { viewData(d, i) }
+                                {/*<MultiActionAreaCard key={i} eventHeader={e}/>*/}
+                            </div>)
                     }
                 </div>
             </div>
