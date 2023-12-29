@@ -22,7 +22,7 @@ function PetHeader({petHeader}) {
         const params = {
             id: petHeader.id,
         };
-        navigate("petview", {state: params});
+        navigate("petview", { state: params, replace: true });
     }
 
     return (

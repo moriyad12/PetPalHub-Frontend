@@ -5,15 +5,19 @@ export const dashboardTypes = async (filters,viewComponentIndex,page,rowsPerPage
     let response=0;
     if (viewComponentIndex === 1) {///allPets
         return  await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
-    } else {//allApplications
+    } else if(viewComponentIndex === 2) {//allApplications
         return  await handleApplications(page,rowsPerPage,tabIndex);
+    }
+    else {
+        return await MasterApi.post("getFilteredPetsHeadersListByShelterId/" + page + "/" + rowsPerPage + "/" + 1, filters);
     }
 };
 const handleApplications=async (page,rowsPerPage,tabIndex)=>{
     const userType = 2;
     if (userType === 1) {
         return await AdopterApi.get("getApplications/" + page + "/" + rowsPerPage + "/" + 1)
-    } else {
+    }
+    else {
         return await handleApllicationForShelter(page,rowsPerPage,tabIndex);
     }
 }

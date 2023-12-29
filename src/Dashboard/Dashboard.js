@@ -51,10 +51,9 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
 
     // to be implemented
     const viewData = (d, i) => {
-        if(viewComponentIndex ===1)
+        if(viewComponentIndex ===1||viewComponentIndex ===3)
             return <PetHeader key={i} petHeader={d} />
         return <ApplicationHeader key={i} ApplicationHeader={d} />
-
     }
 
     return <div className="dashboard">
