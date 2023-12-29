@@ -10,6 +10,8 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Login from "./loginAndSignup/login";
 import Profile from "./Profile/Profile";
 import ValidationPage from "./validation/validationPage";
+import Header from "./Header/Header";
+import React from "react";
 
 function App() {
     const getDtoListFromBackEnd = async (filters) => {
@@ -18,6 +20,7 @@ function App() {
   return (
     <div className="App">
         <Router>
+            <Header />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true} getDtoListFromBackEnd={getDtoListFromBackEnd} viewComponentIndex={1}/>} />
                 <Route path={"/login"} element={<Login />} />
