@@ -7,6 +7,7 @@ import PetHeader from "../Headers/PetHeader";
 import ApplicationHeader from "../Headers/ApplicationHeader";
 import Header from "../Header/Header";
 import AdopterApi from "../Apis/AdopterApi";
+import MasterApi from "../Apis/MasterApi";
 
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
@@ -17,11 +18,14 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
     const [data, SetData] = React.useState([]);
     const getDtoListFromBackEnd = async (filters) => {
         try {
-            if (viewComponentIndex === 1) {
+
+            if (viewComponentIndex === 1) {///allPets
                 const response = await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
                 SetData(response.data);
-            } else {
-
+            } else {//allApplications
+                const response
+                    = await MasterApi.get("getPendingApplicationByShelterID/" + page + "/" + rowsPerPage+"/"+1)
+                SetData(response.data);
             }
         } catch (error) {
             alert(error.response.data.message)
