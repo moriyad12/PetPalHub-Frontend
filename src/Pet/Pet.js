@@ -3,6 +3,8 @@ import "./Pet.css";
 import PetAttribute from "./PetAttribute";
 import {useLocation} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
+import PetCreation from "./PetCreation";
+import MasterApi from "../Apis/MasterApi";
 
 
 function Pet() {
@@ -27,6 +29,7 @@ function Pet() {
     // let id = params.id
 
     const id=params.id;
+    const viewComponentIndex = params.ViewComponentIndex;
 
     const fetchpets = async () => {
         const data = {
@@ -76,6 +79,12 @@ function Pet() {
                 <div className="pet-description">
                     <span>{attributes.description}</span>
                 </div>
+                 {viewComponentIndex===3 ?
+                     <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
+                         await MasterApi.post("editPet", Pet);
+                     }}/>
+                     : null}
+
             </div>
         </div>
     </div>

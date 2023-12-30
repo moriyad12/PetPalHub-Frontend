@@ -31,7 +31,7 @@ const style = {
     borderRadius: "24px",
 };
 
-export default function PetCreation({ PetId,buttonName}) {
+export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
     const handleOpen = () => {
@@ -73,9 +73,8 @@ export default function PetCreation({ PetId,buttonName}) {
             description:description,
             shelterId:getShelterId()
         }
-        alert(JSON.stringify(Pet))
         try {
-            await MasterApi.post("addPet", Pet)
+            handleSubmitFunction(Pet)
             handleClose()
             navigate("/myPets");
             navigate(0)

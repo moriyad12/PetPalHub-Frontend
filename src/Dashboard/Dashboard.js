@@ -54,7 +54,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
     // to be implemented
     const viewData = (d, i) => {
         if(viewComponentIndex ===1||viewComponentIndex ===3)
-            return <PetHeader key={i} petHeader={d} />
+            return <PetHeader key={i} petHeader={d} ViewComponentIndex={viewComponentIndex} />
         return <ApplicationHeader key={i} ApplicationHeader={d} tabIndex={tabIndex} />
     }
 
@@ -62,7 +62,6 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         <div className="main center">
             <nav className="navbar flex">
                 <div className="middle flex">
-                    <input type="text" placeholder="Search"/>
                     <i className="space-icon">
                         {filterEnabled ?
                         <Filter
@@ -100,7 +99,9 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     }
                 </div>
                 {viewComponentIndex===3 ?
-                    <PetCreation  buttonName="Create Pet"/>
+                    <PetCreation  buttonName="Create Pet" handleSubmitFunction={async(Pet)=>{
+                        await MasterApi.post("addPet", Pet);
+                    }}/>
                     : null}
 
             </div>

@@ -7,12 +7,13 @@ import {Button, CardActionArea, CardActions} from '@mui/material';
 import {useNavigate} from "react-router-dom";
 
 
-function PetHeader({petHeader}) {
+function PetHeader({petHeader,ViewComponentIndex}) {
 
      const navigate = useNavigate();
     const handleSeeMore = () => {
         const params = {
             id: petHeader.id,
+            ViewComponentIndex: ViewComponentIndex
         };
         navigate("petview", { state: params, replace: true });
     }
