@@ -37,7 +37,6 @@ export default function PetCreation({ PetId,buttonName}) {
     const handleOpen = () => {
         setOpen(true);
         setName("");
-        setAvailability("");
         setBreed("");
         setBehaviour("");
         setVaccineStatus("");
@@ -52,7 +51,6 @@ export default function PetCreation({ PetId,buttonName}) {
     const [name, setName] = React.useState("");
     const [gender, setGender] = React.useState("");
     const [healthStatus, setHealthStatus] = React.useState("");
-    const [availability, setAvailability] = React.useState("");
     const [breed, setBreed] = React.useState("");
     const [behaviour, setBehaviour] = React.useState("");
     const [vaccineStatus, setVaccineStatus] = React.useState("");
@@ -60,7 +58,7 @@ export default function PetCreation({ PetId,buttonName}) {
     const [species, setSpecies] = React.useState("");
     const [description, setDescription] = React.useState("");
     const handlePetCreation = async (e) => {
-        // e.prPetDefault();
+        e.preventDefault();
         const Pet = {
             id: PetId,
             name: name,
@@ -78,11 +76,11 @@ export default function PetCreation({ PetId,buttonName}) {
         alert(JSON.stringify(Pet))
         try {
             await MasterApi.post("addPet", Pet)
-            // handleClose()
-            // navigate("/myPets");
-            // navigate(0)
+            handleClose()
+            navigate("/myPets");
+            navigate(0)
         } catch (error) {
-            // alert(error.response.data.message)
+            alert(error.response.data.message)
         }
     }
 
