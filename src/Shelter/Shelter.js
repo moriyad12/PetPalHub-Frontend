@@ -1,22 +1,24 @@
 import ShelterAttribute from "./ShelterAttribute";
 import React, {useEffect} from "react";
-import {getUserId} from "../Authentication/UserAuthentication";
+import {getShelterId, getUserId} from "../Authentication/UserAuthentication";
 import masterApis from "../Apis/MasterApis";
 import {useNavigate, useNavigation} from "react-router-dom";
+import Shelter_Update from "./Shelter_Update";
 
 function Shelter() {
     const [attributes, setAttributes] = React.useState({
-        name: "Alex",
-        phoneNumber: "01204554352",
-        shelterLocation:{country:"",city:"",address:""},
-        code: "123456",
+        id: 0,
+        name: "",
+        phoneNumber: "",
+        shelterLocation: {country: "", city: "", address: ""},
+        code: "",
     });
     const navigate = useNavigate();
 
     useEffect(() => {
-        const sendInformationRequest = async() => {
+        const sendInformationRequest = async () => {
             try {
-                const response = await masterApis.get("getShelterDto/"+getUserId());
+                const response = await masterApis.get("getShelterDto/" + getShelterId());
                 console.log(response);
                 setAttributes(response.data)
             } catch (error) {
@@ -45,6 +47,10 @@ function Shelter() {
                         <span>{attributes.description}</span>
                     </div>
                 </div>
+                <Shelter_Update
+                    defaultName={attributes.name}
+                    defaultLocation={attributes.shelterLocation}
+                    defaultPhoneNumber={attributes.phoneNumber}/>
             </div>
         </div>
     );

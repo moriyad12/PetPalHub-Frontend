@@ -158,6 +158,8 @@
     flex-direction: row;
     align-items: center;
     gap: 50px;
+    background-color: aquamarine;
+    border-radius: 30px;
 }
 
 .profile-main-content-body{
