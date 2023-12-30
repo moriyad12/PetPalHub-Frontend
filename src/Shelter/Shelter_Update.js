@@ -67,7 +67,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
         <div>
             <Button style={{
                 borderRadius: 30,
-                backgroundColor: "#f8f06b",
+                backgroundColor: "#ffffff",
                 padding: "18px 36px",
                 color: "black",
                 marginTop:9,

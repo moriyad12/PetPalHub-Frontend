@@ -50,7 +50,7 @@ function ApplicationHeader({ApplicationHeader,tabIndex}){
                                 Pet Name: {ApplicationHeader.petName}
                             </div>
                             <div className="location">
-                                application Date: {ApplicationHeader.applicationDate}
+                                application Date: {ApplicationHeader.applicationDate.slice(0,10)}
                             </div>
                             {tabIndex==="1"&&isUserStaffOrManager() ?
                                 <>

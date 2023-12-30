@@ -21,7 +21,7 @@ function App() {
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
-                <Route path={"/myApplications"} element={<Dashboard filterEnabled={true}  viewComponentIndex={2}/>}  />
+                <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />
                 <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
                 <Route path={"/login"} element={<Login setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/profile"} element={<Profile />} />

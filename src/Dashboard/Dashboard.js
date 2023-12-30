@@ -62,6 +62,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         <div className="main center">
             <nav className="navbar flex">
                 <div className="middle flex">
+                    <div className="dashboard-title">Dashboard</div>
                     <i className="space-icon">
                         {filterEnabled ?
                         <Filter
