@@ -4,16 +4,20 @@ import CardContent from '@mui/material/CardContent';
 
 import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
+import PetCreation from "../Pet/PetCreation";
 
 
-function ApplicationHeader(props) {
-
-    let ApplicationHeader = props.ApplicationHeader;
+function ApplicationHeader({ApplicationHeader,tabIndex}){
     const handleSeeMore = () => {
         const params = {
             id: ApplicationHeader.id,
         };
+        console.log(tabIndex)
     }
+    const handleAcceptApplication=() => {
+    };
+    const handleRejectApplication=() => {
+    };
 
     return (
         <Card className="card" style={{width: "90%", transition: "all 0.2s ease-in-out"}}>
@@ -37,6 +41,13 @@ function ApplicationHeader(props) {
                             <div className="location">
                                 applicationDate: {ApplicationHeader.applicationDate}
                             </div>
+                            {tabIndex==="1" ?
+                                <>
+                                <Button variant={"outlined"} onClick={handleAcceptApplication}>Accept Application</Button>
+                                <Button variant={"outlined"} onClick={handleRejectApplication}>Reject Application</Button>
+                                </>
+                                : null}
+
                         </div>
                     </Typography>
                 </CardContent>
