@@ -36,3 +36,10 @@ export function removeUserLocalStorageData()
 export function isUserLoggedIn() {
     return (typeof getUserId() === "number")
 }
+
+export function isUserAdopter() {
+    return (getUserRole() === "ROLE_ADOPTER")
+}
+export function isUserStaffOrManager() {
+    return (getUserRole() === "ROLE_STAFF" || getUserRole() === "ROLE_MANAGER")
+}

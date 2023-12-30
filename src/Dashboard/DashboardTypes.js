@@ -1,10 +1,9 @@
 import AdopterApi from "../Apis/AdopterApi";
 import MasterApi from "../Apis/MasterApi";
-import {getShelterId, getUserId} from "../Authentication/UserAuthentication";
+import {getShelterId, getUserId, isUserAdopter} from "../Authentication/UserAuthentication";
 
 export const dashboardTypes = async (filters,viewComponentIndex,page,rowsPerPage,tabIndex) => {
-    let response=0;
-    if (viewComponentIndex === 1) {///allPets
+    if (viewComponentIndex === 1) {
         return  await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
     } else if(viewComponentIndex === 2) {//allApplications
         return  await handleApplications(page,rowsPerPage,tabIndex);
@@ -14,8 +13,8 @@ export const dashboardTypes = async (filters,viewComponentIndex,page,rowsPerPage
     }
 };
 const handleApplications=async (page,rowsPerPage,tabIndex)=>{
-    const userType = 2;
-    if (userType === 1) {
+    if (isUserAdopter()) {
+
         return await AdopterApi.get("getApplications/" + page + "/" + rowsPerPage + "/" + getUserId())
     }
     else {

@@ -9,6 +9,8 @@ import Header from "../Header/Header";
 import AdopterApi from "../Apis/AdopterApi";
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes, DashboardTypes} from "./DashboardTypes";
+import {isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import PetCreation from "../Pet/PetCreation";
 
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
@@ -46,14 +48,14 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         setPage(0);
     };
     const isTabsEnabled = () => {
-        return viewComponentIndex === 2;
+        return viewComponentIndex === 2 && isUserStaffOrManager();
     }
 
     // to be implemented
     const viewData = (d, i) => {
         if(viewComponentIndex ===1||viewComponentIndex ===3)
             return <PetHeader key={i} petHeader={d} />
-        return <ApplicationHeader key={i} ApplicationHeader={d} />
+        return <ApplicationHeader key={i} ApplicationHeader={d} tabIndex={tabIndex} />
     }
 
     return <div className="dashboard">
@@ -65,7 +67,8 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                         {filterEnabled ?
                         <Filter
                             getDtoListFromBackEnd={getDtoListFromBackEnd}
-                        /> : null}
+                        />
+                            : null}
                     </i>
                 </div>
                 <div className="right flex">
@@ -93,10 +96,13 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                         data.map((d, i) =>
                             <div className="card-container center">
                                 { viewData(d, i) }
-                                {/*<MultiActionAreaCard key={i} eventHeader={e}/>*/}
                             </div>)
                     }
                 </div>
+                {viewComponentIndex===3 ?
+                    <PetCreation  buttonName="Create Pet"/>
+                    : null}
+
             </div>
         </div>
     </div>

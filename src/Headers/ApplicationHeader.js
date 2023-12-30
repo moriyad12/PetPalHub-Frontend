@@ -4,16 +4,31 @@ import CardContent from '@mui/material/CardContent';
 
 import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
+import PetCreation from "../Pet/PetCreation";
+import {getShelterId, getUserId, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import MasterApi from "../Apis/MasterApi";
+import {dashboardTypes} from "../Dashboard/DashboardTypes";
+import {useNavigate} from "react-router-dom";
 
 
-function ApplicationHeader(props) {
-
-    let ApplicationHeader = props.ApplicationHeader;
-    const handleSeeMore = () => {
-        const params = {
-            id: ApplicationHeader.id,
-        };
-    }
+function ApplicationHeader({ApplicationHeader,tabIndex}){
+    const navigate=useNavigate()
+    const handleAcceptApplication=async () => {
+        try {
+            await MasterApi.post("acceptApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId );
+            navigate(0)
+        } catch (error) {
+            alert(error.response.data.message)
+        }
+    };
+    const handleRejectApplication=async () => {
+        try {
+            await MasterApi.post("rejectApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId );
+            navigate(0)
+        } catch (error) {
+            alert(error.response.data.message)
+        }
+    };
 
     return (
         <Card className="card" style={{width: "90%", transition: "all 0.2s ease-in-out"}}>
@@ -29,14 +44,21 @@ function ApplicationHeader(props) {
                     <Typography variant="body2" color="text.secondary">
                         <div className="card-content">
                             <div className="pet-category">
-                                Gender: {ApplicationHeader.status}
+                                Status: {ApplicationHeader.status}
                             </div>
                             <div className="location">
-                                Species: {ApplicationHeader.petName}
+                                Pet Name: {ApplicationHeader.petName}
                             </div>
                             <div className="location">
-                                applicationDate: {ApplicationHeader.applicationDate}
+                                application Date: {ApplicationHeader.applicationDate}
                             </div>
+                            {tabIndex==="1"&&isUserStaffOrManager() ?
+                                <>
+                                <Button variant={"outlined"} onClick={handleAcceptApplication}>Accept Application</Button>
+                                <Button variant={"outlined"} onClick={handleRejectApplication}>Reject Application</Button>
+                                </>
+                                : null}
+
                         </div>
                     </Typography>
                 </CardContent>

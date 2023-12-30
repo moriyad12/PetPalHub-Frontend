@@ -68,7 +68,7 @@ function Pet() {
                 <PetAttribute label={"Date Of Birth"} value={attributes.dateOfBirth}/>
                 <PetAttribute label={"Gender"} value={attributes.gender}/>
                 <PetAttribute label={"Availability"} value={attributes.availability}/>
-                <PetAttribute label={"Behaviour"} value={attributes.behaviour}/>
+                <PetAttribute label={"Behaviour.jsx"} value={attributes.behaviour}/>
                 <PetAttribute label={"Breed"} value={attributes.breed}/>
                 <PetAttribute label={"Vaccine Status"} value={attributes.vaccineStatus}/>
                 <PetAttribute label={"Health Status"} value={attributes.healthStatus}/>
