@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { CSSTransition } from "react-transition-group";
 import {Link} from "react-router-dom";
-import {isUserStaffOrManager, removeUserLocalStorageData} from "../Authentication/UserAuthentication";
+import {isUserAdopter, isUserStaffOrManager, removeUserLocalStorageData} from "../Authentication/UserAuthentication";
 import Filter from "../Dashboard/Filter";
 
-export default function Header() {
+export default function Header({isLoggedIn, setIsLoggedIn}) {
     const [isNavVisible, setNavVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -18,7 +18,10 @@ export default function Header() {
         return () => {
             mediaQuery.removeListener(handleMediaQueryChange);
         };
-    }, []);
+    }, []);// Assuming initial state is logged in
+
+    useEffect(() => {
+    }, [isLoggedIn]);
 
     const handleMediaQueryChange = mediaQuery => {
         if (mediaQuery.matches) {
@@ -43,17 +46,24 @@ export default function Header() {
             >
                 <nav className="Nav">
                     <a href="/">Home</a>
-                    <a href="/profile">Profile</a>
+                    {isUserStaffOrManager()||isUserAdopter() ?
+                        <a href="/profile">Profile</a>
+                        : null}
                     {isUserStaffOrManager() ?
                             <a href="/shelter">Shelter</a>
                         : null}
                     {isUserStaffOrManager() ?
                             <a href="/myPets">My Pets</a>
                         : null}
-                    <a href="/myApplications">My Applications</a>
+                    {isUserStaffOrManager()||isUserAdopter() ?
+                        <a href="/myApplications">My Applications</a>
+                        : null}
                     <Link to="/login">
                         <button onClick={
-                            removeUserLocalStorageData
+                            () => {
+                                removeUserLocalStorageData();
+                                setIsLoggedIn(false);
+                            }
                         }>Logout </button>
                     </Link>
                 </nav>

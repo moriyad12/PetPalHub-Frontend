@@ -11,19 +11,19 @@ import Login from "./loginAndSignup/login";
 import Profile from "./Profile/Profile";
 import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
-import React from "react";
+import React, {useState} from "react";
 
 function App() {
-  return (
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    return (
     <div className="App">
-        <Router>
-            <Header />
+        <Router >
+            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
                 <Route path={"/myApplications"} element={<Dashboard filterEnabled={true}  viewComponentIndex={2}/>}  />
-                {/*//for shelter not adopter*/}
                 <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
-                <Route path={"/login"} element={<Login />} />
+                <Route path={"/login"} element={<Login setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/profile"} element={<Profile />} />
                 <Route path={"/validation"} element={<ValidationPage />} />
                 <Route path={"/shelter"} element={<Shelter />} />

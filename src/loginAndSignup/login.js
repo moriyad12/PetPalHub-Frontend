@@ -17,7 +17,7 @@ import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
 // import {RoutePathNames} from "../Routes/RoutePathNames";
 
 
-function Login() {
+function Login({setIsUserLoggedIn}) {
     const navigate = useNavigate();
 
     const [isLoginActive, setIsLoginActive] = useState(false);
@@ -36,6 +36,7 @@ function Login() {
                 const response = await ProxyApi.post("basicSignIn", authenticationRequest)
                 setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
                 console.log(response)
+                setIsUserLoggedIn(true)
                 navigate("/");
 
             } catch (error) {
@@ -77,6 +78,7 @@ function Login() {
                 const response =await ProxyApi.post("basicSignUp", userDto)
                 setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
                 alert("Please check your email for validation")
+                setIsUserLoggedIn(true)
                 navigate("/validation");
                 // console.log(userDto)
                 console.log(response)

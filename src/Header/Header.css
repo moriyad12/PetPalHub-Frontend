@@ -29,7 +29,9 @@ body {
     grid-area: nav;
     grid-template-columns: repeat(6, auto);
     align-items: center;
-    justify-items: center;
+    justify-items: end; /* Align items to the end (right) */
+    justify-content: flex-end; /* Move the content to the end (right) */
+    width: 100%; /* Take the full width of the container */
 }
 
 .Nav a {
@@ -38,6 +40,8 @@ body {
     font-weight: 500;
     transition: 0.5s;
     text-decoration: none;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .Nav a:hover {
@@ -56,6 +60,7 @@ body {
     box-shadow: 0px 5px 0px 0px rgba(255, 0, 0, 0.25);
     cursor: pointer;
     transition: 70ms;
+    margin-left: auto; /* Move the button to the right */
 }
 
 .Nav button:active {

@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from "react";
 import "./Pet.css";
 import PetAttribute from "./PetAttribute";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
+import {getUserId, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {Button} from "@mui/material";
 
 
 function Pet() {
 
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [attributes, setAttributes] = React.useState({
         name: "",
         description: "",
@@ -56,6 +58,14 @@ function Pet() {
     useEffect(() => {
         fetchpets()
     }, []);
+    const handleApplyApplication=async () => {
+        try {
+            await AdopterApi.post("applyForPet/" + id+ "/" + getUserId() );
+            navigate("/myApplications")
+        } catch (error) {
+            alert(error.response.data.message)
+        }
+    };
 
     return <div className="pet-container">
         <div className="pet">
@@ -83,6 +93,9 @@ function Pet() {
                      <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
                          await MasterApi.post("editPet", Pet);
                      }}/>
+                     : null}
+                 {isUserAdopter()&&viewComponentIndex===1 ?
+                         <Button variant="contained" className="ghost" onClick={handleApplyApplication}>Apply Application</Button>
                      : null}
 
             </div>
