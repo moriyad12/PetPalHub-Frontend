@@ -4,10 +4,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {ImEqualizer} from "react-icons/im";
 import TextField from "@mui/material/TextField";
-import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
+import {FilterGender} from "./FilterHandler/FilterGender";
+import {FilterBehaviour} from "./FilterHandler/FilterBehaviour";
+import {FilterHealthStatus} from "./FilterHandler/FilterHealthStatus";
+import {FilterVaccineStatus} from "./FilterHandler/FilterVaccineStatus";
 
-export default function Filter( {getDtoListFromBackEnd} )
-{
+export default function Filter( {getDtoListFromBackEnd} ) {
     const [availability, setAvailability] = React.useState(null);
     const [dateOfBirth, setDateOfBirth] = React.useState(null);
     const [gender, setGender] = React.useState(null);
@@ -15,7 +17,8 @@ export default function Filter( {getDtoListFromBackEnd} )
     const [healthStatus, setHealthStatus] = React.useState(null);
     const [species, setSpecies] = React.useState(null);
     const [behaviour, setBehaviour] = React.useState(null);
-
+    const [breed, setBreed] = React.useState(null);
+    const [vaccineStatus, setVaccineStatus] = React.useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (e) => {
@@ -26,6 +29,8 @@ export default function Filter( {getDtoListFromBackEnd} )
 
         setAvailability(null)
         setDateOfBirth(null)
+        setVaccineStatus(null)
+        setBreed(null)
         setGender(null)
         setName("")
         setHealthStatus(null)
@@ -35,18 +40,32 @@ export default function Filter( {getDtoListFromBackEnd} )
 
     const handleFilter = (e) => {
         const filters = {
-            filters: [
-                {
-                    "first": 4,
-                    "second": name,
-                },
-                // {
-                //     "first": "GENDER",
-                //     "second": gender,
-                // },
-            ]
+            filters: []
         }
 
+        // Array of variables to handle
+        const variablesToHandle = [
+            { key: 0, value: availability },
+            { key: 2, value: gender },
+            { key: 3, value: healthStatus },
+            { key: 4, value: name},
+            { key: 5, value: vaccineStatus },
+            { key: 6, value: species },
+            { key: 7, value: behaviour },
+        ];
+
+        // Iterate over variables and push filters into the array
+        variablesToHandle.forEach((variable) => {
+            if (variable.value !== null && variable.value.trim() !== "") {
+                filters.filters.push({
+                    "first": variable.key,
+                    "second": variable.value,
+                });
+            }
+        });
+
+
+        console.log(filters.filters)
         e.preventDefault();
         getDtoListFromBackEnd(filters);
         handleClose();
@@ -78,7 +97,7 @@ export default function Filter( {getDtoListFromBackEnd} )
                     horizontal: 'right',
                 }}
             >
-                <Typography sx={{p: 2, height: 500}}>
+                <Typography sx={{p: 2, height: 650}}>
                     <form className="filter-tab" onSubmit={handleFilter}>
                         <div className="filter-tab-header">
                             <h3>Filter</h3>
@@ -86,29 +105,22 @@ export default function Filter( {getDtoListFromBackEnd} )
                         <div className="filter-tab-body">
                             <TextField
                                 id="outlined-basic"
-                                label="Event Name"
+                                label="Pet Name"
                                 variant="outlined"
-                                helperText="please enter the Event Name"
                                 value={name}
-                                onChange={(event) => setName(event.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                             />
-                            <FormControl sx={{maxWidth: 200}}>
-                                <InputLabel id="demo-simple-select-helper-label">gender</InputLabel>
-                                <Select
-                                    labelId = "demo-simple-select-helper-label"
-                                    id = "demo-simple-select-helper"
-                                    label = "gender"
-                                    value = {gender}
-                                    onChange = { (event) => setGender(event.target.value) }
-                                >
-                                    <MenuItem value="MALE">Male</MenuItem>
-                                    <MenuItem value="FEMALE">Female</MenuItem>
-                                </Select>
-                                <FormHelperText>
-                                    select Gender of your choice
-                                </FormHelperText>
-                            </FormControl>
-
+                            <TextField
+                                id="outlined-basic"
+                                label="Species"
+                                variant="outlined"
+                                value={species}
+                                onChange={(e) => setSpecies(e.target.value)}
+                            />
+                            <FilterGender setGender={setGender}></FilterGender>
+                            <FilterBehaviour setBehaviour={setBehaviour} ></FilterBehaviour>
+                            <FilterHealthStatus setHealthStatus={setHealthStatus} ></FilterHealthStatus>
+                            <FilterVaccineStatus setVaccineStatus={setVaccineStatus}></FilterVaccineStatus>
                             <div className="filter-tab-footer">
                                 <Button type="submit" value="Submit" variant="contained">
                                     Submit
