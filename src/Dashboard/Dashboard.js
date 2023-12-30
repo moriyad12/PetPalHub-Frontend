@@ -100,7 +100,10 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                             </div>)
                     }
                 </div>
-                 <PetCreation  buttonName="Create Pet"/>
+                {viewComponentIndex===3 ?
+                    <PetCreation  buttonName="Create Pet"/>
+                    : null}
+
             </div>
         </div>
     </div>

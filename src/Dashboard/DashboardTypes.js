@@ -3,7 +3,7 @@ import MasterApi from "../Apis/MasterApi";
 import {getShelterId, getUserId, isUserAdopter} from "../Authentication/UserAuthentication";
 
 export const dashboardTypes = async (filters,viewComponentIndex,page,rowsPerPage,tabIndex) => {
-    if (viewComponentIndex === 1) {///allPets
+    if (viewComponentIndex === 1) {
         return  await AdopterApi.post("dashboard/" + page + "/" + rowsPerPage, filters);
     } else if(viewComponentIndex === 2) {//allApplications
         return  await handleApplications(page,rowsPerPage,tabIndex);
