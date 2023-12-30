@@ -23,10 +23,7 @@ export const HealthStatus = ({setHealthStatus}) => {
                 value={viewedHealthStatus}
 
                 onChange={(event) => {
-                    setHealthStatus({
-                        "id" : planIndexMap.get(event.target.value)+1,
-                        "name" : event.target.value
-                    })
+                    setHealthStatus(planIndexMap.get(event.target.value))
                     setViewedHealthStatus(event.target.value)
                 }
                 }

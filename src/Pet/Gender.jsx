@@ -23,10 +23,7 @@ export const Gender = ({setGender}) => {
                 value={viewedGender}
 
                 onChange={(event) => {
-                    setGender({
-                        "id" : planIndexMap.get(event.target.value)+1,
-                        "name" : event.target.value
-                    })
+                    setGender(planIndexMap.get(event.target.value))
                     setViewedGender(event.target.value)
                 }
                 }

@@ -9,7 +9,7 @@ import Header from "../Header/Header";
 import AdopterApi from "../Apis/AdopterApi";
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes, DashboardTypes} from "./DashboardTypes";
-import {isUserAdopter} from "../Authentication/UserAuthentication";
+import {isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import PetCreation from "../Pet/PetCreation";
 
 
@@ -48,7 +48,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         setPage(0);
     };
     const isTabsEnabled = () => {
-        return viewComponentIndex === 2 && isUserAdopter();
+        return viewComponentIndex === 2 && isUserStaffOrManager();
     }
 
     // to be implemented

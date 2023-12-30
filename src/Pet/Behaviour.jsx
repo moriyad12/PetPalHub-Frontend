@@ -23,10 +23,7 @@ export const Behaviour = ({setBehaviour}) => {
                 value={viewedBehaviour}
 
                 onChange={(event) => {
-                    setBehaviour({
-                        "id" : planIndexMap.get(event.target.value)+1,
-                        "name" : event.target.value
-                    })
+                    setBehaviour(planIndexMap.get(event.target.value))
                     setViewedBehaviour(event.target.value)
                 }
                 }

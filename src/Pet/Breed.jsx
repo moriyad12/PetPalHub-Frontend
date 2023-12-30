@@ -66,10 +66,7 @@ export const Breed = ({setBreed}) => {
                 value={viewedBreed}
 
                 onChange={(event) => {
-                    setBreed({
-                        "id" : planIndexMap.get(event.target.value)+1,
-                        "name" : event.target.value
-                    })
+                    setBreed(planIndexMap.get(event.target.value))
                     setViewedBreed(event.target.value)
                 }
                 }

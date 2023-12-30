@@ -23,10 +23,7 @@ export const VaccineStatus = ({setVaccineStatus}) => {
                 value={viewedVaccineStatus}
 
                 onChange={(event) => {
-                    setVaccineStatus({
-                        "id" : planIndexMap.get(event.target.value)+1,
-                        "name" : event.target.value
-                    })
+                    setVaccineStatus(planIndexMap.get(event.target.value))
                     setViewedVaccineStatus(event.target.value)
                 }
                 }

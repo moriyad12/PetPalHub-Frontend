@@ -13,7 +13,7 @@ import {VaccineStatus} from "./VaccineStatus";
 import {Behaviour} from "./Behaviour";
 import {Breed} from "./Breed";
 import AdopterApi from "../Apis/AdopterApi";
-import {getUserId} from "../Authentication/UserAuthentication";
+import {getShelterId, getUserId} from "../Authentication/UserAuthentication";
 import MasterApi from "../Apis/MasterApi";
 
 
@@ -72,11 +72,12 @@ export default function PetCreation({ PetId,buttonName}) {
             vaccineStatus:vaccineStatus,
             dateOfBirth:dateOfBirth,
             species:species,
-            description:description
+            description:description,
+            shelterId:getShelterId()
         }
         alert(JSON.stringify(Pet))
         try {
-            await MasterApi.post("addPet/", Pet)
+            await MasterApi.post("addPet", Pet)
             // handleClose()
             // navigate("/myPets");
             // navigate(0)
