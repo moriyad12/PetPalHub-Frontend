@@ -14,6 +14,7 @@ export const dashboardTypes = async (filters,viewComponentIndex,page,rowsPerPage
 };
 const handleApplications=async (page,rowsPerPage,tabIndex)=>{
     if (isUserAdopter()) {
+
         return await AdopterApi.get("getApplications/" + page + "/" + rowsPerPage + "/" + getUserId())
     }
     else {
