@@ -37,7 +37,10 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
 
     return (
         <header className="Header">
-            <img src={require("./pets3.PNG")} className="Logo" alt="logo" />
+            <div className="title">
+                <img src={require("./pets3.PNG")} className="Logo" alt="logo" />
+                <div className="HeaderTitle">PetPal Hub</div>
+          </div>
             <CSSTransition
                 in={!isSmallScreen || isNavVisible}
                 timeout={350}

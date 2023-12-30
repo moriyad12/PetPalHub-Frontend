@@ -60,7 +60,6 @@ function Login({setIsUserLoggedIn}) {
         },
         validationSchema: signupValidation,
         onSubmit: async (values, actions) => {
-            alert(JSON.stringify(values))
             const userDto = {
                 "id": 0,
                 "firstName": values.firstName,

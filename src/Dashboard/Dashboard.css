@@ -37,6 +37,13 @@
 .middle {
     justify-content: space-between;
 }
+.dashboard-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.75);
+    margin-left: 100px;
+
+}
 
 .middle .search-button {
     height: 40px;

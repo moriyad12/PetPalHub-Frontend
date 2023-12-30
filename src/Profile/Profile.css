@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-image: url("lst.jpeg");
+    background-image: url("aaaa.jpg");
     background-size: cover;
     /*background-position: center;*/
     background-repeat: no-repeat;
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(255,255,255,.6);
     border-radius: 25px;
     margin-left: 20px;
     padding-bottom: 5px;
@@ -44,7 +44,7 @@
 }
 
 .profile-name {
-    color: #ffffff;
+    color: #000000;
     font-size: 24px;
     font-weight: 700;
     margin-top: 20px;
@@ -52,7 +52,7 @@
 }
 
 .profile-desc {
-    color: #ffffff;
+    color: #000000;
     font-size: 14px;
     font-weight: 700;
     margin-top: 10px;
@@ -92,7 +92,7 @@
     gap: 25px;
     font-size: 25px;
     font-weight: 600;
-    color: #ffffff;
+    color: #000000;
     border-top-right-radius: 35px;
     border-bottom-right-radius: 35px;
     cursor: pointer;
@@ -140,7 +140,7 @@
     align-items: center;
     justify-content: space-between;
     /*background-color: white;*/
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(255,255,255,.6);
     margin-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -151,14 +151,14 @@
 .profile-main-content-header .header-title{
     font-size: 24px;
     font-weight: 700;
-    color: #ffffff;
+    color: #000000;
 }
 .profile-main-content-header .header-btns{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 50px;
-    background-color: aquamarine;
+    background-color: rgba(3, 3, 3, 0.85);
     border-radius: 30px;
 }
 
@@ -176,12 +176,12 @@
     width: 100%;
     height: calc(100% / 7.8);
     /*background-color: #fff;*/
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(255,255,255,.6);
     display: flex;
     flex-direction: row;
     padding: 6px;
     align-items: center;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #000000;
     transition: all 0.3s ease-in-out;
 }
 
@@ -198,15 +198,15 @@
 }
 
 .profile-info-item-title {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 700;
-    color: #fdfdfd;
+    color: #000000;
 }
 
 .profile-info-item-value {
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 600;
-    color: #f6f6f6;
+    color: #000000;
 }
 
 .edit-button,.delete-button{
@@ -219,7 +219,7 @@
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
-    color: #f7f7fc;
+    color: #000000;
     background: transparent;
     font-size: 16px;
     font-weight: 600;
@@ -231,7 +231,7 @@
 }
 .edit-button:hover ,.delete-button:hover{
     background-color: #150044;
-    color: #fff;
+    color: #000000;
 }
 .profile-update-modal-form{
     width: 100%;
