@@ -96,7 +96,6 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                         data.map((d, i) =>
                             <div className="card-container center">
                                 { viewData(d, i) }
-                                {/*<MultiActionAreaCard key={i} eventHeader={e}/>*/}
                             </div>)
                     }
                 </div>

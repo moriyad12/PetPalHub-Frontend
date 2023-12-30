@@ -10,28 +10,6 @@
     position: relative;
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    z-index: 1;
-    width: 235px;
-    transition: all 0.4s ease-in-out;
-    padding: 20px;
-    overflow-y: auto;
-    backdrop-filter: blur(10px);
-    color: white;
-    border: rgba(255, 255, 255, 0.3) 1px solid;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
-}
-
-.sidebar.closed {
-    width: 45px;
-}
-
 .flex {
     display: flex;
     align-items: center;
