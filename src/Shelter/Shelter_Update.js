@@ -9,7 +9,7 @@ import {
     TextField,
     Typography
 } from '@mui/material';
-import {getShelterId} from "../Authentication/UserAuthentication";
+import {getShelterId, getUserToken} from "../Authentication/UserAuthentication";
 import userApis from "../Apis/UserApis/UserApis";
 import {CountryCityStreet} from "./CountryCityStreet";
 import masterApis from "../Apis/MasterApis";
@@ -56,7 +56,8 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
             phoneNumber: phoneNumber,
         }
         try {
-            await masterApis.post("updateShelterDto", newInformation);
+            console.log(getUserToken())
+            await masterApis.post("updateShelterDto", newInformation,{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
         } catch (error) {
             alert(error.response.data.message)
         }

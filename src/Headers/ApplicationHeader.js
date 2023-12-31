@@ -5,25 +5,27 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
 import PetCreation from "../Pet/PetCreation";
-import {getShelterId, getUserId, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {getShelterId, getUserId, getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes} from "../Dashboard/DashboardTypes";
 import {useNavigate} from "react-router-dom";
 
 
-function ApplicationHeader({ApplicationHeader,tabIndex}){
-    const navigate=useNavigate()
-    const handleAcceptApplication=async () => {
+function ApplicationHeader({ApplicationHeader, tabIndex}) {
+    const navigate = useNavigate()
+    const handleAcceptApplication = async () => {
         try {
-            await MasterApi.post("acceptApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId );
+            console.log(getUserToken())
+            await MasterApi.post("acceptApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {},{headers: {"Authorization": `Bearer ${getUserToken()}`}});
             navigate(0)
         } catch (error) {
             alert(error.response.data.message)
         }
     };
-    const handleRejectApplication=async () => {
+    const handleRejectApplication = async () => {
         try {
-            await MasterApi.post("rejectApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId );
+            console.log(getUserToken())
+            await MasterApi.post("rejectApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {},{headers: {"Authorization": `Bearer ${getUserToken()}`}});
             navigate(0)
         } catch (error) {
             alert(error.response.data.message)
@@ -50,12 +52,14 @@ function ApplicationHeader({ApplicationHeader,tabIndex}){
                                 Pet Name: {ApplicationHeader.petName}
                             </div>
                             <div className="location">
-                                application Date: {ApplicationHeader.applicationDate.slice(0,10)}
+                                application Date: {ApplicationHeader.applicationDate.slice(0, 10)}
                             </div>
-                            {tabIndex==="1"&&isUserStaffOrManager() ?
+                            {tabIndex === "1" && isUserStaffOrManager() ?
                                 <>
-                                <Button variant={"outlined"} onClick={handleAcceptApplication}>Accept Application</Button>
-                                <Button variant={"outlined"} onClick={handleRejectApplication}>Reject Application</Button>
+                                    <Button variant={"outlined"} onClick={handleAcceptApplication}>Accept
+                                        Application</Button>
+                                    <Button variant={"outlined"} onClick={handleRejectApplication}>Reject
+                                        Application</Button>
                                 </>
                                 : null}
 

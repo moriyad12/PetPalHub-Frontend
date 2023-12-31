@@ -9,7 +9,7 @@ import Header from "../Header/Header";
 import AdopterApi from "../Apis/AdopterApi";
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes, DashboardTypes} from "./DashboardTypes";
-import {isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {getUserToken, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import PetCreation from "../Pet/PetCreation";
 
 
@@ -101,7 +101,8 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                 </div>
                 {viewComponentIndex===3 ?
                     <PetCreation  buttonName="Create Pet" handleSubmitFunction={async(Pet)=>{
-                        await MasterApi.post("addPet", Pet);
+                        console.log(getUserToken())
+                        await MasterApi.post("addPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
                     }}/>
                     : null}
 

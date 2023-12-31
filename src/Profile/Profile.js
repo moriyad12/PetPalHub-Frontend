@@ -5,7 +5,7 @@ import userApis from "../Apis/UserApis/UserApis";
 // import {getUserId, isTheUserAnAdmin} from "../Authentication/UserAuthentication";
 import {ProfileSideMenu} from "./ProfileSideMenu";
 import {ProfileAttributeComponent} from "./ProfileAttributeComponent";
-import {getUserId} from "../Authentication/UserAuthentication";
+import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
 
 
 function Profile() {
@@ -22,7 +22,8 @@ function Profile() {
     useEffect(() => {
         const sendInformationRequest = async() => {
             try {
-                const response = await userApis.get("getUserDto/"+getUserId());
+                console.log(getUserToken())
+                const response = await userApis.get("getUserDto/"+getUserId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
                 console.log(response);
                 setProfileAttributes(response.data)
             } catch (error) {
