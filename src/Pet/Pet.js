@@ -5,7 +5,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
-import {getUserId, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {getUserId, getUserToken, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {Button} from "@mui/material";
 
 
@@ -60,7 +60,8 @@ function Pet() {
     }, []);
     const handleApplyApplication=async () => {
         try {
-            await AdopterApi.post("applyForPet/" + id+ "/" + getUserId() );
+            console.log(getUserToken())
+            await AdopterApi.post("applyForPet/" + id+ "/" + getUserId(),{},{headers: {"Authorization": `Bearer ${getUserToken()}`}} );
             navigate("/myApplications")
         } catch (error) {
             alert(error.response.data.message)
@@ -91,7 +92,8 @@ function Pet() {
                 </div>
                  {viewComponentIndex===3 ?
                      <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
-                         await MasterApi.post("editPet", Pet);
+                         console.log(getUserToken())
+                         await MasterApi.post("editPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
                      }}/>
                      : null}
                  {isUserAdopter()&&viewComponentIndex===1 ?

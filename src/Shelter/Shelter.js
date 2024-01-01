@@ -1,6 +1,6 @@
 import ShelterAttribute from "./ShelterAttribute";
 import React, {useEffect} from "react";
-import {getShelterId, getUserId} from "../Authentication/UserAuthentication";
+import {getShelterId, getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import masterApis from "../Apis/MasterApis";
 import {useNavigate, useNavigation} from "react-router-dom";
 import Shelter_Update from "./Shelter_Update";
@@ -18,7 +18,8 @@ function Shelter() {
     useEffect(() => {
         const sendInformationRequest = async () => {
             try {
-                const response = await masterApis.get("getShelterDto/" + getShelterId());
+                console.log(getUserToken())
+                const response = await masterApis.get("getShelterDto/" + getShelterId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
                 console.log(response);
                 setAttributes(response.data)
             } catch (error) {

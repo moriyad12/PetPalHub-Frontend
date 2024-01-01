@@ -13,7 +13,7 @@ import {
     TextField,
     Typography
 } from '@mui/material';
-import {getUserId} from "../Authentication/UserAuthentication";
+import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import userApis from "../Apis/UserApis/UserApis";
 
 // import {getUserId} from "../../../src/Authentication/UserAuthentication";
@@ -56,7 +56,8 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
             phoneNumber: phoneNumber,
         }
         try {
-              await userApis.post("updateUserProfile", newInformation);
+            console.log(getUserToken())
+            await userApis.post("updateUserProfile", newInformation, {headers: {"Authorization": `Bearer ${getUserToken()}`}});
         } catch (error) {
             alert(error.response.data.message)
         }
