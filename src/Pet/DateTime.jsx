@@ -6,7 +6,7 @@ export const DateTime = ({date, setDate}) => {
     return (
         <TextField
             id="datetime-local"
-            label="Event Date"
+            label="Pet Birth Date"
             value={date}
 
             onChange={(event) => {
