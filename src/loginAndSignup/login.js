@@ -35,7 +35,6 @@ function Login({setIsUserLoggedIn}) {
             try {
                 const response = await ProxyApi.post("basicSignIn", authenticationRequest)
                 setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
-                console.log(response)
                 setIsUserLoggedIn(true)
                 navigate("/");
 
@@ -74,15 +73,10 @@ function Login({setIsUserLoggedIn}) {
                 "signInWithEmail": false
             }
             try {
-                const response =await ProxyApi.post("basicSignUp", userDto)
-                setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
+                await ProxyApi.post("basicSignUp", userDto)
                 alert("Please check your email for validation")
-                setIsUserLoggedIn(true)
                 navigate("/validation");
-                // console.log(userDto)
-                console.log(response)
             } catch (error) {
-                // actions.resetForm();
                 alert(error.response.data.message)
             }
         },

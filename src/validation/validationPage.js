@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import ProxyApi from "../Apis/ProxyApis/ProxyApis";
-// import {RoutePathNames} from "../Routes/RoutePathNames";
 import "./validationPage.css"
 import {useNavigate} from "react-router-dom";
-function ValidationPage() {
-        useEffect(() => {
-            const codes = document.querySelectorAll(".codeInput");
-            codes[0].focus();
-            codes.forEach((code, index) => {
-                code.addEventListener("keydown", (e) => {
-                    if (e.key >= 0 && e.key <= 9) {
-                        codes[index].value = "";
-                        if (codes[index + 1]) {
-                            setTimeout(() => codes[index + 1].focus(), 10);
-                        }
-                    } else if (e.key === "Backspace") {
-                        if (codes[index - 1]) {
-                            setTimeout(() => codes[index - 1].focus(), 10);
-                        }
+import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
+
+function ValidationPage({setIsUserLoggedIn}) {
+
+    useEffect(() => {
+        const codes = document.querySelectorAll(".codeInput");
+        codes[0].focus();
+        codes.forEach((code, index) => {
+            code.addEventListener("keydown", (e) => {
+                if (e.key >= 0 && e.key <= 9) {
+                    codes[index].value = "";
+                    if (codes[index + 1]) {
+                        setTimeout(() => codes[index + 1].focus(), 10);
                     }
-                });
+                } else if (e.key === "Backspace") {
+                    if (codes[index - 1]) {
+                        setTimeout(() => codes[index - 1].focus(), 10);
+                    }
+                }
             });
-        }, []);
+        });
+    }, []);
     const LOCAL_STORAGE_KEY = "token";
 
     const [token, setToken] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []);
@@ -44,10 +46,9 @@ function ValidationPage() {
             "verifyCode":  String(first)+String(second)+String(third)+String(fourth)+String(fifth)+String(sixth)
         }
         try {
-
-            console.log(verifyRequest)
             const response = await ProxyApi.post("verifyMail", verifyRequest)
-            console.log(response)
+            // setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
+            // setIsUserLoggedIn(true)
             navigate("/")
         } catch (error) {
             alert("not valid verification code")

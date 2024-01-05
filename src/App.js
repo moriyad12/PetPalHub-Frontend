@@ -1,8 +1,6 @@
 import './App.css';
 
 import Pet from "./Pet/Pet";
-import PetHeader from "./Headers/PetHeader";
-import ApplicationHeader from "./Headers/ApplicationHeader";
 import Shelter from "./Shelter/Shelter";
 import Dashboard from "./Dashboard/Dashboard";
 import {Route , Routes} from "react-router-dom";
@@ -18,14 +16,14 @@ function App() {
     return (
     <div className="App">
         <Router >
-            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            <Header isloggedUseState={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
                 <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />
                 <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
                 <Route path={"/login"} element={<Login setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/profile"} element={<Profile />} />
-                <Route path={"/validation"} element={<ValidationPage />} />
+                <Route path={"/validation"} element={<ValidationPage setIsLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/shelter"} element={<Shelter />} />
                 <Route path={"/petview"} element={<Pet />} />
                 <Route path={"/myPets/petview"} element={<Pet />} />
