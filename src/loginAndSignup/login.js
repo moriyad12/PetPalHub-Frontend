@@ -21,6 +21,9 @@ function Login({setIsUserLoggedIn}) {
     const navigate = useNavigate();
 
     const [isLoginActive, setIsLoginActive] = useState(false);
+
+
+
     const loginFormik = useFormik({
         initialValues: {
             email: "",
@@ -73,10 +76,13 @@ function Login({setIsUserLoggedIn}) {
                 "signInWithEmail": false
             }
             try {
-                await ProxyApi.post("basicSignUp", userDto)
+                const response =await ProxyApi.post("basicSignUp", userDto)
+                setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
+                setIsUserLoggedIn(true)
                 alert("Please check your email for validation")
                 navigate("/validation");
             } catch (error) {
+                // actions.resetForm();
                 alert(error.response.data.message)
             }
         },

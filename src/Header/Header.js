@@ -27,10 +27,6 @@ export default function Header({isloggedUseState, setIsLoggedIn}) {
 
     useEffect(() => {
         setCount(count+1)
-        if (isUserLoggedIn())
-            alert("logged in")
-        else
-            alert("logged out")
     }, [isloggedUseState]);
 
     const handleMediaQueryChange = mediaQuery => {

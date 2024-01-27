@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import ProxyApi from "../Apis/ProxyApis/ProxyApis";
+// import {RoutePathNames} from "../Routes/RoutePathNames";
 import "./validationPage.css"
 import {useNavigate} from "react-router-dom";
-import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
-
-function ValidationPage({setIsUserLoggedIn}) {
-
+function ValidationPage() {
     useEffect(() => {
         const codes = document.querySelectorAll(".codeInput");
         codes[0].focus();
@@ -46,9 +44,10 @@ function ValidationPage({setIsUserLoggedIn}) {
             "verifyCode":  String(first)+String(second)+String(third)+String(fourth)+String(fifth)+String(sixth)
         }
         try {
+
+            console.log(verifyRequest)
             const response = await ProxyApi.post("verifyMail", verifyRequest)
-            // setUserLocalStorageData(response.data.id, response.data.token, response.data.role,response.data.shelterId)
-            // setIsUserLoggedIn(true)
+            console.log(response)
             navigate("/")
         } catch (error) {
             alert("not valid verification code")

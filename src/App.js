@@ -23,7 +23,7 @@ function App() {
                 <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
                 <Route path={"/login"} element={<Login setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/profile"} element={<Profile />} />
-                <Route path={"/validation"} element={<ValidationPage setIsLoggedIn={setIsLoggedIn}/>} />
+                <Route path={"/validation"} element={<ValidationPage />} />
                 <Route path={"/shelter"} element={<Shelter />} />
                 <Route path={"/petview"} element={<Pet />} />
                 <Route path={"/myPets/petview"} element={<Pet />} />
