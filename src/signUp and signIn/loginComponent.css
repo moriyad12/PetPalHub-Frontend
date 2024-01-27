@@ -1,0 +1,67 @@
+.loginComponentDiv {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-image: url("wp12412506.jpg");
+    background-repeat: no-repeat; /* Set background image to repeat */
+    background-size: cover; /* Set background image to cover the entire container */
+}
+.loginComponentDiv form {
+    margin-left: 10%;
+}
+
+.loginComponentDiv label {
+    margin-top: 1rem;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.loginComponentDiv input {
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid steelblue;
+    border-radius: 20px;
+    outline: none;
+}
+
+.loginComponentDiv h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: center;
+}
+.loginComponentDiv button{
+    margin-top: 1rem;
+    text-align: center;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+.loginComponentDiv form {
+    width: 30rem;
+}
+.loginComponentDiv button:hover,.loginComponentDiv button:focus{
+    background-color: #00b4d8;
+    color: #fff;
+}
+.loginComponentDiv a{
+    text-decoration: none;
+    color: steelblue;
+    font-size: 16px;
+    font-weight: 600;
+    margin: .5rem;
+}
+.loginComponentDiv a:hover , .loginComponentDiv a:focus{
+    color: #00b4d8;
+}
+.loginComponentDiv a:active{
+    color: darkblue;
+}
