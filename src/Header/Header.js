@@ -1,10 +1,10 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {isUserAdopter, isUserStaffOrManager, removeUserLocalStorageData} from "../Authentication/UserAuthentication";
 import {Link} from "react-router-dom";
 import "../MyUtilities/Colors.css";
 import "../MyUtilities/CustomComponents.css";
+import "./Header.css";
 
 export default function Header({ isLoggedIn, setIsLoggedIn }) {
 
@@ -14,7 +14,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid ms-auto">
-                <a className="navbar-brand" href="#">Navbar scroll</a>
+                <img src={require("./brownpaw.jpeg")} className="my-logo"/>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
                         aria-label="Toggle navigation">
