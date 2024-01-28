@@ -9,3 +9,19 @@ body {
     position: fixed;
     margin-right: 20px
 }
+
+.dashboard-image {
+    width: 100%;
+    height: 500px;
+    margin-top: 20px;
+    /*margin-x: 0 auto;*/
+    /*position: fixed;*/
+    /*z-index: 1;*/
+}
+
+.left-text {
+    font-family: "Freestyle Script";
+    font-size: 80px;
+    text-align: center;
+    color: #572323;
+}
