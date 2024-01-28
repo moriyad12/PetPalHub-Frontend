@@ -9,7 +9,6 @@ export const RightPetDetails = ({attributes}) => {
                 <ProfileAttributeComponent attributeName="Date Of Birth" attributeValue={attributes.dateOfBirth.slice(0, 10)} />
                 <ProfileAttributeComponent attributeName="Availability" attributeValue={attributes.availability} />
                 <ProfileAttributeComponent attributeName="Vaccine Status" attributeValue={attributes.vaccineStatus} />
-                <ProfileAttributeComponent attributeName="Availability" attributeValue={attributes.availability} />
             </div>
         </div>
     )

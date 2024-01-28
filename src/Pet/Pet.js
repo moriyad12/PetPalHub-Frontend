@@ -103,6 +103,7 @@ function Pet() {
                     <div className="col-md-2" >
                     </div>
                 </div>
+                <hr/>
                 <div className="row">
                     <div className="col-md-4">
                         <LeftPetDetails attributes={attributes}/>
@@ -111,6 +112,15 @@ function Pet() {
                         <RightPetDetails attributes={attributes}/>
                     </div>
                 </div>
+        <hr/>
+        <div className="row">
+            <div className="col-md-2">
+                <h4 style={{ color: '#333' }}>
+                    Meet {attributes.name}
+                </h4>
+            </div>
+            {attributes.description}
+        </div>
 
             </div>
 }

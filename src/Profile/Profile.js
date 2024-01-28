@@ -50,7 +50,7 @@ function Profile() {
                 </div>
                 <div className="row">
                     <div className="col-md-4">
-                        <span  className="text-secondary fs-2">Profile</span>
+                        <span  className="text-secondary fs-2">My Profile</span>
                     </div>
                     <div className="col-md-8">
                         <ProfileDetails profileAttributes={profileAttributes}/>
