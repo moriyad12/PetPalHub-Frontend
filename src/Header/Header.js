@@ -1,84 +1,64 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect } from "react";
-import "./Header.css";
-import { CSSTransition } from "react-transition-group";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {isUserAdopter, isUserStaffOrManager, removeUserLocalStorageData} from "../Authentication/UserAuthentication";
 import {Link} from "react-router-dom";
-import {
-    isUserAdopter,
-    isUserLoggedIn,
-    isUserStaffOrManager,
-    removeUserLocalStorageData
-} from "../Authentication/UserAuthentication";
+import "../MyUtilities/Colors.css";
+import "../MyUtilities/CustomComponents.css";
+import "./Header.css";
 
-export default function Header({isloggedUseState, setIsLoggedIn}) {
-    const [isNavVisible, setNavVisibility] = useState(false);
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
-    const [count, setCount] = useState(0);
+export default function Header({ isLoggedIn, setIsLoggedIn }) {
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia("(max-width: 700px)");
-        mediaQuery.addListener(handleMediaQueryChange);
-        handleMediaQueryChange(mediaQuery);
-        setCount(count+1)
-        return () => {
-            mediaQuery.removeListener(handleMediaQueryChange);
-        };
-    }, []);// Assuming initial state is logged in
-
-    useEffect(() => {
-        setCount(count+1)
-    }, [isloggedUseState]);
-
-    const handleMediaQueryChange = mediaQuery => {
-        if (mediaQuery.matches) {
-            setIsSmallScreen(true);
-        } else {
-            setIsSmallScreen(false);
-        }
-    };
+    }, [isLoggedIn]);
 
     return (
-        <header className="Header">
-            <div className="title">
-                <img src={require("./pets3.PNG")} className="Logo" alt="logo" />
-                <div className="HeaderTitle">PetPal Hub</div>
-          </div>
-            <CSSTransition
-                in={!isSmallScreen || isNavVisible}
-                timeout={350}
-                classNames="NavAnimation"
-                unmountOnExit
-            >
-                <nav className="Nav">
-                    <a href="/">Home</a>
-                    {isUserStaffOrManager()||isUserAdopter() ?
-                        <a href="/profile">Profile</a>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid ms-auto">
+                <img src={require("./brownpaw.jpeg")} className="my-logo"/>
+                <h1 className="text-primary">Petpal Hub</h1>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarScroll">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link active text-primary fw-bold" href="/">Home</a>
+                        </li>
+                        {isUserStaffOrManager() || isUserAdopter() ?
+                            <li className="nav-item">
+                                <a className="nav-link active text-primary fw-bold" href="/profile">Profile</a>
+                            </li>
                         : null}
-                    {isUserStaffOrManager() ?
-                            <a href="/shelter">Shelter</a>
+                        {isUserStaffOrManager() ?
+                            <li className="nav-item">
+                                <a className="nav-link active text-primary fw-bold" href="/shelter">Shelter</a>
+                            </li>
                         : null}
-                    {isUserStaffOrManager() ?
-                            <a href="/myPets">My Pets</a>
+                        {isUserStaffOrManager() ?
+                            <li className="nav-item">
+                                <a className="nav-link active text-primary fw-bold" href="/myPets">My Pets</a>
+                            </li>
+                            : null}
+                        {isUserStaffOrManager() || isUserAdopter() ?
+                            <li className="nav-item">
+                                <a className="nav-link active text-primary fw-bold" href="/myApplications">My Applications</a>
+                            </li>
                         : null}
-                    {isUserStaffOrManager()||isUserAdopter() ?
-                        <a href="/myApplications">My Applications</a>
-                        : null}
-                    {isUserLoggedIn() ?
+
                         <Link to="/login">
-                            <button onClick={
+                            <button className="btn bg-brown custom-btn-font" onClick={
                                 () => {
                                     removeUserLocalStorageData();
                                     setIsLoggedIn(false);
                                 }
-                            }>Sign out</button>
+                            }>Logout
+                            </button>
                         </Link>
-                        :
-                        <Link to="/login">
-                            <button>Sign in</button>
-                        </Link>
-                    }
-                </nav>
-            </CSSTransition>
-        </header>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     );
 }

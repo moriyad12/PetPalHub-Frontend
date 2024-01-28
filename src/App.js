@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Pet from "./Pet/Pet";
 import Shelter from "./Shelter/Shelter";
