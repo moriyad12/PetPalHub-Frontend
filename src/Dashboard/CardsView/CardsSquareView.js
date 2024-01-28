@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import "./Other.css"
+import "./CardsSquareView.css";
 
 function Dashboard({cards}) {
     const chunkArray = (array, size) => {
@@ -17,7 +17,7 @@ function Dashboard({cards}) {
                             return (
                                 <div className="col-4">
                                     <div className="card animal-card">
-                                        <img src={require("./fff.jpg")} className="card-img-top" alt="..."/>
+                                        <img src={card.img} className="animal-img" alt="..."/>
                                         <div className="card-body">
                                             <h5 className="card-title">{card.cardTitle}</h5>
                                             <p className="card-text">{card.cardText}</p>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import "./Other.css"
 import { allAnimals } from "./AllAnimals";
-import CardsSquareView from "./CardsSquareView";
+import CardsSquareView from "./CardsView/CardsSquareView";
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
 
