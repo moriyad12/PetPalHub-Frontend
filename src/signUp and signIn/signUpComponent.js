@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 function SignUpComponent({setIsUserLoggedIn}) {
     const navigate = useNavigate();
+
     const [selectedRadio, setSelectedRadio] = useState('ADOPTER');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -36,12 +37,17 @@ function SignUpComponent({setIsUserLoggedIn}) {
             "gender": "MALE",
             "signInWithEmail": false
         }
+        if(password !== confirmPass){
+            alert("Password and Confirm Password are not same")
+            return;
+        }
         try {
             const response = await ProxyApi.post("basicSignUp", userDto)
             setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
             alert("Please check your email for validation")
             setIsUserLoggedIn(true)
             navigate("/validation");
+            // console.log(userDto)
             console.log(response)
         } catch (error) {
             // actions.resetForm();
