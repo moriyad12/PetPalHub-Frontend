@@ -20,8 +20,10 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                         <CardsSquareView cards={allAnimals}/>
                     </div>
                 </div>
-                <div className="col-2 ps-1">
-                    <Filter filter={filter} setFilter={setFilter}/>
+                <div className="col-2 ps5">
+                    <div className="bg-light-grey">
+                        <Filter filter={filter} setFilter={setFilter}/>
+                    </div>
                 </div>
             </div>
         </div>

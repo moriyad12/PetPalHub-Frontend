@@ -2,7 +2,7 @@ import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {DropdownMenu} from "./DropdownMenu.js";
 
-export const FilterBehaviour = ({setBehaviour, filter, setFilter}) => {
+export const FilterBehaviour = ({setBehaviour, filter, setFilter, behaviour}) => {
 
     const behavioursOptions = ["AGGRESSIVE", "FRIENDLY"]
 
@@ -11,5 +11,5 @@ export const FilterBehaviour = ({setBehaviour, filter, setFilter}) => {
         setFilter({...filter, behaviour: event.target.value})
     };
 
-    return <DropdownMenu handleChange={handleChange} options={behavioursOptions} nameOfAttribute={"Behaviour"}/>
+    return <DropdownMenu handleChange={handleChange} options={behavioursOptions} nameOfAttribute={"Behaviour"} attribute={behaviour}/>
 }

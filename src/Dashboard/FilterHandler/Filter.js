@@ -1,9 +1,4 @@
 import * as React from 'react';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import {ImEqualizer} from "react-icons/im";
-import TextField from "@mui/material/TextField";
 import {FilterGender} from "./FilterGender";
 import {FilterBehaviour} from "./FilterBehaviour";
 import {FilterHealthStatus} from "./FilterHealthStatus";
@@ -18,10 +13,18 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
     const [healthStatus, setHealthStatus] = React.useState(null);
     const [species, setSpecies] = React.useState(null);
     const [behaviour, setBehaviour] = React.useState(null);
-    const [breed, setBreed] = React.useState(null);
     const [vaccineStatus, setVaccineStatus] = React.useState(null);
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const handleResetFilter = () => {
+        setAvailability(null);
+        setGender(null);
+        setName("");
+        setHealthStatus(null);
+        setSpecies(null);
+        setBehaviour(null);
+        setVaccineStatus(null);
+        setFilter({});
+    }
 
     const handleFilter = (e) => {
         const filters = {
@@ -53,21 +56,31 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
         getDtoListFromBackEnd(filters);
     };
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
-
     return (
-        <div>
-            <div className="filter-tab-header">
-                <h3>Filter</h3>
-            </div>
+        <div className="px-2 my-shadow">
+            <h3 className="text-center my-filter-header">Filters</h3>
             <FilterName setName={setName} filter={filter} setFilter={setFilter}></FilterName>
             <FilterSpecies setSpecies={setSpecies} filter={filter} setFilter={setFilter}></FilterSpecies>
 
-            <FilterGender setGender={setGender} filter={filter} setFilter={setFilter}></FilterGender>
-            <FilterBehaviour setBehaviour={setBehaviour} filter={filter} setFilter={setFilter}></FilterBehaviour>
-            <FilterHealthStatus setHealthStatus={setHealthStatus} filter={filter} setFilter={setFilter}></FilterHealthStatus>
-            <FilterVaccineStatus setVaccineStatus={setVaccineStatus} filter={filter} setFilter={setFilter}></FilterVaccineStatus>
+            <FilterGender setGender={setGender} filter={filter} setFilter={setFilter} />
+            <FilterBehaviour setBehaviour={setBehaviour} filter={filter} setFilter={setFilter} behaviour={behaviour} />
+            <FilterHealthStatus setHealthStatus={setHealthStatus} filter={filter}
+                                setFilter={setFilter} />
+            <FilterVaccineStatus setVaccineStatus={setVaccineStatus} filter={filter}
+                                 setFilter={setFilter} />
+
+
+            <div className="row mt-2 d-flex justify-content-center">
+                <div className="col-6">
+                    <button className="btn btn-primary mb-3 ms-4" onClick={handleFilter}>Filter</button>
+                </div>
+                <div className="col-6">
+                    <button className="btn btn-primary mb-3 ms-2" onClick={() => {
+                        handleResetFilter();
+                    }}>Reset
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

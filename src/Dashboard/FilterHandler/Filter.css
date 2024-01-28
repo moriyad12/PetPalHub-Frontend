@@ -1,3 +1,11 @@
 .my-select {
-    width: 180px;
+    width: 200px;
+}
+
+.my-filter-header {
+    color: #572323;
+}
+
+.my-shadow {
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
