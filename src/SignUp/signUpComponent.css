@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 
-.logoutComponentDiv {
+.signUpComponentDiv {
     width: 100%;
     height: 100%;
     justify-content: start;
@@ -8,14 +8,14 @@
     background-repeat: no-repeat; /* Set background image to repeat */
     background-size: cover; /* Set background image to cover the entire container */
     font-family: 'Kalam', cursive;
-    background-image: url("wp12412506.jpg");
+    background-image: url("../LogIn/wp12412506.jpg");
 }
 
-.logoutComponentDiv div {
+.inputDiv {
     width: 70%;
 }
 
-.logoutComponentDiv form {
+.signUpComponentDiv form {
     margin-top: 1rem;
     margin-left: 10%;
     width: 35rem;
@@ -27,11 +27,11 @@
     border-radius: 20px;
 }
 
-.logoutComponentDiv form div {
+.signUpComponentDiv form div {
     margin: 10px 10px 5px 0px;
 }
 
-.logoutComponentDiv form div input {
+.signUpComponentDiv form div input {
     width: 100%;
     height: 100%;
     border: none;
@@ -42,19 +42,34 @@
     font-family: 'Kalam', cursive;
 }
 
-.logoutComponentDiv form div input:focus {
+.signUpComponentDiv form div input:focus {
     border-bottom: 1px solid #00b4d8;
 }
 
-.logoutComponentDiv h2 {
+.signUpComponentDiv h2 {
     font-size: 30px;
     font-weight: 600;
     text-align: center;
 }
 
-.logoutComponentDivLabel {
+.signUpComponentDivLabel {
     margin-top: 1rem;
     margin-left: .5rem;
     font-size: 20px;
     font-weight: 600;
+}
+.signUpComponentDiv a {
+    text-decoration: none;
+    color: steelblue;
+    font-size: 16px;
+    font-weight: 600;
+    margin: .5rem;
+}
+
+.signUpComponentDiv a:hover, .loginComponentDiv a:focus {
+    color: #00b4d8;
+}
+
+.signUpComponentDiv a:active {
+    color: darkblue;
 }

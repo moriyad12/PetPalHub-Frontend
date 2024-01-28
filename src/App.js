@@ -13,8 +13,8 @@ import Profile from "./Profile/Profile";
 import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
-import LoginComponent from "./signUp and signIn/loginComponent";
-import SignUpComponent from "./signUp and signIn/signUpComponent";
+import LoginComponent from "./LogIn/loginComponent";
+import SignUpComponent from "./SignUp/signUpComponent";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
