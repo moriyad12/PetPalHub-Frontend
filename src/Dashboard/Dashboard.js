@@ -13,9 +13,19 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                         <CardsSquareView cards={allAnimals} />
                     </div>
                 </div>
-                <div className="col-md-3">
-                    <div className="right-container bg-black">
-                        <h1>Right Container (20%)</h1>
+                <div className="col-3 ps-1">
+                    <div className="bg-light-grey p-3 my-filter">
+                        <div className="scroll-content">
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                            <h1>Right Container (20%)</h1>
+                        </div>
                     </div>
                 </div>
             </div>
