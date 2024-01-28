@@ -6,6 +6,13 @@ import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
 import {getUserId, getUserToken, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {ProfileImage} from "../Profile/ProfileImage";
+import {ProfileHead} from "../Profile/ProfileHead";
+import {EditProfile} from "../Profile/EditProfile";
+import {ProfileDetails} from "../Profile/ProfileDetails";
+import {PetDetails, RightPetDetails} from "./RightPetDetails";
+import {LeftPetDetails} from "./LeftPetDetails";
+import {PetProfileHead} from "./PetProfileHead";
 import {Button} from "@mui/material";
 
 
@@ -68,41 +75,44 @@ function Pet() {
         }
     };
 
-    return <div className="pet-container">
-        <div className="pet">
-            <div className="pet-header">
-                <div className="pet-header-center">
-                    <span className="Shelter-Name">{attributes.shelterName}</span>
-                    <span>represents</span>
+    return <div className="container bg-light emp-profile">
+                <div className="row">
+                    <div className="col-md-4">
+                        <ProfileImage />
+                    </div>
+                    <div className="col-md-6">
+                        <PetProfileHead attributes={attributes}/>
+                            {isUserAdopter()&&viewComponentIndex===1 ?
+                                <div className="shadow apply">
+                                Considering {attributes.name} for
+                                <br/>
+                                adoption?
+                                <button  className="ghost" onClick={handleApplyApplication}>Apply Application</button>
+                                 </div>
+                                : null}
+                            {viewComponentIndex===3 ?
+                                <div className="shadow apply">
+                                    Update {attributes.name} Profile
+                                    <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
+                                        console.log(getUserToken())
+                                        await MasterApi.post("editPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
+                                    }}/>
+                                </div>
+                                : null}
+                    </div>
+                    <div className="col-md-2" >
+                    </div>
                 </div>
-            </div>
-             <div className="pet-body">
-                <PetAttribute label={"Pet Name"} value={attributes.name}/>
-                <PetAttribute label={"Species"} value={attributes.species}/>
-                <PetAttribute label={"Date Of Birth"} value={attributes.dateOfBirth.slice(0, 10)}/>
-                <PetAttribute label={"Gender"} value={attributes.gender}/>
-                <PetAttribute label={"Availability"} value={attributes.availability}/>
-                <PetAttribute label={"Behaviour.jsx"} value={attributes.behaviour}/>
-                <PetAttribute label={"Breed"} value={attributes.breed}/>
-                <PetAttribute label={"Vaccine Status"} value={attributes.vaccineStatus}/>
-                <PetAttribute label={"Health Status"} value={attributes.healthStatus}/>
-                <PetAttribute label={"Gender"} value={attributes.gender}/>
-                <div className="pet-description">
-                    <span>{attributes.description}</span>
+                <div className="row">
+                    <div className="col-md-4">
+                        <LeftPetDetails attributes={attributes}/>
+                    </div>
+                    <div className="col-md-8">
+                        <RightPetDetails attributes={attributes}/>
+                    </div>
                 </div>
-                 {viewComponentIndex===3 ?
-                     <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
-                         console.log(getUserToken())
-                         await MasterApi.post("editPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
-                     }}/>
-                     : null}
-                 {isUserAdopter()&&viewComponentIndex===1 ?
-                         <Button variant="contained" className="ghost" onClick={handleApplyApplication}>Apply Application</Button>
-                     : null}
 
             </div>
-        </div>
-    </div>
 }
 
 export default Pet;

@@ -85,16 +85,8 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
 
     return (
         <div >
-            <Button onClick={handleOpen}
-                    style={
-                        {
-                            position: "absolute",
-                            bottom: "40px",
-                            right: "40px",
-                        }
-                    }
-                    variant={"contained"}
-            >{buttonName}</Button>
+            <button className="ghost" onClick={handleOpen}
+            >{buttonName}</button>
 
             <Modal
                 open={open}

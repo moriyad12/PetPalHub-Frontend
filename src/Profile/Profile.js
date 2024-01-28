@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import './Profile.css'
-import BasicModal from "./profile-update-modal";
 import userApis from "../Apis/UserApis/UserApis";
-// import {getUserId, isTheUserAnAdmin} from "../Authentication/UserAuthentication";
-import {ProfileSideMenu} from "./ProfileSideMenu";
-import {ProfileAttributeComponent} from "./ProfileAttributeComponent";
+
 import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {ProfileDetails} from "./ProfileDetails";
+import {ProfileHead} from "./ProfileHead";
+import {ProfileImage} from "./ProfileImage";
+import {EditProfile} from "./EditProfile";
 
 
 function Profile() {
@@ -27,7 +29,6 @@ function Profile() {
                 console.log(response);
                 setProfileAttributes(response.data)
             } catch (error) {
-                // alert(error)
                 alert(error.response.data.message)
             }
         }
@@ -35,30 +36,26 @@ function Profile() {
     }, []);
 
     return (
-        <div className="profile-container">
-            <ProfileSideMenu profileAttributes={profileAttributes} />
-            <div className="profile-main-content">
-                <div className="profile-main-content-header">
-                    <div className="header-title">
-                        Profile
+        <div className="container bg-light emp-profile">
+                <div className="row">
+                    <div className="col-md-4">
+                       <ProfileImage />
                     </div>
-                    <div className="header-btns">
-                        <BasicModal
-                            defaultFirstName={profileAttributes.firstName}
-                            defaultLastName={profileAttributes.lastName}
-                            defaultGender={profileAttributes.gender}
-                            defaultPhoneNumber={profileAttributes.phoneNumber}/>
+                    <div className="col-md-6">
+                       <ProfileHead profileAttributes={profileAttributes}/>
+                    </div>
+                    <div className="col-md-2" >
+                       <EditProfile profileAttributes={profileAttributes} />
                     </div>
                 </div>
-                <div className="profile-main-content-body">
-                    <ProfileAttributeComponent attributeName="Email" attributeValue={profileAttributes.email} />
-                    <ProfileAttributeComponent attributeName="First Name" attributeValue={profileAttributes.firstName} />
-                    <ProfileAttributeComponent attributeName="Last Name" attributeValue={profileAttributes.lastName} />
-                    <ProfileAttributeComponent attributeName="Role" attributeValue={profileAttributes.role} />
-                    <ProfileAttributeComponent attributeName={"Gender"} attributeValue={profileAttributes.gender} />
-                    <ProfileAttributeComponent attributeName="Phone Number" attributeValue={profileAttributes.phoneNumber} />
+                <div className="row">
+                    <div className="col-md-4">
+                        <span  className="text-secondary fs-2">Profile</span>
+                    </div>
+                    <div className="col-md-8">
+                        <ProfileDetails profileAttributes={profileAttributes}/>
+                    </div>
                 </div>
-            </div>
         </div>
     );
 }
