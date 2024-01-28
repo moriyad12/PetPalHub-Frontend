@@ -1,5 +1,5 @@
 .animal-card {
-    height:400px;
+    height:420px;
     transition: box-shadow 0.5s ease;
 }
 
@@ -12,3 +12,27 @@
     width: 100%;
     height: 50%;
 }
+
+.bottom-right-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+}
+
+.large-text-container {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+

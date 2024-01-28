@@ -20,8 +20,10 @@ function Dashboard({cards}) {
                                         <img src={card.img} className="animal-img" alt="..."/>
                                         <div className="card-body">
                                             <h5 className="card-title">{card.cardTitle}</h5>
-                                            <p className="card-text">{card.cardText}</p>
-                                            <a href={card.link} className="btn btn-primary">Go somewhere</a>
+                                            <div className="large-text-container">
+                                                <p className="card-text truncate">{card.cardText}</p>
+                                            </div>
+                                            <a href={card.link} className="btn btn-primary bottom-right-button">Go somewhere</a>
                                         </div>
                                     </div>
                                 </div>
