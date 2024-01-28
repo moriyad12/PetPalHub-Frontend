@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.animal-card {
+    height:400px;
+    transition: box-shadow 0.5s ease;
+}
+
+.animal-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Add shadow when the component is hovered */
+}
+
+.my-filter {
+    position: fixed;
+}

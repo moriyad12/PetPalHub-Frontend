@@ -12,7 +12,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
     }, [isLoggedIn]);
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <div className="container-fluid ms-auto">
                 <img src={require("./brownpaw.jpeg")} className="my-logo"/>
                 <h1 className="text-primary">Petpal Hub</h1>
