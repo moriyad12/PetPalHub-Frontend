@@ -17,12 +17,12 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
 
     const handleResetFilter = () => {
         setAvailability(null);
-        setGender(null);
+        setGender("");
         setName("");
-        setHealthStatus(null);
-        setSpecies(null);
-        setBehaviour(null);
-        setVaccineStatus(null);
+        setHealthStatus("");
+        setSpecies("");
+        setBehaviour("");
+        setVaccineStatus("");
         setFilter({});
     }
 
@@ -59,15 +59,15 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
     return (
         <div className="px-2 my-shadow">
             <h3 className="text-center my-filter-header">Filters</h3>
-            <FilterName setName={setName} filter={filter} setFilter={setFilter}></FilterName>
-            <FilterSpecies setSpecies={setSpecies} filter={filter} setFilter={setFilter}></FilterSpecies>
+            <FilterName setName={setName} filter={filter} setFilter={setFilter} attribute={name} />
+            <FilterSpecies setSpecies={setSpecies} filter={filter} setFilter={setFilter} attribute={species}/>
 
-            <FilterGender setGender={setGender} filter={filter} setFilter={setFilter} />
-            <FilterBehaviour setBehaviour={setBehaviour} filter={filter} setFilter={setFilter} behaviour={behaviour} />
+            <FilterGender setGender={setGender} filter={filter} setFilter={setFilter} attribute={gender}/>
+            <FilterBehaviour setBehaviour={setBehaviour} filter={filter} setFilter={setFilter} behaviour={behaviour} attribute={behaviour}/>
             <FilterHealthStatus setHealthStatus={setHealthStatus} filter={filter}
-                                setFilter={setFilter} />
+                                setFilter={setFilter} attribute={healthStatus}/>
             <FilterVaccineStatus setVaccineStatus={setVaccineStatus} filter={filter}
-                                 setFilter={setFilter} />
+                                 setFilter={setFilter} attribute={vaccineStatus}/>
 
 
             <div className="row mt-2 d-flex justify-content-center">

@@ -2,7 +2,7 @@ import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Filter.css"
 
-export const TextInput = ({handleChange, nameOfAttribute}) => {
+export const TextInput = ({handleChange, nameOfAttribute, attribute}) => {
 
     return (
         <div>
@@ -10,7 +10,7 @@ export const TextInput = ({handleChange, nameOfAttribute}) => {
                 <label className="fw-light">{nameOfAttribute}</label> <br/>
             </div>
             <div className="d-flex justify-content-center">
-                <input type="text" className="form-control" onChange={handleChange}/>
+                <input type="text" value={attribute} className="form-control" onChange={handleChange}/>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {DropdownMenu} from "./DropdownMenu";
 
-export const FilterGender = ({setGender, filter, setFilter}) => {
+export const FilterGender = ({setGender, filter, setFilter, attribute}) => {
 
     const gendersOptions = ["MALE", "FEMALE", "NONE"]
 
@@ -10,5 +10,5 @@ export const FilterGender = ({setGender, filter, setFilter}) => {
         setFilter({...filter, gender: event.target.value})
     };
 
-    return <DropdownMenu handleChange={handleChange} options={gendersOptions} nameOfAttribute={"Gender"}/>
+    return <DropdownMenu handleChange={handleChange} options={gendersOptions} attribute={attribute} nameOfAttribute={"Gender"}/>
 }
