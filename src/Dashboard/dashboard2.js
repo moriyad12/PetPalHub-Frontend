@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import "./Dashboard.css";
-import Filter from "./Filter";
+import Filter from "./FilterHandler/Filter";
 import TablePagination from "@mui/material/TablePagination";
 import Tabs from "./Tabs";
 import PetHeader from "../Headers/PetHeader";

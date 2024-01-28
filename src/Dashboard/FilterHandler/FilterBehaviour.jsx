@@ -1,41 +1,15 @@
-import {InputLabel} from "@mui/material";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
 import * as React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {DropdownMenu} from "./DropdownMenu.js";
 
-export const FilterBehaviour = ({setBehaviour}) => {
+export const FilterBehaviour = ({setBehaviour, filter, setFilter}) => {
 
-    const BehavioursOptions = ["AGGRESSIVE", "FRIENDLY"]
-    const planIndexMap = new Map(BehavioursOptions.map((plan, index) => [plan, index]));
-    const [viewedBehaviour, setViewedBehaviour] = React.useState("");
+    const behavioursOptions = ["AGGRESSIVE", "FRIENDLY"]
 
+    const handleChange = (event) => {
+        setBehaviour(event.target.value);
+        setFilter({...filter, behaviour: event.target.value})
+    };
 
-    return (
-        <FormControl sx={{minWidth: 600}}>
-            <InputLabel id="demo-simple-select-helper-label">Behaviour</InputLabel>
-            <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="ads Plans"
-                value={viewedBehaviour}
-
-                onChange={(event) => {
-                    setBehaviour(event.target.value)
-                    setViewedBehaviour(event.target.value)
-                }
-                }
-            >
-                {BehavioursOptions.map((option, index) => (
-                    <MenuItem key={index} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Select>
-            <FormHelperText>
-                Choose The Pet Behaviour
-            </FormHelperText>
-        </FormControl>
-    )
+    return <DropdownMenu handleChange={handleChange} options={behavioursOptions} nameOfAttribute={"Behaviour"}/>
 }

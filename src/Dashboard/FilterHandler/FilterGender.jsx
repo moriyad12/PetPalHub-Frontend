@@ -1,42 +1,14 @@
-import {InputLabel} from "@mui/material";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
 import * as React from "react";
-import {FilterBehaviour} from "./FilterBehaviour";
+import {DropdownMenu} from "./DropdownMenu";
 
-export const FilterGender = ({setGender}) => {
+export const FilterGender = ({setGender, filter, setFilter}) => {
 
-    const GendersOptions = ["MALE", "FEMALE", "NONE"]
-    const planIndexMap = new Map(GendersOptions.map((plan, index) => [plan, index]));
-    const [viewedGender, setViewedGender] = React.useState("");
+    const gendersOptions = ["MALE", "FEMALE", "NONE"]
 
+    const handleChange = (event) => {
+        setGender(event.target.value);
+        setFilter({...filter, gender: event.target.value})
+    };
 
-    return (
-        <FormControl sx={{minWidth: 600}}>
-            <InputLabel id="demo-simple-select-helper-label">Gender</InputLabel>
-            <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="ads Plans"
-                value={viewedGender}
-
-                onChange={(event) => {
-                    setGender(event.target.value)
-                    setViewedGender(event.target.value)
-                }
-                }
-            >
-                {GendersOptions.map((option, index) => (
-                    <MenuItem key={index} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Select>
-            <FormHelperText>
-                Choose The Pet Gender
-            </FormHelperText>
-        </FormControl>
-    )
+    return <DropdownMenu handleChange={handleChange} options={gendersOptions} nameOfAttribute={"Gender"}/>
 }

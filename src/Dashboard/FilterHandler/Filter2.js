@@ -4,12 +4,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {ImEqualizer} from "react-icons/im";
 import TextField from "@mui/material/TextField";
-import {FilterGender} from "./FilterHandler/FilterGender";
-import {FilterBehaviour} from "./FilterHandler/FilterBehaviour";
-import {FilterHealthStatus} from "./FilterHandler/FilterHealthStatus";
-import {FilterVaccineStatus} from "./FilterHandler/FilterVaccineStatus";
+import {FilterGender} from "./FilterGender";
+import {FilterBehaviour} from "./FilterBehaviour";
+import {FilterHealthStatus} from "./FilterHealthStatus";
+import {FilterVaccineStatus} from "./FilterVaccineStatus";
 
-export default function Filter( {getDtoListFromBackEnd} ) {
+export default function Filter2( {getDtoListFromBackEnd} ) {
     const [availability, setAvailability] = React.useState(null);
     const [dateOfBirth, setDateOfBirth] = React.useState(null);
     const [gender, setGender] = React.useState(null);
