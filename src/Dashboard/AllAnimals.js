@@ -1,4 +1,41 @@
 export const allAnimals = [
+
+    {
+        cardTitle: "card title",
+        img: "./fff.jpg",
+        cardText: "Mic1.",
+        link: "#"
+    },
+    {
+        cardTitle: "card title",
+        img: "./fff.jpg",
+        cardText: "Mic2.",
+        link: "#"
+    },
+    {
+        cardTitle: "card title",
+        img: "./fff.jpg",
+        cardText: "Mic3.",
+        link: "#"
+    },
+    {
+        cardTitle: "card title",
+        img: "./fff.jpg",
+        cardText: "Mic4.",
+        link: "#"
+    },
+    {
+        cardTitle: "card title",
+        img: "./fff.jpg",
+        cardText: "Mic5.",
+        link: "#"
+    },
+    {
+        cardTitle: "card title",
+        img: "./fff.jpg",
+        cardText: "Mic6.",
+        link: "#"
+    },
     {
         cardTitle: "card title",
         img: "./fff.jpg",
