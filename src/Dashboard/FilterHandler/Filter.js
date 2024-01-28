@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {FilterGender} from "./FilterGender";
-import {FilterBehaviour} from "./FilterBehaviour";
-import {FilterHealthStatus} from "./FilterHealthStatus";
-import {FilterVaccineStatus} from "./FilterVaccineStatus";
-import {FilterName} from "./FilterName";
-import {FilterSpecies} from "./FilterSpecies";
+import {FilterGender} from "./AllFilters/FilterGender";
+import {FilterBehaviour} from "./AllFilters/FilterBehaviour";
+import {FilterHealthStatus} from "./AllFilters/FilterHealthStatus";
+import {FilterVaccineStatus} from "./AllFilters/FilterVaccineStatus";
+import {FilterName} from "./AllFilters/FilterName";
+import {FilterSpecies} from "./AllFilters/FilterSpecies";
 
 export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
     const [availability, setAvailability] = React.useState(null);
@@ -57,7 +57,7 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
     };
 
     return (
-        <div className="px-2 my-shadow">
+        <div className="px-2 my-shadow my-fixed bg-light-grey">
             <h3 className="text-center my-filter-header">Filters</h3>
             <FilterName setName={setName} filter={filter} setFilter={setFilter} attribute={name} />
             <FilterSpecies setSpecies={setSpecies} filter={filter} setFilter={setFilter} attribute={species}/>

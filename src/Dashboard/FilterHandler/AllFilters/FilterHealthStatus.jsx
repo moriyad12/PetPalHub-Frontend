@@ -1,5 +1,5 @@
 import * as React from "react";
-import {DropdownMenu} from "./DropdownMenu";
+import {DropdownMenu} from "../DropdownMenu";
 
 export const FilterHealthStatus = ({setHealthStatus, filter, setFilter, attribute}) => {
 

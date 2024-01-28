@@ -1,6 +1,6 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {TextInput} from "./TextInput";
+import {TextInput} from "../TextInput";
 
 export const FilterSpecies = ({setSpecies, filter, setFilter, attribute}) => {
 

@@ -21,9 +21,8 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     </div>
                 </div>
                 <div className="col-2 ps5">
-                    <div className="bg-light-grey">
                         <Filter filter={filter} setFilter={setFilter}/>
-                    </div>
+
                 </div>
             </div>
         </div>

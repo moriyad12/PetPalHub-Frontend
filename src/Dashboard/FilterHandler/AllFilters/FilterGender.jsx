@@ -1,5 +1,5 @@
 import * as React from "react";
-import {DropdownMenu} from "./DropdownMenu";
+import {DropdownMenu} from "../DropdownMenu";
 
 export const FilterGender = ({setGender, filter, setFilter, attribute}) => {
 
