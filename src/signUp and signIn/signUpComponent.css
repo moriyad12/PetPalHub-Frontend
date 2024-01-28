@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+.logoutComponentDiv {
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    align-items: start; /* Center horizontally within the form */
+    background-repeat: no-repeat; /* Set background image to repeat */
+    background-size: cover; /* Set background image to cover the entire container */
+    font-family: 'Kalam', cursive;
+    background-image: url("wp12412506.jpg");
+}
+
+.logoutComponentDiv div {
+    width: 70%;
+}
+
+.logoutComponentDiv form {
+    margin-top: 1rem;
+    margin-left: 10%;
+    width: 35rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically within the form */
+    align-items: center; /* Center horizontally within the form */
+    border-radius: 20px;
+}
+
+.logoutComponentDiv form div {
+    margin: 10px 10px 5px 0px;
+}
+
+.logoutComponentDiv form div input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Kalam', cursive;
+}
+
+.logoutComponentDiv form div input:focus {
+    border-bottom: 1px solid #00b4d8;
+}
+
+.logoutComponentDiv h2 {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.logoutComponentDivLabel {
+    margin-top: 1rem;
+    margin-left: .5rem;
+    font-size: 20px;
+    font-weight: 600;
+}

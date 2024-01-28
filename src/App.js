@@ -14,6 +14,7 @@ import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
 import LoginComponent from "./signUp and signIn/loginComponent";
+import SignUpComponent from "./signUp and signIn/signUpComponent";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -21,7 +22,8 @@ function App() {
     <div className="App">
         <Router >
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <ValidationPage></ValidationPage>
+            <SignUpComponent setIsUserLoggedIn={setIsLoggedIn}></SignUpComponent>
+            {/*<LoginComponent setIsUserLoggedIn={setIsLoggedIn}></LoginComponent>*/}
             {/*<Routes>*/}
             {/*    <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />*/}
             {/*    <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />*/}

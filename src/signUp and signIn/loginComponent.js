@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./loginComponent.css";
-// import ProxyApi from "../Apis/ProxyApis/ProxyApis";
-// import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
-// import {useNavigate} from "react-router-dom";
+import ProxyApi from "../Apis/ProxyApis/ProxyApis";
+import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
+import {useNavigate} from "react-router-dom";
 
 function LoginComponent({setIsUserLoggedIn}) {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,13 +18,14 @@ function LoginComponent({setIsUserLoggedIn}) {
         }
         console.log(authenticationRequest)
         try {
-            // const response = await ProxyApi.post("basicSignIn", authenticationRequest)
-            // setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
-            // console.log(response)
-            // setIsUserLoggedIn(true)
-            // navigate("/");
+            const response = await ProxyApi.post("basicSignIn", authenticationRequest)
+            setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
+            console.log(response)
+            setIsUserLoggedIn(true)
+            navigate("/");
 
         } catch (error) {
+            // actions.resetForm();
             alert(error.response.data.message)
         }
     }
