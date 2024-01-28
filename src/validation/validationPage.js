@@ -5,7 +5,7 @@ import "./validationPage.css"
 import {useNavigate} from "react-router-dom";
 function ValidationPage() {
         useEffect(() => {
-            const codes = document.querySelectorAll(".codeInput");
+            const codes = document.querySelectorAll(".ValidationPageCodeInput");
             codes[0].focus();
             codes.forEach((code, index) => {
                 code.addEventListener("keydown", (e) => {
@@ -44,7 +44,6 @@ function ValidationPage() {
             "verifyCode":  String(first)+String(second)+String(third)+String(fourth)+String(fifth)+String(sixth)
         }
         try {
-
             console.log(verifyRequest)
             const response = await ProxyApi.post("verifyMail", verifyRequest)
             console.log(response)
@@ -54,45 +53,45 @@ function ValidationPage() {
         }
     }
     return (
-        <div className="body">
-            <div className="container">
+        <div className="ValidationPageBody">
+            <div className="ValidationPageContainer">
                 <h2 style={{ color:"#fdffff" }}>VERIFY ACCOUNT</h2>
-                <div className="code">
+                <div className="ValidationPageCode">
                     <input type="number" value={first}
                            onChange={(event)=>{
                                setFirst(event.target.value);
                            }
-                           } className="codeInput" placeholder="0" min="0" max="9" required/>
+                           } className="ValidationPageCodeInput" placeholder="0" min="0" max="9" required/>
                     <input type="number" value={second}
                            onChange={(event)=>{
                                setSecond( event.target.value);
                            }
-                           } className="codeInput" placeholder="0" min="0" max="9" required/>
+                           } className="ValidationPageCodeInput" placeholder="0" min="0" max="9" required/>
                     <input type="number" value={third}
                            onChange={(event)=>{
                                setThird( event.target.value);
                            }
-                           } className="codeInput" placeholder="0" min="0" max="9" required/>
+                           } className="ValidationPageCodeInput" placeholder="0" min="0" max="9" required/>
                     <h2>-</h2>
                     <input type="number" value={fourth}
                            onChange={(event)=>{
                                setFourth( event.target.value);
                            }
-                           }className="codeInput" placeholder="0" min="0" max="9" required/>
+                           }className="ValidationPageCodeInput" placeholder="0" min="0" max="9" required/>
                     <input type="number" value={fifth}
                            onChange={(event)=>{
                                setFifth( event.target.value);
                            }
-                           } className="codeInput" placeholder="0" min="0" max="9" required/>
+                           } className="ValidationPageCodeInput" placeholder="0" min="0" max="9" required/>
                     <input type="number" value={sixth}
                            onChange={(event)=>{
                                setSixth( event.target.value);
                            }
-                           }className="codeInput" placeholder="0" min="0" max="9" required/>
+                           }className="ValidationPageCodeInput" placeholder="0" min="0" max="9" required/>
                 </div>
 
                 <div>
-                    <button type="button" className="btn btn-primary" onClick={onSubmitHandler}>
+                    <button type="button" className="btn btn-primary w-25 btn-lg rounded-5" onClick={onSubmitHandler}>
                         Verify
                     </button>
                 </div>

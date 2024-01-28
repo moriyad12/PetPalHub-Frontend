@@ -21,8 +21,7 @@ function App() {
     <div className="App">
         <Router >
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <LoginComponent></LoginComponent>
-            {/*<button className="btn btn-primary" >Toggle</button>*/}
+            <ValidationPage></ValidationPage>
             {/*<Routes>*/}
             {/*    <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />*/}
             {/*    <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />*/}

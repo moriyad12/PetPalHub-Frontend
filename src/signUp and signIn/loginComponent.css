@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
 .loginComponentDiv {
     width: 100%;
     height: 100%;
@@ -7,9 +9,26 @@
     background-image: url("wp12412506.jpg");
     background-repeat: no-repeat; /* Set background image to repeat */
     background-size: cover; /* Set background image to cover the entire container */
+    font-family: 'Kalam', cursive;
 }
+
 .loginComponentDiv form {
     margin-left: 10%;
+    width: 30rem;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically within the form */
+    align-items: center; /* Center horizontally within the form */
+    background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white background */
+    border-radius: 20px;
+}
+
+.loginComponentDiv h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: center;
 }
 
 .loginComponentDiv label {
@@ -21,6 +40,7 @@
 .loginComponentDiv input {
     padding: 1rem;
     width: 100%;
+    height: 4rem;
     margin-top: 1rem;
     font-size: 16px;
     font-weight: 400;
@@ -29,13 +49,8 @@
     outline: none;
 }
 
-.loginComponentDiv h2 {
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: 1rem;
-    text-align: center;
-}
-.loginComponentDiv button{
+
+.loginComponentDiv button {
     margin-top: 1rem;
     text-align: center;
     padding: 1rem;
@@ -45,23 +60,29 @@
     width: 100%;
     cursor: pointer;
 }
-.loginComponentDiv form {
-    width: 30rem;
-}
-.loginComponentDiv button:hover,.loginComponentDiv button:focus{
+
+.loginComponentDiv button:hover, .loginComponentDiv button:focus {
     background-color: #00b4d8;
     color: #fff;
 }
-.loginComponentDiv a{
+
+.loginComponentDiv a {
     text-decoration: none;
     color: steelblue;
     font-size: 16px;
     font-weight: 600;
     margin: .5rem;
 }
-.loginComponentDiv a:hover , .loginComponentDiv a:focus{
+
+.loginComponentDiv a:hover, .loginComponentDiv a:focus {
     color: #00b4d8;
 }
-.loginComponentDiv a:active{
+
+.loginComponentDiv a:active {
     color: darkblue;
+}
+
+form div {
+    width: 100%;
+    text-align: center;
 }
