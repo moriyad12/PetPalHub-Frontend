@@ -26,7 +26,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     <Filter filter={filter} setFilter={setFilter}/>
                 </div>
             </div>
-            <Pagination />
+            <Pagination totalRecords={1000}/>
         </div>
     );
 }
