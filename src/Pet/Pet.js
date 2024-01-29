@@ -80,7 +80,7 @@ function Pet() {
                     <div className="col-md-4">
                         <ProfileImage />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <PetProfileHead attributes={attributes}/>
                             {isUserAdopter()&&viewComponentIndex===1 ?
                                 <div className="shadow apply">
