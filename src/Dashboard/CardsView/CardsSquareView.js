@@ -16,16 +16,19 @@ function Dashboard({cards}) {
                         row.map((card, index) => {
                             return (
                                 <div className="col-4">
-                                    <div className="card animal-card">
-                                        <img src={card.img} className="animal-img" alt="..."/>
-                                        <div className="card-body">
-                                            <h5 className="card-title">{card.cardTitle}</h5>
-                                            <div className="large-text-container">
-                                                <p className="card-text truncate">{card.cardText}</p>
+                                    <a href="https://www.google.com/" className="no-underline-link">
+                                        <div className="card animal-card">
+                                            <img src={card.img} className="animal-img" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">{card.cardTitle}</h5>
+                                                <div className="large-text-container">
+                                                    <p className="card-text truncate">{card.cardText}</p>
+                                                </div>
+                                                {/*<a href={card.link}*/}
+                                                <a href="https://www.facebook.com/" className="btn btn-primary bottom-right-button">Adopt</a>
                                             </div>
-                                            <a href={card.link} className="btn btn-primary bottom-right-button">Go somewhere</a>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             )
                         })

@@ -36,3 +36,7 @@
     -webkit-box-orient: vertical;
 }
 
+.no-underline-link {
+    text-decoration: none;
+    color: inherit;
+}
