@@ -4,13 +4,15 @@ import "../MyUtilities/Colors.css"
 import { allAnimals } from "./AllAnimals";
 import CardsSquareView from "./CardsView/CardsSquareView";
 import Filter from "./FilterHandler/Filter";
+import Pagination from "./Pagination.js";
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
 
     const [filter, setFilter] = useState();
 
+    // className="container-fluid"
     return(
-        <div className="container-fluid">
+        <div>
             <div className="row">
                 <div className="col-2 bg-light-grey">
                     <h1 className="left-text">Find your perfect companion and make a forever friend</h1>
@@ -21,10 +23,10 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     </div>
                 </div>
                 <div className="col-2 ps5">
-                        <Filter filter={filter} setFilter={setFilter}/>
-
+                    <Filter filter={filter} setFilter={setFilter}/>
                 </div>
             </div>
+            <Pagination />
         </div>
     );
 }
