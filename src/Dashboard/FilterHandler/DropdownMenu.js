@@ -10,7 +10,7 @@ export const DropdownMenu = ({options, handleChange, nameOfAttribute, attribute}
                 <label className="fw-light">{nameOfAttribute}</label> <br/>
             </div>
             <div className="d-flex justify-content-center">
-                <select className="custom-select custom-select-lg mb-1 my-select"
+                <select className="form-control"
                         value={attribute}
                         onChange={handleChange}
                 >
