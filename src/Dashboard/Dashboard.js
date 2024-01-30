@@ -18,7 +18,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         species:"",
         behaviour:""
     });
-    const [page, setPage] = React.useState(0);
+    const [page, setPage] = React.useState(1);
     const [tabIndex, setTabIndex] = React.useState("1");
     const [data, SetData] = React.useState([]);
 
@@ -52,7 +52,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
 
     const getDtoListFromBackEnd = async () => {
         try {
-            const response = await dashboardTypes(convertToFilterDto(), viewComponentIndex, page,12,tabIndex);
+            const response = await dashboardTypes(convertToFilterDto(), viewComponentIndex, page-1,12,tabIndex);
             SetData(response.data);
         } catch (error) {
             alert(error.response.data.message)
@@ -69,7 +69,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
             <div className="row">
                 <div className="col-10 pe-1">
                     <div className="bg-light-grey p-3">
-                        <CardsSquareView cards={data}/>
+                        <CardsSquareView cards={data} ViewComponentIndex={viewComponentIndex}/>
                     </div>
                 </div>
                 <div className="col-2 ps5">

@@ -1,12 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import "./CardsSquareView.css";
+import {useNavigate} from "react-router-dom";
 
-function CardsView({cards}) {
+function CardsView({cards,ViewComponentIndex}) {
     const chunkArray = (array, size) => {
         return Array.from({ length: Math.ceil(array.length / size) }, (v, i) =>
             array.slice(i * size, i * size + size)
         );
     };
+    const navigate = useNavigate();
+    const handleClickOnCard =(id)=>{
+        const params = {
+            id: id,
+            ViewComponentIndex: ViewComponentIndex
+        };
+        navigate("petview", { state: params, replace: true });
+    }
 
     return(
         <div>
@@ -16,7 +25,7 @@ function CardsView({cards}) {
                         row.map((card, index) => {
                             return (
                                 <div className="col-3 ">
-                                    <a href="https://www.google.com/" className="no-underline-link">
+                                    <a href=""  onClick={()=>{handleClickOnCard(card.id)}} className="no-underline-link">
                                         <div className="card animal-card">
                                             <img src="https://i.ibb.co/2MdPnzR/d1.jpg" className="animal-img" alt="..."/>
                                             <div className="card-body">
