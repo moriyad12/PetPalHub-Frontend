@@ -16,6 +16,10 @@ export default function Pagination({totalRecords}) {
         </li>
     }
 
+    const getThreeDots = () => {
+        return <li className="page-item disabled"><a className="page-link">...</a></li>;
+    }
+
     const getOnlyFive = (totalNumberOfPages) => {
         const pageNumbers = [];
         for (let i = 1; i <= totalNumberOfPages; i++)
@@ -36,7 +40,7 @@ export default function Pagination({totalRecords}) {
                 {pageNumbers.map(number => {
                     return getPageInPagination(number)
                 })}
-                ...
+                {getThreeDots()}
                 {getPageInPagination(totalNumberOfPages - 1)}
                 {getPageInPagination(totalNumberOfPages)}
             </>
@@ -51,7 +55,7 @@ export default function Pagination({totalRecords}) {
             <>
                 {getPageInPagination(1)}
                 {getPageInPagination(2)}
-                ...
+                {getThreeDots()}
                 {pageNumbers.map(number => {
                     return getPageInPagination(number)
                 })}
@@ -67,11 +71,11 @@ export default function Pagination({totalRecords}) {
             <>
                 {getPageInPagination(1)}
                 {getPageInPagination(2)}
-                ...
+                {getThreeDots()}
                 {pageNumbers.map(number => {
                     return getPageInPagination(number)
                 })}
-                ...
+                {getThreeDots()}
                 {getPageInPagination(totalNumberOfPages - 1)}
                 {getPageInPagination(totalNumberOfPages)}
             </>

@@ -14,10 +14,10 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
     return(
         <div>
             <div className="row">
-                <div className="col-2 bg-light-grey">
-                    <h1 className="left-text">Find your perfect companion and make a forever friend</h1>
-                </div>
-                <div className="col-8 pe-1">
+                {/*<div className="col-2 bg-light-grey">*/}
+                {/*    <h1 className="left-text">Find your perfect companion and make a forever friend</h1>*/}
+                {/*</div>*/}
+                <div className="col-10 pe-1">
                     <div className="bg-light-grey p-3">
                         <CardsSquareView cards={allAnimals}/>
                     </div>

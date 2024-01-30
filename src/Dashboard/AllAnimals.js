@@ -2,8 +2,8 @@ export const allAnimals = [
 
     {
         cardTitle: "card title",
-        img: "https://i.ibb.co/4ddrHsf/fff.jpg",
-        cardText: "Mic1.",
+        img: "https://i.ibb.co/2MdPnzR/d1.jpg",
+        cardText: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur assumenda, autem, deserunt dolorem earum eius eligendi esse eveniet facilis fugit ipsam molestiae obcaecati, quae quaerat reprehenderit rerum tempora tempore tenetur ut! Ab assumenda, consequuntur cum dolore ducimus eius hic laboriosam molestias nobis officiis quam, quidem repudiandae sapiente sed unde. Atque doloribus harum, molestiae non nostrum praesentium quae quibusdam sed tempore vel? Aliquid, distinctio, neque! Dolore dolorem doloremque ea eos impedit inventore minus odit quo veritatis. Dolorum eius fugiat magnam.",
         link: "#"
     },
     {
