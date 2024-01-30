@@ -47,10 +47,10 @@ function Profile() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-4">
-                        <span  className="text-secondary fs-2">My Profile</span>
+                    <div className="col-md-4 offset-md-1">
+                        <span  className="text-secondary fs-2 " >My Profile</span>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-7">
                         <ProfileDetails profileAttributes={profileAttributes}/>
                     </div>
                 </div>

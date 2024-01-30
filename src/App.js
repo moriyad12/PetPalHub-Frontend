@@ -11,6 +11,7 @@ import Profile from "./Profile/Profile";
 import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
+import Dashboard2 from "./Dashboard/dashboard2";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -19,9 +20,9 @@ function App() {
         <Router >
             <Header isloggedUseState={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
-                <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
+                <Route path={"/"} element={<Dashboard2 filterEnabled={true}  viewComponentIndex={1}/>} />
                 <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />
-                <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
+                <Route path={"/myPets"} element={<Dashboard2 filterEnabled={true}  viewComponentIndex={3}/>} />
                 <Route path={"/login"} element={<Login setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/profile"} element={<Profile />} />
                 <Route path={"/validation"} element={<ValidationPage />} />

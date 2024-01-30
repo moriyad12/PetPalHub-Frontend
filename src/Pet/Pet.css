@@ -10,7 +10,7 @@
     border-radius: 10px;
     -webkit-box-shadow: 0 1px 3px rgba(77,71,81,.2);
     box-shadow: 0 1px 3px rgba(77,71,81,.2);
-    background-color: #6504b5;
+    background-color: rgb(13, 110, 253)g;
     padding: 20px;
     margin: 20px;
     color: #fff;
@@ -24,7 +24,7 @@
 .ghost{
     border-color: #fff;
     background-color: #fff;
-    color: #6504b5;
+    color: rgb(13, 110, 253);
     position: relative;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

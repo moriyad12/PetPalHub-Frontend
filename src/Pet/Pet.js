@@ -11,6 +11,7 @@ import {ProfileDescription} from "./ProfileDescription";
 import {PetBasicDetails} from "./PetBasicDetails";
 import {PetHealthDetails} from "./PetHealthDetails";
 import {PetTypeDetails} from "./PetTypeDetails";
+import {PetProfileImage} from "./PetProfileImage";
 
 
 function Pet() {
@@ -69,17 +70,17 @@ function Pet() {
         }
     };
 
-    return <div className="container bg-light emp-profile">
+    return <div className="container bg-light emp-profile " style={{ width: '65%' }} >
                 <div className="row">
                     <div className="col-md-4">
-                        <ProfileImage viewComponentIndex={viewComponentIndex} />
+                        <PetProfileImage viewComponentIndex={viewComponentIndex} />
                     </div>
                     <div className="col-md-1">
                     </div>
                     <div className="col-md-6">
-                        <PetProfileHead attributes={attributes}/>
+                            <PetProfileHead attributes={attributes}/>
                             {isUserAdopter()&&viewComponentIndex===1 ?
-                                <div className="shadow apply">
+                                <div className="shadow apply " >
                                 Considering {attributes.name} for
                                 <br/>
                                 adoption?

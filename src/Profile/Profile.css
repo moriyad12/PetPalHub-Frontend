@@ -15,8 +15,8 @@ body{
 .profile-img img{
     /*width: 70%;*/
     /*height: 100%;*/
-    width: 209px;
-    height:238px;
+    width: 275px;
+    height:300px;
 }
 .profile-img .file {
     position: relative;
@@ -38,7 +38,7 @@ body{
     color: #333;
 }
 .profile-head h6{
-    color: #0062cc;
+    color: rgb(13, 110, 253);
 }
 .profile-edit-btn{
     border: none;
@@ -54,7 +54,7 @@ body{
 }
 .profile-tab p{
     font-weight: 600;
-    color: #0062cc;
+    color: rgb(13, 110, 253);
 }
 .profile-update-modal-form{
     width: 100%;
