@@ -5,10 +5,64 @@ import { allAnimals } from "./AllAnimals";
 import CardsSquareView from "./CardsView/CardsSquareView";
 import Filter from "./FilterHandler/Filter";
 import Pagination from "./Pagination.js";
+import {dashboardTypes} from "./DashboardTypes";
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
 
-    const [filter, setFilter] = useState();
+    const [filter, setFilter] = useState({
+        availability:"",
+        gender:"",
+        healthStatus:"",
+        name:"",
+        vaccineStatus:"",
+        species:"",
+        behaviour:""
+    });
+    const [page, setPage] = React.useState(0);
+    const [tabIndex, setTabIndex] = React.useState("1");
+    const [data, SetData] = React.useState([]);
+
+    const convertToFilterDto = () => {
+
+        const result = {
+            filters: []
+        }
+        // Array of variables to handle
+        const filterDto = [
+            { key: 0, value: filter.availability },
+            { key: 2, value: filter.gender },
+            { key: 3, value: filter.healthStatus },
+            { key: 4, value: filter.name},
+            { key: 5, value: filter.vaccineStatus },
+            { key: 6, value: filter.species },
+            { key: 7, value: filter.behaviour },
+        ];
+
+        // Iterate over variables and push filters into the array
+        filterDto.forEach((variable) => {
+            if (variable.value !== null && variable.value.trim() !== "") {
+                result.filters.push({
+                    "first": variable.key,
+                    "second": variable.value,
+                });
+            }
+        });
+        return result
+    };
+
+    const getDtoListFromBackEnd = async () => {
+        try {
+            const response = await dashboardTypes(convertToFilterDto(), viewComponentIndex, page,12,tabIndex);
+            SetData(response.data);
+            alert(JSON.stringify(response))
+        } catch (error) {
+            alert(error.response.data.message)
+        }
+
+    }
+    useEffect(() => {
+        getDtoListFromBackEnd();
+    }, [tabIndex,page]);
 
     // className="container-fluid"
     return(
