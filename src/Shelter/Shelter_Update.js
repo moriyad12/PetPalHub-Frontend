@@ -62,6 +62,11 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
             alert(error.response.data.message)
         }
     }
+    const handleSubmit = () => {
+        setOpen(false);
+        handleInformationChange();
+        window.location.reload();
+    };
 
 
     return (
@@ -108,7 +113,8 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
 
                             <Button type="submit" value="Submit" variant="contained" style={{
                                 width: "150px", color: "##150044",
-                            }}>
+                            }}
+                                    onClick={handleSubmit}>
                                 Submit
                             </Button>
                         </form>
