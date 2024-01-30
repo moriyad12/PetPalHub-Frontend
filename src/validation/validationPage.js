@@ -4,25 +4,25 @@ import ProxyApi from "../Apis/ProxyApis/ProxyApis";
 import "./validationPage.css"
 import {useNavigate} from "react-router-dom";
 function ValidationPage() {
-        useEffect(() => {
-            const codes = document.querySelectorAll(".ValidationPageCodeInput");
-            codes[0].focus();
-            codes.forEach((code, index) => {
-                code.addEventListener("keydown", (e) => {
-                    if (e.key >= 0 && e.key <= 9) {
-                        codes[index].value = "";
-                        if (codes[index + 1]) {
-                            setTimeout(() => codes[index + 1].focus(), 10);
-                        }
-                    } else if (e.key === "Backspace") {
-                        if (codes[index - 1]) {
-                            setTimeout(() => codes[index - 1].focus(), 10);
-                        }
+    useEffect(() => {
+        const codes = document.querySelectorAll(".ValidationPageCodeInput");
+        codes[0].focus();
+        codes.forEach((code, index) => {
+            code.addEventListener("keydown", (e) => {
+                if (e.key >= 0 && e.key <= 9) {
+                    codes[index].value = "";
+                    if (codes[index + 1]) {
+                        setTimeout(() => codes[index + 1].focus(), 10);
+                    }
+                } else if (e.key === "Backspace") {
+                    if (codes[index - 1]) {
+                        setTimeout(() => codes[index - 1].focus(), 10);
                     }
                 }
             });
         });
     }, []);
+
     const LOCAL_STORAGE_KEY = "token";
 
     const [token, setToken] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []);

@@ -44,7 +44,7 @@ function LoginComponent({setIsUserLoggedIn}) {
 
                 <div className={"hiDiv"}>
                     <label>Don't have an account</label>
-                    <a href={"#"}>
+                    <a href={"/signUp"}>
                         SignUp
                     </a>
                 </div>

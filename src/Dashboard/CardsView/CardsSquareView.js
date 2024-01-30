@@ -24,8 +24,6 @@ function Dashboard({cards}) {
                                                 <div className="large-text-container">
                                                     <p className="card-text truncate fw-light">{card.cardText}</p>
                                                 </div>
-                                                {/*<a href={card.link}*/}
-                                                <a href="https://www.facebook.com/" className="btn btn-primary bottom-right-button">Adopt</a>
                                             </div>
                                         </div>
                                     </a>

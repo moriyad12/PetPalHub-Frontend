@@ -88,7 +88,7 @@ function SignUpComponent({setIsUserLoggedIn}) {
                     <button className="btn btn-primary" type="submit">SignUp</button>
                     <div className={"hiDiv"}>
                         <label className={"signUpComponentDivLabel"}>Already have an account</label>
-                        <a href={"#"}>
+                        <a href={"/login"}>
                             SignIn
                         </a>
                     </div>

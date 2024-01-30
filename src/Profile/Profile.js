@@ -39,7 +39,7 @@ function Profile() {
                     <div className="col-md-4">
                        <ProfileImage isProfile={1} />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-5 offset-1">
                        <ProfileHead profileAttributes={profileAttributes}/>
                     </div>
                     <div className="col-md-2" >
