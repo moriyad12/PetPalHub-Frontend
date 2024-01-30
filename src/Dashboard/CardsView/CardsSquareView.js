@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import "./CardsSquareView.css";
 
-function Dashboard({cards}) {
+function CardsView({cards}) {
     const chunkArray = (array, size) => {
         return Array.from({ length: Math.ceil(array.length / size) }, (v, i) =>
             array.slice(i * size, i * size + size)
@@ -15,14 +15,17 @@ function Dashboard({cards}) {
                     {
                         row.map((card, index) => {
                             return (
-                                <div className="col-3">
+                                <div className="col-3 ">
                                     <a href="https://www.google.com/" className="no-underline-link">
                                         <div className="card animal-card">
-                                            <img src={card.img} className="animal-img" alt="..."/>
+                                            <img src="https://i.ibb.co/2MdPnzR/d1.jpg" className="animal-img" alt="..."/>
                                             <div className="card-body">
-                                                <h5 className="card-title">{card.cardTitle}</h5>
+                                                <h4 className="card-title">{card.name}</h4>
                                                 <div className="large-text-container">
-                                                    <p className="card-text truncate fw-light">{card.cardText}</p>
+                                                    <p className="card-text truncate fw-light">{card.species}</p>
+                                                    <p className="card-text truncate fw-light">{card.gender}</p>
+                                                    <p className="card-text truncate fw-light">{card.breed}</p>
+                                                    <p className="card-text truncate fw-light">{card.description}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -37,4 +40,4 @@ function Dashboard({cards}) {
     );
 }
 
-export default Dashboard;
+export default CardsView;

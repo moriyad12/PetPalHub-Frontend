@@ -54,7 +54,6 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         try {
             const response = await dashboardTypes(convertToFilterDto(), viewComponentIndex, page,12,tabIndex);
             SetData(response.data);
-            alert(JSON.stringify(response))
         } catch (error) {
             alert(error.response.data.message)
         }
@@ -68,19 +67,16 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
     return(
         <div>
             <div className="row">
-                {/*<div className="col-2 bg-light-grey">*/}
-                {/*    <h1 className="left-text">Find your perfect companion and make a forever friend</h1>*/}
-                {/*</div>*/}
                 <div className="col-10 pe-1">
                     <div className="bg-light-grey p-3">
-                        <CardsSquareView cards={allAnimals}/>
+                        <CardsSquareView cards={data}/>
                     </div>
                 </div>
                 <div className="col-2 ps5">
                     <Filter filter={filter} setFilter={setFilter}/>
                 </div>
             </div>
-            <Pagination totalRecords={1000}/>
+            <Pagination currentPage={page} setCurrentPage={setPage}  totalRecords={1000}/>
         </div>
     );
 }
