@@ -1,4 +1,5 @@
 .App{
+  overflow-y: scroll;
   display: flex;
   flex-direction: column; /* or row, depending on your layout */
   width: 100%;

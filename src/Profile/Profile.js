@@ -24,9 +24,7 @@ function Profile() {
     useEffect(() => {
         const sendInformationRequest = async() => {
             try {
-                console.log(getUserToken())
                 const response = await userApis.get("getUserDto/"+getUserId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
-                console.log(response);
                 setProfileAttributes(response.data)
             } catch (error) {
                 alert(error.response.data.message)

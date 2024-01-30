@@ -1,8 +1,7 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Pet from "./Pet/Pet";
-import PetHeader from "./Headers/PetHeader";
-import ApplicationHeader from "./Headers/ApplicationHeader";
 import Shelter from "./Shelter/Shelter";
 import Dashboard from "./Dashboard/Dashboard";
 import {Route , Routes} from "react-router-dom";
@@ -18,7 +17,7 @@ function App() {
     return (
     <div className="App">
         <Router >
-            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            <Header isloggedUseState={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
                 <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />

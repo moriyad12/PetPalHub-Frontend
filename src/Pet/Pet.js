@@ -15,7 +15,6 @@ import {PetTypeDetails} from "./PetTypeDetails";
 
 function Pet() {
 
-
     const navigate = useNavigate();
     const [attributes, setAttributes] = React.useState({
         name: "",
@@ -32,8 +31,6 @@ function Pet() {
     });
     const location = useLocation();
     const params = location.state;
-    // let id = params.id
-
     const id=params.id;
     const viewComponentIndex = params.ViewComponentIndex;
 
