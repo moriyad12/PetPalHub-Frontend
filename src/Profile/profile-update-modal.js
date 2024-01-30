@@ -46,6 +46,11 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
         setOpen(true);
     }
     const handleClose = () => setOpen(false);
+    const handleSubmit = () => {
+        setOpen(false);
+        handleInformationChange();
+        window.location.reload();
+    };
 
     const handleInformationChange = async () => {
         const newInformation = {
@@ -65,7 +70,7 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
 
     return (
         <div>
-            <Button onClick={handleOpen}><FaPen/></Button>
+            <Button class="profile-edit-btn" name="btnAddMore" value="Edit Profile" onClick={handleOpen}>Edit Profile</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -115,16 +120,15 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
                                     <MenuItem value="MALE">Male</MenuItem>
                                     <MenuItem value="FEMALE">Female</MenuItem>
 
-                                    {/*<MenuItem value={defaultGender}>{defaultGender}</MenuItem>*/}
-                                    {/*<MenuItem value={defaultGender === "MALE" ? "FEMALE" : "MALE"}>{defaultGender === "MALE" ? "FEMALE" : "MALE"} </MenuItem>*/}
                                 </Select>
                                 <FormHelperText>
-                                    select Gender of your choice
+                                    Select Your Gender
                                 </FormHelperText>
                             </FormControl>
                             <Button type="submit" value="Submit" variant="contained" style={{
                                 width: "150px", color: "##150044",
-                            }}>
+                            }}
+                                    onClick={handleSubmit}>
                                 Submit
                             </Button>
                         </form>
