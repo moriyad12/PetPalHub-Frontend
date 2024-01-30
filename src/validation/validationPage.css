@@ -1,29 +1,35 @@
-/** {*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-.body{
-    background-image: url("./pexels-elina-volkova-16366943.jpg");
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+.ValidationPageBody{
+    background-image: url("./1026928-1920x1080-desktop-1080p-pets-wallpaper.jpg");
     background-size: cover;
     background-position: center;
     filter: saturate(1.1);
     background-repeat: no-repeat;
-    font-family: "Times New Roman", sans-serif;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     margin: 0;
+    /*font-family: 'Kalam', cursive;*/
 }
 
-.code{
+.ValidationPageContainer{
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 30px;
+    max-width: 1000px;
+    text-align: center;
+    /*box-shadow: #000 0px 0px 100px 0px;*/
+}
+
+.ValidationPageCode{
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 40px 0;
 }
-.codeInput{
+.ValidationPageCodeInput{
     caret-color: transparent;
     background-color: rgba(255,255,255,0.6);
     border-radius: 40px;
@@ -36,12 +42,14 @@
     text-align: center;
     font-weight: 300;
 }
-
-.codeInput::-webkit-outer-spin-button,
-.codeInput::-webkit-inner-spin-button {
+.ValidationPageCodeInput:focus{
+    outline: none;
+}
+.ValidationPageCodeInput::-webkit-outer-spin-button,
+.ValidationPageCodeInput::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-.codeInput:valid{
+.ValidationPageCodeInput:valid{
     border-color: #176B87;
     box-shadow: 0 10px 10px -5px rgba(0,0,0,.25);
 }
