@@ -3,4 +3,5 @@
   flex-direction: column; /* or row, depending on your layout */
   width: 100%;
   height: 100vh;
+  font-family: Nexa Regular,arial,helvetica,sans-serif;
 }

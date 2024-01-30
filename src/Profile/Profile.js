@@ -39,7 +39,7 @@ function Profile() {
         <div className="container bg-light emp-profile">
                 <div className="row">
                     <div className="col-md-4">
-                       <ProfileImage />
+                       <ProfileImage isProfile={1} />
                     </div>
                     <div className="col-md-6">
                        <ProfileHead profileAttributes={profileAttributes}/>

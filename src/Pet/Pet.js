@@ -10,10 +10,12 @@ import {ProfileImage} from "../Profile/ProfileImage";
 import {ProfileHead} from "../Profile/ProfileHead";
 import {EditProfile} from "../Profile/EditProfile";
 import {ProfileDetails} from "../Profile/ProfileDetails";
-import {PetDetails, RightPetDetails} from "./RightPetDetails";
-import {LeftPetDetails} from "./LeftPetDetails";
 import {PetProfileHead} from "./PetProfileHead";
 import {Button} from "@mui/material";
+import {ProfileDescription} from "./ProfileDescription";
+import {PetBasicDetails} from "./PetBasicDetails";
+import {PetHealthDetails} from "./PetHealthDetails";
+import {PetTypeDetails} from "./PetTypeDetails";
 
 
 function Pet() {
@@ -78,9 +80,11 @@ function Pet() {
     return <div className="container bg-light emp-profile">
                 <div className="row">
                     <div className="col-md-4">
-                        <ProfileImage />
+                        <ProfileImage viewComponentIndex={viewComponentIndex} />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-1">
+                    </div>
+                    <div className="col-md-6">
                         <PetProfileHead attributes={attributes}/>
                             {isUserAdopter()&&viewComponentIndex===1 ?
                                 <div className="shadow apply">
@@ -100,29 +104,16 @@ function Pet() {
                                 </div>
                                 : null}
                     </div>
-                    <div className="col-md-2" >
-                    </div>
                 </div>
                 <hr/>
-                <div className="row">
-                    <div className="col-md-4">
-                        <LeftPetDetails attributes={attributes}/>
-                    </div>
-                    <div className="col-md-8">
-                        <RightPetDetails attributes={attributes}/>
-                    </div>
-                </div>
+        <PetBasicDetails attributes={attributes}/>
         <hr/>
-        <div className="row">
-            <div className="col-md-2">
-                <h4 style={{ color: '#333' }}>
-                    Meet {attributes.name}
-                </h4>
-            </div>
-            {attributes.description}
-        </div>
-
-            </div>
+       <PetTypeDetails attributes={attributes}/>
+        <hr/>
+        <PetHealthDetails attributes={attributes}/>
+        <hr/>
+        <ProfileDescription attributes={attributes}/>
+    </div>
 }
 
 export default Pet;
