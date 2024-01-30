@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.my-filter {
+    position: fixed;
+    margin-right: 20px
+}
+
+.left-text {
+    font-family: "Freestyle Script";
+    font-size: 80px;
+    text-align: center;
+    color: #572323;
+}
+
+.tab-shadow {
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1), 5px 0px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.my-sticky-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    background-color: white;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -2,10 +2,12 @@ import React from "react";
 
 export const ProfileAttributeComponent = ({attributeName, attributeValue}) => {
     return (
-        <div className="profile-info-container">
-            <div className="profile-info-item">
-                <div className="profile-info-item-title">{attributeName}:</div>
-                <div className="profile-info-item-value">{attributeValue}</div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>{attributeName}</label>
+            </div>
+            <div class="col-md-6">
+                <p>{attributeValue}</p>
             </div>
         </div>
     )

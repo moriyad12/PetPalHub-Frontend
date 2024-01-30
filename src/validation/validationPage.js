@@ -19,9 +19,10 @@ function ValidationPage() {
                             setTimeout(() => codes[index - 1].focus(), 10);
                         }
                     }
-                });
+                }
             });
-        }, []);
+        });
+    }, []);
     const LOCAL_STORAGE_KEY = "token";
 
     const [token, setToken] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []);

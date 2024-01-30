@@ -62,18 +62,16 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
             alert(error.response.data.message)
         }
     }
+    const handleSubmit = () => {
+        setOpen(false);
+        handleInformationChange();
+        window.location.reload();
+    };
 
 
     return (
         <div>
-            <Button style={{
-                borderRadius: 30,
-                backgroundColor: "#ffffff",
-                padding: "18px 36px",
-                color: "black",
-                marginTop:9,
-                height: 10
-            }} variant="contained"  onClick={handleOpen}>  Update  </Button>
+            <Button class="profile-edit-btn" name="btnAddMore" value="Edit Profile" onClick={handleOpen}>Edit Details</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -115,7 +113,8 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
 
                             <Button type="submit" value="Submit" variant="contained" style={{
                                 width: "150px", color: "##150044",
-                            }}>
+                            }}
+                                    onClick={handleSubmit}>
                                 Submit
                             </Button>
                         </form>
