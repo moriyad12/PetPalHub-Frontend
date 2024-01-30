@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from "react";
 import "./Pet.css";
-import PetAttribute from "./PetAttribute";
 import {useLocation, useNavigate} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
 import {getUserId, getUserToken, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {ProfileImage} from "../Profile/ProfileImage";
-import {ProfileHead} from "../Profile/ProfileHead";
-import {EditProfile} from "../Profile/EditProfile";
-import {ProfileDetails} from "../Profile/ProfileDetails";
 import {PetProfileHead} from "./PetProfileHead";
-import {Button} from "@mui/material";
 import {ProfileDescription} from "./ProfileDescription";
 import {PetBasicDetails} from "./PetBasicDetails";
 import {PetHealthDetails} from "./PetHealthDetails";

@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import {getShelterId, getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import masterApis from "../Apis/MasterApis";
 import {useNavigate, useNavigation} from "react-router-dom";
-import Shelter_Update from "./Shelter_Update";
 import {ShelterTopRow} from "./ShelterTopRow";
 import {ShelterLocation} from "./ShelterLocation";
 import {ShelterContact} from "./ShelterContact";
