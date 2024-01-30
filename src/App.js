@@ -22,7 +22,7 @@ function App() {
     <div className="App">
         <Router >
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <SignUpComponent setIsUserLoggedIn={setIsLoggedIn}></SignUpComponent>
+            <LoginComponent setIsUserLoggedIn={setIsLoggedIn}></LoginComponent>
             {/*<LoginComponent setIsUserLoggedIn={setIsLoggedIn}></LoginComponent>*/}
             {/*<Routes>*/}
             {/*    <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />*/}
