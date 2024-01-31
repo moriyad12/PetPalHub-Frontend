@@ -11,7 +11,7 @@ import Profile from "./Profile/Profile";
 import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
-import ErrorMessage from "./ErrorMessage/ErrorMessage";
+import ErrorMessageContextProvider from "./ErrorMessage/ErrorMessageContextProvider";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -41,7 +41,7 @@ function App() {
                 <Route path={"/petview"} element={<Pet />} />
                 <Route path={"/myPets/petview"} element={<Pet />} />
             </Routes>
-            <ErrorMessage triggerAnimation={trigger} setTriggerAnimation={setTrigger} errorMessage={errorMessage}/>
+            <ErrorMessageContextProvider triggerAnimation={trigger} setTriggerAnimation={setTrigger} errorMessage={errorMessage}/>
         </Router>
     </div>
   );
