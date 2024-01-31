@@ -38,7 +38,7 @@ function SignUpComponent({setIsUserLoggedIn}) {
             "signInWithEmail": false
         }
         if (password !== confirmPass) {
-            alert("Password and Confirm Password are not same")
+            makeAlert("Password and Confirm Password are not same")
             return;
         }
         try {
@@ -48,6 +48,7 @@ function SignUpComponent({setIsUserLoggedIn}) {
             setIsUserLoggedIn(true)
             navigate("/validation");
         } catch (error) {
+            alert(error.response.data.message)
             makeAlert(error.response.data.message)
         }
     };
