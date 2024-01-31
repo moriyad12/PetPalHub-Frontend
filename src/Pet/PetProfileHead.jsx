@@ -8,10 +8,10 @@ import {Button} from "@mui/material";
 export const PetProfileHead = ({attributes}) => {
     return (
         <div className="profile-head" >
-            <h5 className="offset-3" style={{ color: '#4d4751', fontSize: '25px',lineHeight: '1.2' }}>
+            <h5  style={{ color: '#4d4751', fontSize: '25px',lineHeight: '1.2' , textAlign: 'center'}}>
                 Shlter: {attributes.shelterName}
             </h5>
-            <h4 className="offset-6" style={{ color: '#4d4751', fontSize: '20px',lineHeight: '1.2' }}>
+            <h4  style={{ color: '#4d4751', fontSize: '20px',lineHeight: '1.2' , textAlign: 'center'}}>
                 {attributes.name}
             </h4>
         </div>

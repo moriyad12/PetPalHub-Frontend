@@ -94,7 +94,7 @@ export default function Pagination({totalRecords, currentPage, setCurrentPage}) 
             mypagination = getMiddleFive(totalNumberOfPages);
 
         return (
-            <nav className="my-sticky-bottom">
+            <nav className="my-sticky-bottom" style={{position: 'fixed', bottom: 0, width: '100%', backgroundColor: '#efeef1'}}>
                 <ul className="pagination">
                     <li className={`page-item ${(currentPage === 1) ? 'disabled' : ''}`}>
                         <a className="page-link" href="#" aria-label="Previous" onClick={() => {

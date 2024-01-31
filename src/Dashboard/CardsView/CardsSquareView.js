@@ -26,15 +26,17 @@ function CardsView({cards,ViewComponentIndex}) {
                             return (
                                 <div className="col-3 ">
                                     <a href=""  onClick={()=>{handleClickOnCard(card.id)}} className="no-underline-link">
-                                        <div className="card animal-card">
-                                            <img src="https://i.ibb.co/2MdPnzR/d1.jpg" className="animal-img" alt="..."/>
+                                        <div className="card animal-card ">
+                                            <img src="/pet2.jpg" className="animal-img" alt="..."/>
                                             <div className="card-body">
-                                                <h4 className="card-title">{card.name}</h4>
+                                                <h5  style={{ color: '#4d4751', fontSize: '30px',lineHeight: '1.2' }}>
+                                                    {card.name}
+                                                </h5>
                                                 <div className="large-text-container">
-                                                    <p className="card-text truncate fw-light">{card.species}</p>
-                                                    <p className="card-text truncate fw-light">{card.gender}</p>
-                                                    <p className="card-text truncate fw-light">{card.breed}</p>
-                                                    <p className="card-text truncate fw-light">{card.description}</p>
+                                                    <p className="truncate ">{card.species}</p>
+                                                    <p className="truncate ">{card.gender}</p>
+                                                    <p className="truncate ">{card.breed}</p>
+                                                    <p className="truncate ">{card.description}</p>
                                                 </div>
                                             </div>
                                         </div>
