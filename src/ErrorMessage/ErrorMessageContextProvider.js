@@ -6,9 +6,16 @@ const MyContext = createContext();
 export function ErrorMessageContextProvider( {children} ) {
     const [trigger, setTrigger] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const[isErrorMessage, setIsErrorMessage] = useState();
 
-    const makeAllert = (message) => {
+    const makeAlert = (message) => {
         setErrorMessage(message);
+        setIsErrorMessage(true);
+        setTrigger(true);
+    }
+    const makeNormalMessage = (message) => {
+        setErrorMessage(message);
+        setIsErrorMessage(false);
         setTrigger(true);
     }
 
@@ -22,13 +29,17 @@ export function ErrorMessageContextProvider( {children} ) {
     }, [trigger]);
 
     return (
-        <MyContext.Provider value={{makeAllert}}>
+        <MyContext.Provider value={{makeAlert, makeNormalMessage}}>
             { children }
             <div className={`slide-fade-container ${trigger ? 'visible' : ''}`}>
                 <div className="slide-fade-content">
-                    <div className="alert alert-warning my-error-message" role="alert">
-                        <strong>{errorMessage}</strong>
-                    </div>
+                    (isErrorMessage ?
+                        <div className="alert alert-warning my-error-message" role="alert">
+                            <strong>{errorMessage}</strong>
+                        </div>
+                        : <div class="alert alert-primary" role="alert">
+                            <strong>{errorMessage}</strong>
+                        </div>)
                 </div>
             </div>
         </MyContext.Provider>

@@ -12,11 +12,8 @@ import {HealthStatus} from "./HealthStatus";
 import {VaccineStatus} from "./VaccineStatus";
 import {Behaviour} from "./Behaviour";
 import {Breed} from "./Breed";
-import AdopterApi from "../Apis/AdopterApi";
-import {getShelterId, getUserId} from "../Authentication/UserAuthentication";
-import MasterApi from "../Apis/MasterApi";
-
-
+import {getShelterId} from "../Authentication/UserAuthentication";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 const style = {
     position: 'absolute',
@@ -57,6 +54,8 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
     const [dateOfBirth, setDateOfBirth] = React.useState(new Date().toISOString().slice(0, 16));
     const [species, setSpecies] = React.useState("");
     const [description, setDescription] = React.useState("");
+    const { makeAlert } = useMyContext();
+
     const handlePetCreation = async (e) => {
         e.preventDefault();
         const Pet = {
@@ -79,7 +78,7 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
             navigate("/myPets");
             navigate(0)
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
 

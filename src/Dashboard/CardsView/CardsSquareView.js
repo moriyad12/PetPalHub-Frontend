@@ -19,7 +19,7 @@ function CardsView({cards,ViewComponentIndex}) {
 
     return(
         <div>
-            {chunkArray(cards, 4).map((row, rowIndex) => (
+            {chunkArray(cards, 4).map((row) => (
                 <div className="row mb-3">
                     {
                         row.map((card, index) => {

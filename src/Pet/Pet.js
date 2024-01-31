@@ -4,19 +4,19 @@ import {useLocation, useNavigate} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
-import {getUserId, getUserToken, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
-import {ProfileImage} from "../Profile/ProfileImage";
+import {getUserId, getUserToken, isUserAdopter} from "../Authentication/UserAuthentication";
 import {PetProfileHead} from "./PetProfileHead";
 import {ProfileDescription} from "./ProfileDescription";
 import {PetBasicDetails} from "./PetBasicDetails";
 import {PetHealthDetails} from "./PetHealthDetails";
 import {PetTypeDetails} from "./PetTypeDetails";
 import {PetProfileImage} from "./PetProfileImage";
-
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function Pet() {
-
     const navigate = useNavigate();
+    const { makeAlert } = useMyContext();
+
     const [attributes, setAttributes] = React.useState({
         name: "",
         description: "",
@@ -54,7 +54,7 @@ function Pet() {
             const response = await AdopterApi.get("petForUser/" + id);
             setAttributes(response.data)
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
     useEffect(() => {
@@ -66,7 +66,7 @@ function Pet() {
             await AdopterApi.post("applyForPet/" + id+ "/" + getUserId(),{},{headers: {"Authorization": `Bearer ${getUserToken()}`}} );
             navigate("/myApplications")
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     };
 
@@ -91,7 +91,6 @@ function Pet() {
                                 <div className="shadow apply">
                                     Update {attributes.name} Profile
                                     <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
-                                        console.log(getUserToken())
                                         await MasterApi.post("editPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
                                     }}/>
                                 </div>

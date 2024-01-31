@@ -1,7 +1,6 @@
 import * as React from "react";
 import {useState, useEffect} from 'react';
 import './login.css';
-import {FaGoogle} from "react-icons/fa";
 import classNames from "classnames";
 import {loginValidation} from "./validations/loginValidation";
 import {signupValidation} from "./validations/signupValidation";
@@ -13,16 +12,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useNavigate} from "react-router-dom";
 import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
-// import {isUserLoggedIn, setUserLocalStorageData} from "../Authentication/UserAuthentication";
-// import {RoutePathNames} from "../Routes/RoutePathNames";
-
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function Login({setIsUserLoggedIn}) {
     const navigate = useNavigate();
-
     const [isLoginActive, setIsLoginActive] = useState(false);
-
-
+    const { makeAlert } = useMyContext();
 
     const loginFormik = useFormik({
         initialValues: {
@@ -42,8 +37,7 @@ function Login({setIsUserLoggedIn}) {
                 navigate("/");
 
             } catch (error) {
-                // actions.resetForm();
-                alert(error.response.data.message)
+                makeAlert(error.response.data.message)
             }
         }
     });
@@ -82,8 +76,7 @@ function Login({setIsUserLoggedIn}) {
                 alert("Please check your email for validation")
                 navigate("/validation");
             } catch (error) {
-                // actions.resetForm();
-                alert(error.response.data.message)
+                makeAlert(error.response.data.message)
             }
         },
     });

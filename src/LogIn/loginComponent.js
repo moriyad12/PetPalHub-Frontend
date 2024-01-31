@@ -4,11 +4,13 @@ import "./loginComponent.css";
 import ProxyApi from "../Apis/ProxyApis/ProxyApis";
 import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
 import {useNavigate} from "react-router-dom";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function LoginComponent({setIsUserLoggedIn}) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { makeAlert } = useMyContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevents the default form submission behavior
@@ -23,10 +25,8 @@ function LoginComponent({setIsUserLoggedIn}) {
             console.log(response)
             setIsUserLoggedIn(true)
             navigate("/");
-
         } catch (error) {
-            // actions.resetForm();
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
 

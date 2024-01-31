@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FaPen} from "react-icons/fa6";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 import {
     Box,
@@ -16,9 +16,6 @@ import {
 import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import userApis from "../Apis/UserApis/UserApis";
 
-// import {getUserId} from "../../../src/Authentication/UserAuthentication";
-
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -32,9 +29,9 @@ const style = {
     width: "50%",
 };
 
-
 export default function BasicModal({defaultFirstName, defaultLastName, defaultGender, defaultPhoneNumber}) {
 
+    const { makeAlert } = useMyContext();
     const [firstName, setFirstName] = React.useState(defaultFirstName || '');
     const [lastName, setLastName] = React.useState(defaultLastName);
     const [gender, setGender] = React.useState(defaultGender);
@@ -64,7 +61,7 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
             console.log(getUserToken())
             await userApis.post("updateUserProfile", newInformation, {headers: {"Authorization": `Bearer ${getUserToken()}`}});
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
 

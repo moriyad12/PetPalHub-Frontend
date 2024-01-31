@@ -6,8 +6,12 @@ import {ShelterTopRow} from "./ShelterTopRow";
 import {ShelterLocation} from "./ShelterLocation";
 import {ShelterContact} from "./ShelterContact";
 import {ShelterDescription} from "./ShelterDescription";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function Shelter() {
+    const navigate = useNavigate();
+    const { makeAlert } = useMyContext();
+
     const [attributes, setAttributes] = React.useState({
         id: 0,
         name: "",
@@ -15,17 +19,14 @@ function Shelter() {
         shelterLocation: {country: "", city: "", address: ""},
         code: "",
     });
-    const navigate = useNavigate();
 
     useEffect(() => {
         const sendInformationRequest = async () => {
             try {
-                console.log(getUserToken())
                 const response = await masterApis.get("getShelterDto/" + getShelterId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
-                console.log(response);
                 setAttributes(response.data)
             } catch (error) {
-                navigate("/")
+                makeAlert(error.response.data.message)
             }
         }
         sendInformationRequest()

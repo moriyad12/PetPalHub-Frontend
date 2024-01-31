@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FaPen} from "react-icons/fa6";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 import {
     Box,
@@ -10,12 +10,8 @@ import {
     Typography
 } from '@mui/material';
 import {getShelterId, getUserToken} from "../Authentication/UserAuthentication";
-import userApis from "../Apis/UserApis/UserApis";
 import {CountryCityStreet} from "./CountryCityStreet";
 import masterApis from "../Apis/MasterApis";
-
-// import {getUserId} from "../../../src/Authentication/UserAuthentication";
-
 
 const style = {
     position: 'absolute',
@@ -32,16 +28,14 @@ const style = {
 
 
 export default function Shelter_Update({defaultName, defaultPhoneNumber, defaultLocation}) {
-
     const [name, setName] = React.useState(defaultName || '');
     const [phoneNumber, setPhoneNumber] = React.useState(defaultPhoneNumber);
-
     const [country, setCountry] = React.useState(defaultLocation.country);
     const [state, setState] = React.useState(defaultLocation.city);
     const [address, setAddress] = React.useState(defaultLocation.address);
     const [statesInCountry, setStatesInCountry] = React.useState([]);
-
     const [open, setOpen] = React.useState(false);
+    const { makeAlert } = useMyContext();
 
     const handleOpen = () => {
         setOpen(true);
@@ -59,7 +53,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
             console.log(getUserToken())
             await masterApis.post("updateShelterDto", newInformation,{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
     const handleSubmit = () => {
@@ -67,7 +61,6 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
         handleInformationChange();
         window.location.reload();
     };
-
 
     return (
         <div>
@@ -95,7 +88,6 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                             />
 
                             <TextField variant={"outlined"} label={"Phone Number"}
-
                                        value={phoneNumber}
                                        onChange={(event) => {
                                            setPhoneNumber(event.target.value)

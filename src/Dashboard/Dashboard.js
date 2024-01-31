@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import "./Other.css"
 import "../MyUtilities/Colors.css"
 import CardsSquareView from "./CardsView/CardsSquareView";
@@ -8,12 +8,14 @@ import {dashboardTypes} from "./DashboardTypes";
 import DashboardListView from "./DashboardListView";
 import Tabs from "./Tabs/Tabs";
 import {isUserStaffOrManager} from "../Authentication/UserAuthentication";
-function Dashboard({filterEnabled, viewComponentIndex}) {
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
+function Dashboard({filterEnabled, viewComponentIndex}) {
     const [filterDto, setFilterDto] = useState([]);
     const [page, setPage] = React.useState(1);
     const [tabIndex, setTabIndex] = React.useState("1");
     const [data, SetData] = React.useState([]);
+    const { makeAlert } = useMyContext();
 
     const isTabsEnabled = () => {return viewComponentIndex === 2 && isUserStaffOrManager()}
 
@@ -22,7 +24,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
             const response = await dashboardTypes({filters: filterDto}, viewComponentIndex, page-1,12,tabIndex);
             SetData(response.data);
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
     useEffect(() => {
