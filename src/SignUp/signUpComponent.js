@@ -35,6 +35,7 @@ function SignUpComponent({setIsUserLoggedIn}) {
             "gender": "MALE",
             "signInWithEmail": false
         }
+        console.log(userDto)
         if (password !== confirmPass) {
             alert("Password and Confirm Password are not same")
             return;

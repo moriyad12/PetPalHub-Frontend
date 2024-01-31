@@ -41,7 +41,6 @@ function LoginComponent({setIsUserLoggedIn}) {
                     <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Password"}/>
                 </div>
                 <button className="btn btn-primary" type="submit">SignIn</button>
-
                 <div className={"hiDiv"}>
                     <label>Don't have an account</label>
                     <a href={"/signUp"}>
