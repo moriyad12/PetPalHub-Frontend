@@ -6,7 +6,7 @@ export const Description = ({description, setDescription}) => {
     // const [viewDescription, setViewDescription] = React.useState("");
 
     return (
-        <TextField
+        <TextField className="m-2"
             id="fullWidth"
             type={"number"}
             label="Description"
@@ -14,7 +14,6 @@ export const Description = ({description, setDescription}) => {
             multiline
             required={false}
             sx={{width: 600}}
-            helperText="please enter the Pet Description"
             value={description}
             onChange={(event) => {
                 setDescription(event.target.value)

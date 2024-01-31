@@ -13,30 +13,29 @@ export const HealthStatus = ({setHealthStatus}) => {
 
 
     return (
-        <FormControl sx={{minWidth: 600}}>
-            <InputLabel id="demo-simple-select-helper-label">HealthStatus</InputLabel>
-            <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="ads Plans"
-                required={true}
-                value={viewedHealthStatus}
+        <div className="m-2">
+            <FormControl sx={{minWidth: 600}}>
+                <InputLabel id="demo-simple-select-helper-label">HealthStatus</InputLabel>
+                <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    label="ads Plans"
+                    required={true}
+                    value={viewedHealthStatus}
 
-                onChange={(event) => {
-                    setHealthStatus(planIndexMap.get(event.target.value))
-                    setViewedHealthStatus(event.target.value)
-                }
-                }
-            >
-                {HealthStatussOptions.map((option, index) => (
-                    <MenuItem key={index} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Select>
-            <FormHelperText>
-                Choose The Pet HealthStatus
-            </FormHelperText>
-        </FormControl>
+                    onChange={(event) => {
+                        setHealthStatus(planIndexMap.get(event.target.value))
+                        setViewedHealthStatus(event.target.value)
+                    }
+                    }
+                >
+                    {HealthStatussOptions.map((option, index) => (
+                        <MenuItem key={index} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </div>
     )
 }

@@ -13,30 +13,29 @@ export const Behaviour = ({setBehaviour}) => {
 
 
     return (
-        <FormControl sx={{minWidth: 600}}>
-            <InputLabel id="demo-simple-select-helper-label">Behaviour</InputLabel>
-            <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="ads Plans"
-                required={true}
-                value={viewedBehaviour}
+        <div className="m-2">
+            <FormControl sx={{minWidth: 600}}>
+                <InputLabel id="demo-simple-select-helper-label">Behaviour</InputLabel>
+                <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    label="ads Plans"
+                    required={true}
+                    value={viewedBehaviour}
 
-                onChange={(event) => {
-                    setBehaviour(planIndexMap.get(event.target.value))
-                    setViewedBehaviour(event.target.value)
-                }
-                }
-            >
-                {BehavioursOptions.map((option, index) => (
-                    <MenuItem key={index} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Select>
-            <FormHelperText>
-                Choose The Pet Behaviour
-            </FormHelperText>
-        </FormControl>
+                    onChange={(event) => {
+                        setBehaviour(planIndexMap.get(event.target.value))
+                        setViewedBehaviour(event.target.value)
+                    }
+                    }
+                >
+                    {BehavioursOptions.map((option, index) => (
+                        <MenuItem key={index} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </div>
     )
 }

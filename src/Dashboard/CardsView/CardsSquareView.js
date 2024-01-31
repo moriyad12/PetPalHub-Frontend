@@ -30,13 +30,13 @@ function CardsView({cards,ViewComponentIndex}) {
                                             <img src="/pet2.jpg" className="animal-img" alt="..."/>
                                             <div className="card-body">
                                                 <h5  style={{ color: '#4d4751', fontSize: '30px',lineHeight: '1.2' }}>
-                                                    {card.name}
+                                                    {card.name.slice(0, 16)}
                                                 </h5>
                                                 <div className="large-text-container">
-                                                    <p className="truncate ">{card.species}</p>
-                                                    <p className="truncate ">{card.gender}</p>
-                                                    <p className="truncate ">{card.breed}</p>
-                                                    <p className="truncate ">{card.description}</p>
+                                                    <p className="truncate m-1">{card.species}</p>
+                                                    <p className="truncate m-1">{card.gender}</p>
+                                                    <p className="truncate m-1">{card.healthStatus}</p>
+                                                    <p className="truncate m-1">{card.shelterName}</p>
                                                 </div>
                                             </div>
                                         </div>

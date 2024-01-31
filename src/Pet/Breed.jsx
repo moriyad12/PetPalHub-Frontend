@@ -56,6 +56,7 @@ export const Breed = ({setBreed}) => {
 
 
     return (
+        <div className="m-2">
         <FormControl sx={{minWidth: 600}}>
             <InputLabel id="demo-simple-select-helper-label">Breed</InputLabel>
             <Select
@@ -77,9 +78,7 @@ export const Breed = ({setBreed}) => {
                     </MenuItem>
                 ))}
             </Select>
-            <FormHelperText>
-                Choose The Pet Breed
-            </FormHelperText>
         </FormControl>
+        </div>
     )
 }

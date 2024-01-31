@@ -24,23 +24,6 @@ function LoginComponent({setIsUserLoggedIn}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationError = {}
-        if (!email.trim()) {
-            validationError.email = 'Email is required';
-        } else if (!isValidEmail(email)) {
-            validationError.email = 'Invalid email format';
-        }
-        if (!password.trim()) {
-            validationError.password = 'Password is required';
-        } else if (password.length < 8) {
-            validationError.password = 'Password must be at least 8 characters long';
-        } else if (!isStrongPassword(password)) {
-            validationError.password = 'Password must be stronger';
-        }
-        if (Object.keys(validationError).length > 0) {
-            setError(validationError);
-            return;
-        }
         const authenticationRequest = {
             "email": email,
             "password": password

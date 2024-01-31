@@ -4,7 +4,7 @@ import * as React from "react";
 export const DateTime = ({date, setDate}) => {
 
     return (
-        <TextField
+        <TextField className="m-2"
             id="datetime-local"
             label="Pet Birth Date"
             value={date}
@@ -18,7 +18,6 @@ export const DateTime = ({date, setDate}) => {
                 shrink: true,
             }}
             required={true}
-            helperText="please enter the Pet Date"
         />
     )
 }

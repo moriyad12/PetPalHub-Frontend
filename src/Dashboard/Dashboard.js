@@ -7,8 +7,10 @@ import Pagination from "./Pagination.js";
 import {dashboardTypes} from "./DashboardTypes";
 import DashboardListView from "./DashboardListView";
 import Tabs from "./Tabs/Tabs";
-import {isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+import PetCreation from "../Pet/PetCreation";
+import MasterApi from "../Apis/MasterApi";
 
 function Dashboard({filterEnabled, viewComponentIndex}) {
     const [filterDto, setFilterDto] = useState([]);
@@ -58,6 +60,14 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     <Filter filterDto={filterDto} setFilterDto={setFilterDto}/>
                         : null}
                 </div>
+            </div>
+            <div  style={{position: 'fixed', bottom: 60,right:60}}>
+                {viewComponentIndex===3 ?
+                    <PetCreation  buttonName="Create Pet" handleSubmitFunction={async(Pet)=>{
+                        console.log(getUserToken())
+                        await MasterApi.post("addPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
+                    }}/>
+                    : null}
             </div>
             <Pagination currentPage={page} setCurrentPage={setPage}  totalRecords={1000}/>
         </div>
