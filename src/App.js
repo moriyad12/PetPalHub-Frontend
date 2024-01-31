@@ -16,8 +16,12 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [trigger, setTrigger] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [x, setX] = useState(0);
 
     const handleTrigger = () => {
+        setX(x => x+1);
+        setErrorMessage("This is an error message" + x)
         setTrigger(true);
     }
 
@@ -37,7 +41,7 @@ function App() {
                 <Route path={"/petview"} element={<Pet />} />
                 <Route path={"/myPets/petview"} element={<Pet />} />
             </Routes>
-            <ErrorMessage triggerAnimation={trigger} setTriggerAnimation={setTrigger} />
+            <ErrorMessage triggerAnimation={trigger} setTriggerAnimation={setTrigger} errorMessage={errorMessage}/>
         </Router>
     </div>
   );

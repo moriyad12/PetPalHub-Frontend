@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "./ErrorMessage.css";
 
-export default function Profile({triggerAnimation, setTriggerAnimation}) {
+export default function Profile({triggerAnimation, setTriggerAnimation, errorMessage}) {
 
     useEffect(() => {
         if (triggerAnimation) {
@@ -16,7 +16,7 @@ export default function Profile({triggerAnimation, setTriggerAnimation}) {
         <div className={`slide-fade-container ${triggerAnimation ? 'visible' : ''}`}>
             <div className="slide-fade-content">
                 <div className="alert alert-warning my-error-message" role="alert">
-                    <strong>This is a danger alert—check it out!</strong>
+                    <strong>{errorMessage}</strong>
                 </div>
             </div>
         </div>
