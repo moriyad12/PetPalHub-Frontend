@@ -23,8 +23,7 @@ export default function Filter( {filterDto, setFilterDto} ) {
         setSpecies("");
         setBehaviour("");
         setVaccineStatus("");
-        setFilterDto({});
-
+        setFilterDto([]);
     }
 
     const handleFilter = (e) => {
@@ -53,15 +52,13 @@ export default function Filter( {filterDto, setFilterDto} ) {
     return (
         <div className="px-2 my-shadow my-fixed bg-light-grey">
             <h3 className="text-center my-filter-header">Filters</h3>
-            <FilterName setName={setName} filter={filter} setFilter={setFilter} attribute={name} />
-            <FilterSpecies setSpecies={setSpecies} filter={filter} setFilter={setFilter} attribute={species}/>
+            <FilterName setName={setName} attribute={name} />
+            <FilterSpecies setSpecies={setSpecies} attribute={species}/>
 
-            <FilterGender setGender={setGender} filter={filter} setFilter={setFilter} attribute={gender}/>
-            <FilterBehaviour setBehaviour={setBehaviour} filter={filter} setFilter={setFilter} behaviour={behaviour} attribute={behaviour}/>
-            <FilterHealthStatus setHealthStatus={setHealthStatus} filter={filter}
-                                setFilter={setFilter} attribute={healthStatus}/>
-            <FilterVaccineStatus setVaccineStatus={setVaccineStatus} filter={filter}
-                                 setFilter={setFilter} attribute={vaccineStatus}/>
+            <FilterGender setGender={setGender} attribute={gender}/>
+            <FilterBehaviour setBehaviour={setBehaviour} behaviour={behaviour} attribute={behaviour}/>
+            <FilterHealthStatus setHealthStatus={setHealthStatus} attribute={healthStatus}/>
+            <FilterVaccineStatus setVaccineStatus={setVaccineStatus} attribute={vaccineStatus}/>
 
 
             <div className="row mt-2 d-flex justify-content-center">

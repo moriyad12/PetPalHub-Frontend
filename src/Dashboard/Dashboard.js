@@ -10,7 +10,7 @@ import Tabs from "./Tabs/Tabs";
 import {isUserStaffOrManager} from "../Authentication/UserAuthentication";
 function Dashboard({filterEnabled, viewComponentIndex}) {
 
-    const [filterDto, setFilterDto] = useState();
+    const [filterDto, setFilterDto] = useState([]);
     const [page, setPage] = React.useState(1);
     const [tabIndex, setTabIndex] = React.useState("1");
     const [data, SetData] = React.useState([]);
@@ -19,7 +19,7 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
 
     const getDtoListFromBackEnd = async () => {
         try {
-            const response = await dashboardTypes(filterDto, viewComponentIndex, page-1,12,tabIndex);
+            const response = await dashboardTypes({filters: filterDto}, viewComponentIndex, page-1,12,tabIndex);
             SetData(response.data);
         } catch (error) {
             alert(error.response.data.message)
