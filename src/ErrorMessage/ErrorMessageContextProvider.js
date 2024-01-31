@@ -33,13 +33,15 @@ export function ErrorMessageContextProvider( {children} ) {
             { children }
             <div className={`slide-fade-container ${trigger ? 'visible' : ''}`}>
                 <div className="slide-fade-content">
-                    (isErrorMessage ?
+                    {isErrorMessage ? (
                         <div className="alert alert-warning my-error-message" role="alert">
                             <strong>{errorMessage}</strong>
                         </div>
-                        : <div class="alert alert-primary" role="alert">
+                    ) : (
+                        <div className="alert alert-primary" role="alert">
                             <strong>{errorMessage}</strong>
-                        </div>)
+                        </div>
+                    )}
                 </div>
             </div>
         </MyContext.Provider>

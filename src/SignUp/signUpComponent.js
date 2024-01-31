@@ -48,7 +48,7 @@ function SignUpComponent({setIsUserLoggedIn}) {
             setIsUserLoggedIn(true)
             navigate("/validation");
         } catch (error) {
-            alert(error.response.data.message)
+            // alert(error.response.data.message)
             makeAlert(error.response.data.message)
         }
     };
