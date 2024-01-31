@@ -6,7 +6,7 @@ import {FilterVaccineStatus} from "./AllFilters/FilterVaccineStatus";
 import {FilterName} from "./AllFilters/FilterName";
 import {FilterSpecies} from "./AllFilters/FilterSpecies";
 
-export default function Filter( {filterDto, setFilterDto} ) {
+export default function Filter( {setFilterDto} ) {
     const [availability, setAvailability] = React.useState(null);
     const [gender, setGender] = React.useState(null);
     const [name, setName] = React.useState("");
