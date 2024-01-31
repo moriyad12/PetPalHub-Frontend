@@ -17,10 +17,14 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [trigger, setTrigger] = useState(false);
 
+    const handleTrigger = () => {
+        setTrigger(true);
+    }
+
     return (
     <div className="App">
         <Router >
-            <button className={"btn btn-primary"} onClick={() => setTrigger(true)}>Toggle Login</button>
+            <button className={"btn btn-primary"} onClick={handleTrigger}>Toggle Login</button>
             <Header isloggedUseState={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
