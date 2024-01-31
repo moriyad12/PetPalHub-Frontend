@@ -6,7 +6,7 @@ import {FilterVaccineStatus} from "./AllFilters/FilterVaccineStatus";
 import {FilterName} from "./AllFilters/FilterName";
 import {FilterSpecies} from "./AllFilters/FilterSpecies";
 
-export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
+export default function Filter( {filterDto, setFilterDto} ) {
     const [availability, setAvailability] = React.useState(null);
     const [gender, setGender] = React.useState(null);
     const [name, setName] = React.useState("");
@@ -23,15 +23,13 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
         setSpecies("");
         setBehaviour("");
         setVaccineStatus("");
-        setFilter({});
+        setFilterDto({});
+
     }
 
     const handleFilter = (e) => {
-        const filters = {
-            filters: []
-        }
+        const filters = []
 
-        // Array of variables to handle
         const variablesToHandle = [
             { key: 0, value: availability },
             { key: 2, value: gender },
@@ -41,19 +39,15 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
             { key: 6, value: species },
             { key: 7, value: behaviour },
         ];
-
-        // Iterate over variables and push filters into the array
         variablesToHandle.forEach((variable) => {
             if (variable.value !== null && variable.value.trim() !== "") {
-                filters.filters.push({
+                filters.push({
                     "first": variable.key,
                     "second": variable.value,
                 });
             }
         });
-
-        e.preventDefault();
-        getDtoListFromBackEnd(filters);
+        setFilterDto(filters);
     };
 
     return (
