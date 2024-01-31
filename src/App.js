@@ -11,12 +11,16 @@ import Profile from "./Profile/Profile";
 import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
+import ErrorMessage from "./ErrorMessage/ErrorMessage";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [trigger, setTrigger] = useState(false);
+
     return (
     <div className="App">
         <Router >
+            <button className={"btn btn-primary"} onClick={() => setTrigger(true)}>Toggle Login</button>
             <Header isloggedUseState={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
@@ -29,6 +33,7 @@ function App() {
                 <Route path={"/petview"} element={<Pet />} />
                 <Route path={"/myPets/petview"} element={<Pet />} />
             </Routes>
+            <ErrorMessage triggerAnimation={trigger} setTriggerAnimation={setTrigger} />
         </Router>
     </div>
   );
