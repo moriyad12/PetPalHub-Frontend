@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import ProxyApi from "../Apis/ProxyApis/ProxyApis";
-// import {RoutePathNames} from "../Routes/RoutePathNames";
 import "./validationPage.css"
 import {useNavigate} from "react-router-dom";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+
 function ValidationPage() {
+    const { makeAlert } = useMyContext();
+
     useEffect(() => {
         const codes = document.querySelectorAll(".ValidationPageCodeInput");
         codes[0].focus();
@@ -45,12 +48,10 @@ function ValidationPage() {
             "verifyCode":  String(first)+String(second)+String(third)+String(fourth)+String(fifth)+String(sixth)
         }
         try {
-            console.log(verifyRequest)
-            const response = await ProxyApi.post("verifyMail", verifyRequest)
-            console.log(response)
+            await ProxyApi.post("verifyMail", verifyRequest)
             navigate("/")
         } catch (error) {
-            alert("not valid verification code")
+            makeAlert(error.response.data.message)
         }
     }
     return (

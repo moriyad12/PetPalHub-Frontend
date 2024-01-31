@@ -6,7 +6,7 @@ import {FilterVaccineStatus} from "./AllFilters/FilterVaccineStatus";
 import {FilterName} from "./AllFilters/FilterName";
 import {FilterSpecies} from "./AllFilters/FilterSpecies";
 
-export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
+export default function Filter( {setFilterDto} ) {
     const [availability, setAvailability] = React.useState(null);
     const [gender, setGender] = React.useState(null);
     const [name, setName] = React.useState("");
@@ -23,15 +23,12 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
         setSpecies("");
         setBehaviour("");
         setVaccineStatus("");
-        setFilter({});
+        setFilterDto([]);
     }
 
     const handleFilter = (e) => {
-        const filters = {
-            filters: []
-        }
+        const filters = []
 
-        // Array of variables to handle
         const variablesToHandle = [
             { key: 0, value: availability },
             { key: 2, value: gender },
@@ -41,33 +38,27 @@ export default function Filter( {getDtoListFromBackEnd, filter, setFilter} ) {
             { key: 6, value: species },
             { key: 7, value: behaviour },
         ];
-
-        // Iterate over variables and push filters into the array
         variablesToHandle.forEach((variable) => {
             if (variable.value !== null && variable.value.trim() !== "") {
-                filters.filters.push({
+                filters.push({
                     "first": variable.key,
                     "second": variable.value,
                 });
             }
         });
-
-        e.preventDefault();
-        getDtoListFromBackEnd(filters);
+        setFilterDto(filters);
     };
 
     return (
         <div className="px-2 my-shadow my-fixed bg-light-grey">
             <h3 className="text-center my-filter-header">Filters</h3>
-            <FilterName setName={setName} filter={filter} setFilter={setFilter} attribute={name} />
-            <FilterSpecies setSpecies={setSpecies} filter={filter} setFilter={setFilter} attribute={species}/>
+            <FilterName setName={setName} attribute={name} />
+            <FilterSpecies setSpecies={setSpecies} attribute={species}/>
 
-            <FilterGender setGender={setGender} filter={filter} setFilter={setFilter} attribute={gender}/>
-            <FilterBehaviour setBehaviour={setBehaviour} filter={filter} setFilter={setFilter} behaviour={behaviour} attribute={behaviour}/>
-            <FilterHealthStatus setHealthStatus={setHealthStatus} filter={filter}
-                                setFilter={setFilter} attribute={healthStatus}/>
-            <FilterVaccineStatus setVaccineStatus={setVaccineStatus} filter={filter}
-                                 setFilter={setFilter} attribute={vaccineStatus}/>
+            <FilterGender setGender={setGender} attribute={gender}/>
+            <FilterBehaviour setBehaviour={setBehaviour} behaviour={behaviour} attribute={behaviour}/>
+            <FilterHealthStatus setHealthStatus={setHealthStatus} attribute={healthStatus}/>
+            <FilterVaccineStatus setVaccineStatus={setVaccineStatus} attribute={vaccineStatus}/>
 
 
             <div className="row mt-2 d-flex justify-content-center">

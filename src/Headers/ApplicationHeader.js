@@ -4,22 +4,23 @@ import CardContent from '@mui/material/CardContent';
 
 import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
-import PetCreation from "../Pet/PetCreation";
-import {getShelterId, getUserId, getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
-import MasterApi from "../Apis/MasterApi";
-import {dashboardTypes} from "../Dashboard/DashboardTypes";
+import {getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import MasterApi from "../Apis/MasterApi"
 import {useNavigate} from "react-router-dom";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 
 function ApplicationHeader({ApplicationHeader, tabIndex}) {
     const navigate = useNavigate()
+    const { makeAlert } = useMyContext();
+
     const handleAcceptApplication = async () => {
         try {
             console.log(getUserToken())
             await MasterApi.post("acceptApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {},{headers: {"Authorization": `Bearer ${getUserToken()}`}});
             navigate(0)
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     };
     const handleRejectApplication = async () => {

@@ -13,30 +13,29 @@ export const VaccineStatus = ({setVaccineStatus}) => {
 
 
     return (
-        <FormControl sx={{minWidth: 600}}>
-            <InputLabel id="demo-simple-select-helper-label">VaccineStatus</InputLabel>
-            <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                label="ads Plans"
-                required={true}
-                value={viewedVaccineStatus}
+        <div className="m-2">
+            <FormControl sx={{minWidth: 600}}>
+                <InputLabel id="demo-simple-select-helper-label">VaccineStatus</InputLabel>
+                <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    label="ads Plans"
+                    required={true}
+                    value={viewedVaccineStatus}
 
-                onChange={(event) => {
-                    setVaccineStatus(planIndexMap.get(event.target.value))
-                    setViewedVaccineStatus(event.target.value)
-                }
-                }
-            >
-                {VaccineStatussOptions.map((option, index) => (
-                    <MenuItem key={index} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Select>
-            <FormHelperText>
-                Choose The Pet VaccineStatus
-            </FormHelperText>
-        </FormControl>
+                    onChange={(event) => {
+                        setVaccineStatus(planIndexMap.get(event.target.value))
+                        setViewedVaccineStatus(event.target.value)
+                    }
+                    }
+                >
+                    {VaccineStatussOptions.map((option, index) => (
+                        <MenuItem key={index} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </div>
     )
 }

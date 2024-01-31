@@ -8,10 +8,11 @@ import {ProfileDetails} from "./ProfileDetails";
 import {ProfileHead} from "./ProfileHead";
 import {ProfileImage} from "./ProfileImage";
 import {EditProfile} from "./EditProfile";
-
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function Profile() {
 
+    const { makeAlert } = useMyContext();
     const [profileAttributes, setProfileAttributes] = React.useState({
         firstName:"",
         lastName:"",
@@ -27,7 +28,7 @@ function Profile() {
                 const response = await userApis.get("getUserDto/"+getUserId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
                 setProfileAttributes(response.data)
             } catch (error) {
-                alert(error.response.data.message)
+                makeAlert(error.response.data.message)
             }
         }
         sendInformationRequest()

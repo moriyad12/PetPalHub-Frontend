@@ -7,7 +7,7 @@
     align-items: start; /* Center horizontally within the form */
     background-repeat: no-repeat; /* Set background image to repeat */
     background-size: cover; /* Set background image to cover the entire container */
-    /*font-family: 'Kalam', cursive;*/
+    font-family: 'Kalam', cursive;
     background-image: url("../LogIn/wp12412506.jpg");
 }
 

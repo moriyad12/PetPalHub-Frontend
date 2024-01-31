@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FaPen} from "react-icons/fa6";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 import {
     Box,
@@ -16,9 +16,6 @@ import {
 import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import userApis from "../Apis/UserApis/UserApis";
 
-// import {getUserId} from "../../../src/Authentication/UserAuthentication";
-
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -32,9 +29,9 @@ const style = {
     width: "50%",
 };
 
-
 export default function BasicModal({defaultFirstName, defaultLastName, defaultGender, defaultPhoneNumber}) {
 
+    const { makeAlert } = useMyContext();
     const [firstName, setFirstName] = React.useState(defaultFirstName || '');
     const [lastName, setLastName] = React.useState(defaultLastName);
     const [gender, setGender] = React.useState(defaultGender);
@@ -64,7 +61,7 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
             console.log(getUserToken())
             await userApis.post("updateUserProfile", newInformation, {headers: {"Authorization": `Bearer ${getUserToken()}`}});
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
 
@@ -78,9 +75,6 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Update Profile Info
-                    </Typography>
                     <Typography id="modal-modal-description" sx={{mt: 1}}>
                         <form className="profile-update-modal-form" onSubmit={handleInformationChange}>
 
@@ -92,7 +86,6 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
                                            setFirstName(event.target.value)
                                        }}
                             />
-                            {/*defaultValue={defaultLastName}*/}
                             <TextField variant={"outlined"} label={"Last Name"}
                                        defaultValue={defaultLastName}
                                        value={lastName}
@@ -100,7 +93,6 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
                                            setLastName(event.target.value)
                                        }}
                             />
-                            {/*defaultValue={defaultPaypalAccount}*/}
                             <TextField variant={"outlined"} label={"Phone Number"}
 
                                        value={phoneNumber}
@@ -121,12 +113,9 @@ export default function BasicModal({defaultFirstName, defaultLastName, defaultGe
                                     <MenuItem value="FEMALE">Female</MenuItem>
 
                                 </Select>
-                                <FormHelperText>
-                                    Select Your Gender
-                                </FormHelperText>
                             </FormControl>
-                            <Button type="submit" value="Submit" variant="contained" style={{
-                                width: "150px", color: "##150044",
+                            <Button  type="submit" value="Submit" variant="contained" style={{
+                                width: "150px", color: "##150044",backgroundColor:'#be5b01',position: 'fixed', bottom: 40,right:40
                             }}
                                     onClick={handleSubmit}>
                                 Submit

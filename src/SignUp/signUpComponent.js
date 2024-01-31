@@ -6,6 +6,7 @@ import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
 import {useNavigate} from "react-router-dom";
 import RadioButtons from "./RadioButtons";
 import ConditionalDivs from "./ConditionalDivs";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function SignUpComponent({setIsUserLoggedIn}) {
     const navigate = useNavigate();
@@ -19,6 +20,9 @@ function SignUpComponent({setIsUserLoggedIn}) {
     const [confirmPass, setConfirmPass] = useState('');
     const [shelterId, setShelterId] = useState('');
     const [shelterCode, setShelterCode] = useState('');
+    const { makeAlert } = useMyContext();
+    const { makeNormalMessage } = useMyContext();
+
     const [error, setError] = useState({"email": "", "password": ""});
 
     const isStrongPassword = (password) => {
@@ -92,19 +96,18 @@ function SignUpComponent({setIsUserLoggedIn}) {
         }
         console.log(userDto)
         if (password !== confirmPass) {
-            alert("Password and Confirm Password are not same")
+            makeAlert("Password and Confirm Password are not same")
             return;
         }
         try {
             const response = await ProxyApi.post("basicSignUp", userDto)
             setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
-            alert("Please check your email for validationComponenet")
+
+            makeNormalMessage("Please check your email for validationComponenet")
             setIsUserLoggedIn(true)
             navigate("/validationComponenet");
-            console.log(response)
         } catch (error) {
-            // actions.resetForm();
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     };
 

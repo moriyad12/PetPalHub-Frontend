@@ -12,11 +12,8 @@ import {HealthStatus} from "./HealthStatus";
 import {VaccineStatus} from "./VaccineStatus";
 import {Behaviour} from "./Behaviour";
 import {Breed} from "./Breed";
-import AdopterApi from "../Apis/AdopterApi";
-import {getShelterId, getUserId} from "../Authentication/UserAuthentication";
-import MasterApi from "../Apis/MasterApi";
-
-
+import {getShelterId} from "../Authentication/UserAuthentication";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 const style = {
     position: 'absolute',
@@ -57,6 +54,8 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
     const [dateOfBirth, setDateOfBirth] = React.useState(new Date().toISOString().slice(0, 16));
     const [species, setSpecies] = React.useState("");
     const [description, setDescription] = React.useState("");
+    const { makeAlert } = useMyContext();
+
     const handlePetCreation = async (e) => {
         e.preventDefault();
         const Pet = {
@@ -79,7 +78,7 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
             navigate("/myPets");
             navigate(0)
         } catch (error) {
-            alert(error.response.data.message)
+            makeAlert(error.response.data.message)
         }
     }
 
@@ -95,20 +94,15 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        create an Pet
-                    </Typography>
                     <Typography id="modal-modal-description" sx={{mt: 1}}>
                         <form className="modal-form" onSubmit={handlePetCreation}>
-                            <TextField id="outlined-basic" label="Pet Name" variant="outlined" required={true}
-                                       helperText="please enter the Pet Name"
+                            <TextField className="m-2" id="outlined-basic" label="Pet Name" variant="outlined" required={true}
                                        value={name}
                                        onChange={(Pet) => {
                                            setName(Pet.target.value);
                                        }}
                             />
-                            <TextField id="outlined-basic" label="Pet Species" variant="outlined" required={true}
-                                       helperText="please enter the Pet Species"
+                            <TextField className="m-2" id="outlined-basic" label="Pet Species" variant="outlined" required={true}
                                        value={species}
                                        onChange={(Pet) => {
                                            setSpecies(Pet.target.value);
@@ -120,8 +114,9 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
                             <Behaviour setBehaviour={setBehaviour}/>
                             <Breed setBreed={setBreed}/>
                             <Description description={description} setDescription={setDescription}/>
+                            <br/>
                             <DateTime date={dateOfBirth} setDate={setDateOfBirth} req={true}/>
-                            <Button type="submit" value="Submit" variant="contained">
+                            <Button style={{position: 'fixed', bottom: 45,right:45,backgroundColor:'#be5b01'}} type="submit" value="Submit" variant="contained">
                                 Submit
                             </Button>
                         </form>
