@@ -45,7 +45,6 @@ function SignUpComponent({setIsUserLoggedIn}) {
             alert("Please check your email for validation")
             setIsUserLoggedIn(true)
             navigate("/validation");
-            // console.log(userDto)
             console.log(response)
         } catch (error) {
             // actions.resetForm();

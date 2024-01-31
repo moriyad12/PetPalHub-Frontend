@@ -1,5 +1,5 @@
 .animal-card {
-    height:420px;
+    height:350px;
     transition: box-shadow 0.5s ease;
 }
 
@@ -9,8 +9,8 @@
 
 .animal-img {
     position: relative;
-    width: 100%;
-    height: 50%;
+    width:100%;
+    height: 350px;
 }
 
 .bottom-right-button {
@@ -22,9 +22,11 @@
 
 .large-text-container {
     width: 100%;
-    height: 100px;
+    height: 200px;
     overflow: hidden;
     position: relative;
+    color: #4d4751;
+    font-size: 14px;
 }
 
 .truncate {
