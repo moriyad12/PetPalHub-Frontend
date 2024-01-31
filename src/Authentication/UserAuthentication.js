@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 const LOCAL_STORAGE_ID = "id";
 const LOCAL_STORAGE_TOKEN = "token";
 const LOCAL_STORAGE_ROLE = "role";
