@@ -6,14 +6,12 @@ import Shelter from "./Shelter/Shelter";
 import Dashboard from "./Dashboard/Dashboard";
 import {Route , Routes} from "react-router-dom";
 import {BrowserRouter as Router} from "react-router-dom";
-import Login from "./loginAndSignup/login";
 import Profile from "./Profile/Profile";
-import ValidationPage from "./validation/validationPage";
+import ValidationPage from "./validationComponenet/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
 import LoginComponent from "./LogIn/loginComponent";
 import SignUpComponent from "./SignUp/signUpComponent";
-import Dashboard2 from "./Dashboard/dashboard2";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -28,7 +26,7 @@ function App() {
                 <Route path={"/login"} element={<LoginComponent setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/signUp"} element={<SignUpComponent setIsUserLoggedIn={setIsLoggedIn}/>} />
                 <Route path={"/profile"} element={<Profile />} />
-                <Route path={"/validation"} element={<ValidationPage />} />
+                <Route path={"/validationComponenet"} element={<ValidationPage />} />
                 <Route path={"/shelter"} element={<Shelter />} />
                 <Route path={"/petview"} element={<Pet />} />
                 <Route path={"/myPets/petview"} element={<Pet />} />
