@@ -74,8 +74,7 @@ function Pet() {
                 <div className="row">
                     <div className="col-md-4">
                         <ProfileImage viewComponentIndex={viewComponentIndex}
-                                      profileImage={image} setProfileImage={setImage}
-                                    defaultPicture={"https://i.ibb.co/ccSKFsq/unknownpet.jpg"}/>
+                                      profileImage={image} setProfileImage={setImage} isUserProfile={false}/>
                     </div>
                     <div className="col-md-1">
                     </div>

@@ -27,7 +27,7 @@ function Profile() {
             try {
                 const response = await userApis.get("getUserDto/"+getUserId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
                 setProfileAttributes(response.data)
-                // setProfileImage(response.data.profilePicturePath)
+                setProfileImage(response.data.profilePicturePath)
             } catch (error) {
                 makeAlert(error.response.data.message)
             }
@@ -41,8 +41,7 @@ function Profile() {
                     <div className="col-md-4">
                        <ProfileImage
                            isProfile={1}
-                           profileImage={profileImage} setProfileImage={setProfileImage}
-                           defaultPicture={"https://i.ibb.co/w4rYzVR/unkownuser.jpg"} />
+                           profileImage={profileImage} setProfileImage={setProfileImage} isUserProfile={true} />
                     </div>
                     <div className="col-md-5 offset-1">
                        <ProfileHead profileAttributes={profileAttributes}/>

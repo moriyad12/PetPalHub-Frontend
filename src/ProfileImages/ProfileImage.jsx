@@ -1,9 +1,10 @@
 import React, {useEffect} from "react";
 import axios from "axios";
+import {ImageUpdate} from "./ImageUpdate";
 
 export const ProfileImage = ({ viewComponentIndex, isProfile,
                                  profileImage, setProfileImage,
-                                    defaultPicture }) => {
+                                    isUserProfile }) => {
 
     useEffect(() => {
     }, [profileImage]);
@@ -27,18 +28,17 @@ export const ProfileImage = ({ viewComponentIndex, isProfile,
     const getProfileImageOrDefault = () => {
         if (profileImage && profileImage !== "")
             return profileImage
+        else if (isUserProfile)
+            return "https://i.ibb.co/w4rYzVR/unkownuser.jpg";
         else
-            return defaultPicture
+            return "https://i.ibb.co/ccSKFsq/unknownpet.jpg";
     }
 
     return (
         <div className="profile-img">
             <img src={getProfileImageOrDefault()} alt="Profile" />
             {viewComponentIndex===3 ||isProfile===1?
-            <div className="file btn btn-lg btn-primary ">
-                Change Photo
-                <input type="file" name="file" onInput={handleProfilePictureChange}/>
-            </div>
+                ( <ImageUpdate setProfileImage={setProfileImage}/>)
             :null}
         </div>
     )
