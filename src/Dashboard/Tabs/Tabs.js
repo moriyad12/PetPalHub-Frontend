@@ -17,7 +17,7 @@ export default function Tabs({ setTabIndex }) {
                     href="#"
                     onClick={(e) => handleChange(e, '1')}
                 >
-                    Active
+                    Pending
                 </a>
             </li>
             <li className="nav-item my-tab">
@@ -26,7 +26,7 @@ export default function Tabs({ setTabIndex }) {
                     href="#"
                     onClick={(e) => handleChange(e, '2')}
                 >
-                    Link
+                    Accepted
                 </a>
             </li>
             <li className="nav-item my-tab">
@@ -35,7 +35,7 @@ export default function Tabs({ setTabIndex }) {
                     href="#"
                     onClick={(e) => handleChange(e, '3')}
                 >
-                    Link
+                    Rejected
                 </a>
             </li>
         </ul>

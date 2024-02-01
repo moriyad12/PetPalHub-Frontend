@@ -102,8 +102,9 @@ function SignUpComponent() {
             const response = await ProxyApi.post("basicSignUp", userDto)
             login(response.data.id, response.data.token, response.data.role, response.data.shelterId)
 
-            makeNormalMessage("Please check your email for validationComponenet")
-            navigate("/validationComponenet");
+            makeNormalMessage("Please check your email for validation")
+            navigate("/validation");
+          
         } catch (error) {
             makeAlert(error.response.data.message)
         }
