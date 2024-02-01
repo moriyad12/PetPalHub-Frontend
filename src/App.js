@@ -28,8 +28,11 @@ function App() {
                             <Route path={"/login"} element={<LoginComponent />} />
                             <Route path={"/signUp"} element={<SignUpComponent />} />
                             <Route path={"/profile"} element={<Profile />} />
+                            <Route path={"/myApplications/adopterProfile"} element={<Profile />} />
+                            <Route path={"/myApplications/petview"} element={<Pet />} />
                             <Route path={"/validation"} element={<ValidationPage />} />
                             <Route path={"/shelter"} element={<Shelter />} />
+                            <Route path={"/petview/petShelter"} element={<Shelter />} />
                             <Route path={"/petview"} element={<Pet />} />
                             <Route path={"/myPets/petview"} element={<Pet />} />
                         </Routes>

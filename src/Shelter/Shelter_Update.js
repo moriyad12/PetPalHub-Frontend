@@ -9,7 +9,7 @@ import {
     TextField,
     Typography
 } from '@mui/material';
-import {getShelterId, getUserToken} from "../Authentication/UserAuthentication";
+import {getMyShelterId, getUserToken} from "../Authentication/UserAuthentication";
 import {CountryCityStreet} from "./CountryCityStreet";
 import masterApis from "../Apis/MasterApis";
 
@@ -45,7 +45,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
 
     const handleInformationChange = async () => {
         const newInformation = {
-            id: getShelterId(),
+            id: getMyShelterId(),
             name: name,
             shelterLocation: {country: country, city: state, address: address},
             description: description,

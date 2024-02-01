@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
-import {getUserId, getUserToken, isUserAdopter} from "../Authentication/UserAuthentication";
+import {getUserId, getUserToken, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {PetProfileHead} from "./PetProfileHead";
 import {ProfileDescription} from "./ProfileDescription";
 import {PetBasicDetails} from "./PetBasicDetails";
@@ -87,7 +87,7 @@ function Pet() {
                                 <button  className="ghost" onClick={handleApplyApplication}>Apply Application</button>
                                  </div>
                                 : null}
-                            {viewComponentIndex===3 ?
+                            {viewComponentIndex===3||isUserStaffOrManager() ?
                                 <div className="shadow apply">
                                     Update {attributes.name} Profile
                                     <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{

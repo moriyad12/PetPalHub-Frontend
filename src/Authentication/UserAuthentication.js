@@ -14,7 +14,7 @@ export function getUserToken() {
 export function getUserRole() {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_ROLE))
 }
-export function getShelterId() {
+export function getMyShelterId() {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_SHELTER_ID))
 }
 
