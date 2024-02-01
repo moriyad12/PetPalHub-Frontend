@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import {getShelterId, getUserId, getUserToken} from "../Authentication/UserAuthentication";
+import {getMyShelterId, getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import masterApis from "../Apis/MasterApis";
-import {useNavigate, useNavigation} from "react-router-dom";
+import {useLocation, useNavigate,} from "react-router-dom";
 import {ShelterTopRow} from "./ShelterTopRow";
 import {ShelterLocation} from "./ShelterLocation";
 import {ShelterContact} from "./ShelterContact";
@@ -19,22 +19,26 @@ function Shelter() {
         shelterLocation: {country: "", city: "", address: ""},
         code: "",
     });
+    const location = useLocation();
+    const params = location.state;
+    const shelterId=params &&params.shelterId ? params.shelterId :getMyShelterId();
+    const isOwner = shelterId=== getMyShelterId()
+    const sendInformationRequest = async () => {
+        try {
+            const response = await masterApis.get("getShelterDto/" + shelterId,{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
+            setAttributes(response.data)
+        } catch (error) {
+            makeAlert(error.response.data.message)
+        }
+    }
 
     useEffect(() => {
-        const sendInformationRequest = async () => {
-            try {
-                const response = await masterApis.get("getShelterDto/" + getShelterId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
-                setAttributes(response.data)
-            } catch (error) {
-                makeAlert(error.response.data.message)
-            }
-        }
         sendInformationRequest()
     }, []);
 
     return (
         <div className="container bg-light emp-profile">
-            <ShelterTopRow attributes={attributes}/>
+            <ShelterTopRow attributes={attributes} isOwner={isOwner}/>
             <hr/>
             <ShelterDescription attributes={attributes}/>
             <hr/>

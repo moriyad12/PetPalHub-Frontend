@@ -2,7 +2,7 @@
 import React from "react";
 import Shelter_Update from "./Shelter_Update";
 
-export const ShelterTopRow = ({attributes}) => {
+export const ShelterTopRow = ({attributes,isOwner}) => {
     return (
         <div className="row" style={{ textAlign: 'left' }}>
             <div className="col-md-4">
@@ -15,12 +15,14 @@ export const ShelterTopRow = ({attributes}) => {
             </div>
             <div className="col-md-6">
             </div>
-            <div className="col-md-2" >
-                <Shelter_Update
-                    defaultName={attributes.name}
-                    defaultLocation={attributes.shelterLocation}
-                    defaultPhoneNumber={attributes.phoneNumber}/>
-            </div>
+            {isOwner?
+                <div className="col-md-2" >
+                    <Shelter_Update
+                        defaultName={attributes.name}
+                        defaultLocation={attributes.shelterLocation}
+                        defaultPhoneNumber={attributes.phoneNumber}/>
+                </div>
+                :null}
         </div>
     )
 }
