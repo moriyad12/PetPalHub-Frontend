@@ -19,9 +19,9 @@ function SignUpComponent() {
     const [confirmPass, setConfirmPass] = useState('');
     const [shelterId, setShelterId] = useState('');
     const [shelterCode, setShelterCode] = useState('');
-    const { makeAlert } = useMyContext();
-    const { makeNormalMessage } = useMyContext();
-    const { login } = useMyLoginContext();
+    const {makeAlert} = useMyContext();
+    const {makeNormalMessage} = useMyContext();
+    const {login} = useMyLoginContext();
 
     const [error, setError] = useState({"email": "", "password": ""});
 
@@ -33,7 +33,14 @@ function SignUpComponent() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
+    const resetErrors = () => {
+        setError({});
+    };
+    const handleRadioChange = (newRadioValue) => {
+        resetErrors();
 
+        setSelectedRadio(newRadioValue);
+    };
     const handleSubmit = async (e) => {
         e.preventDefault()
         const validationError = {}
@@ -69,14 +76,16 @@ function SignUpComponent() {
         if (!(confirmPass === password)) {
             validationError.confirmPass = 'Confirm Password is required';
         }
-        if (!shelterCode.trim()) {
-            validationError.shelterCode = 'Shelter Code is required';
-        } else if (shelterCode.length < 6) {
-            validationError.shelterCode = 'Shelter Code must be at least 6 characters long';
-        }
-        if (!shelterId.trim()) {
+        if (!(selectedRadio === "ADOPTER"))
+            if (!shelterCode.trim()) {
+                validationError.shelterCode = 'Shelter Code is required';
+            } else if (shelterCode.length < 6) {
+                validationError.shelterCode = 'Shelter Code must be at least 6 characters long';
+            }
+        if (selectedRadio === "STAFF" && !shelterId.trim()) {
             validationError.shelterId = 'Shelter Id is required';
         }
+        console.log(validationError)
         if (Object.keys(validationError).length > 0) {
             setError(validationError);
             return;
@@ -104,69 +113,69 @@ function SignUpComponent() {
 
             makeNormalMessage("Please check your email for validation")
             navigate("/validation");
-          
+
         } catch (error) {
             makeAlert(error.response.data.message)
         }
     };
 
     return (<div className={"signUpComponentDiv container-fluid"}>
-            <div>
-                <form className="bg-white shadow-5-strong p-5" onSubmit={handleSubmit}>
-                    <h2>SignUp</h2>
-                    <RadioButtons selectedRadio={selectedRadio} setSelectedRadio={setSelectedRadio}/>
-                    <div className={"row inputDiv"}>
-                        <div className={"col p-0"}>
-                            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)}
-                                   placeholder={"First Name"}/>
-                            {error.firstName && <span className="errorSpan">{error.firstName}</span>}
-                        </div>
-                        <div className={"col p-0"}>
-                            <input type='text' value={lastName}
-                                   onChange={(e) => setLastName(e.target.value)}
-                                   placeholder={"Last Name"}/>
-                            {error.lastName && <span className="errorSpan">{error.lastName}</span>}
-                        </div>
+        <div>
+            <form className="bg-white shadow-5-strong p-5" onSubmit={handleSubmit}>
+                <h2>SignUp</h2>
+                <RadioButtons selectedRadio={selectedRadio} setSelectedRadio={setSelectedRadio}/>
+                <div className={"row inputDiv"}>
+                    <div className={"col p-0"}>
+                        <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                               placeholder={"First Name"}/>
+                        {error.firstName && <span className="errorSpan">{error.firstName}</span>}
                     </div>
-                    <div className={"inputDiv"}>
-                        <input type='text' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
-                               placeholder={"Phone Number"}/>
-                        {error.phoneNumber && <span className="errorSpan">{error.phoneNumber}</span>}
+                    <div className={"col p-0"}>
+                        <input type='text' value={lastName}
+                               onChange={(e) => setLastName(e.target.value)}
+                               placeholder={"Last Name"}/>
+                        {error.lastName && <span className="errorSpan">{error.lastName}</span>}
                     </div>
-                    <div className={"inputDiv"}>
-                        <input type='text' value={email} onChange={(e) => setEmail(e.target.value)}
-                               placeholder={"Email"}/>
-                        {error.email && <span className="errorSpan">{error.email}</span>}
-                    </div>
+                </div>
+                <div className={"inputDiv"}>
+                    <input type='text' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
+                           placeholder={"Phone Number"}/>
+                    {error.phoneNumber && <span className="errorSpan">{error.phoneNumber}</span>}
+                </div>
+                <div className={"inputDiv"}>
+                    <input type='text' value={email} onChange={(e) => setEmail(e.target.value)}
+                           placeholder={"Email"}/>
+                    {error.email && <span className="errorSpan">{error.email}</span>}
+                </div>
 
-                    <div className={"row inputDiv"}>
-                        <div className={"col p-0"}>
-                            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}
-                                   placeholder={"Password"}/>
-                            {error.password && <span className="errorSpan">{error.password}</span>}
-                        </div>
-                        <div className={"col p-0"}>
-                            <input type='password' value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}
-                                   placeholder={"Confirm Password"}/>
-                            {error.confirmPass && <span className="errorSpan">{error.confirmPass}</span>}
-                        </div>
+                <div className={"row inputDiv"}>
+                    <div className={"col p-0"}>
+                        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}
+                               placeholder={"Password"}/>
+                        {error.password && <span className="errorSpan">{error.password}</span>}
                     </div>
-                    <ConditionalDivs selectedRadio={selectedRadio} shelterCode={shelterCode}
-                                     setShelterCode={setShelterCode} setShelterId={setShelterId}
-                                     shelterId={shelterId}
-                                     error={error}/>
-                    <div>
-                        <button className="btn btn-primary" type="submit">SignUp</button>
+                    <div className={"col p-0"}>
+                        <input type='password' value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}
+                               placeholder={"Confirm Password"}/>
+                        {error.confirmPass && <span className="errorSpan">{error.confirmPass}</span>}
                     </div>
-                    <div className={"hiDiv"}>
-                        <label className={"signUpComponentDivLabel"}>Already have an account</label>
-                        <a href={"/login"}>
-                            SignIn
-                        </a>
-                    </div>
-                </form>
-            </div>
-        </div>);
+                </div>
+                <ConditionalDivs selectedRadio={selectedRadio} shelterCode={shelterCode}
+                                 setShelterCode={setShelterCode} setShelterId={setShelterId}
+                                 shelterId={shelterId}
+                                 error={error}/>
+                <div>
+                    <button className="btn btn-primary" type="submit">SignUp</button>
+                </div>
+                <div className={"hiDiv"}>
+                    <label className={"signUpComponentDivLabel"}>Already have an account</label>
+                    <a href={"/login"}>
+                        SignIn
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>);
 }
 
 export default SignUpComponent;

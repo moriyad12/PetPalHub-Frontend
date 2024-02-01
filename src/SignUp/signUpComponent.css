@@ -59,6 +59,7 @@
     font-size: 20px;
     font-weight: 600;
 }
+
 .signUpComponentDiv a {
     text-decoration: none;
     color: steelblue;
@@ -66,6 +67,7 @@
     font-weight: 600;
     margin: .5rem;
 }
+
 .signUpComponentDiv button {
     margin-top: 1rem;
     text-align: center;
@@ -85,7 +87,17 @@
 .signUpComponentDiv a:active {
     color: darkblue;
 }
+
 .signUpComponentDiv form div {
-     width: 100%;
-     text-align: center;
- }
+    width: 100%;
+    text-align: center;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* WebKit browsers like Chrome and Safari */
+    margin: 0; /* Removes inner padding */
+}
