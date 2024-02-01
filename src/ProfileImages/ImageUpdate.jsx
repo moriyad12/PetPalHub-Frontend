@@ -1,7 +1,28 @@
 import React, {useEffect} from "react";
 import axios from "axios";
+import UserApis from "../Apis/UserApis/UserApis";
+import {getUserId} from "../Authentication/UserAuthentication";
+import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
-export const ImageUpdate = ({ setProfileImage }) => {
+export const ImageUpdate = ({ setProfileImage, isUserProfile }) => {
+
+    const [tempProfileImage, setTempProfileImage] = React.useState(null)
+    const { makeAlert } = useMyContext();
+
+    const makeUserUpdateImageRequest = async () => {
+        try {
+            await UserApis.post("updateUserProfilePicture" + "/" + getUserId(), { image: tempProfileImage})
+            setProfileImage(tempProfileImage)
+        } catch (error) {
+            makeAlert(error.response.data.message)
+        }
+    }
+
+    useEffect(() => {
+        if (tempProfileImage) {
+            makeUserUpdateImageRequest()
+        }
+    }, [tempProfileImage])
 
     const handleProfilePictureChange = async (e) => {
         const picture = e.target.files[0];
@@ -15,7 +36,7 @@ export const ImageUpdate = ({ setProfileImage }) => {
             url: 'https://api.imgbb.com/1/upload',
             data: body
         })
-        setProfileImage(response.data.data.display_url)
+        setTempProfileImage(response.data.data.display_url)
     }
 
     return (

@@ -38,7 +38,7 @@ export const ProfileImage = ({ viewComponentIndex, isProfile,
         <div className="profile-img">
             <img src={getProfileImageOrDefault()} alt="Profile" />
             {viewComponentIndex===3 ||isProfile===1?
-                ( <ImageUpdate setProfileImage={setProfileImage}/>)
+                ( <ImageUpdate setProfileImage={setProfileImage} isUserProfile={isUserProfile}/>)
             :null}
         </div>
     )
