@@ -103,9 +103,9 @@ function SignUpComponent({setIsUserLoggedIn}) {
             const response = await ProxyApi.post("basicSignUp", userDto)
             setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
 
-            makeNormalMessage("Please check your email for validationComponenet")
+            makeNormalMessage("Please check your email for validation")
             setIsUserLoggedIn(true)
-            navigate("/validationComponenet");
+            navigate("/validation");
         } catch (error) {
             makeAlert(error.response.data.message)
         }

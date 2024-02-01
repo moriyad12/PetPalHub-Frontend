@@ -41,13 +41,14 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
 
     return(
         <div>
+            {isTabsEnabled() ?
             <div className="row">
-                {isTabsEnabled() ?
                     <div className="content-header">
                         <Tabs setTabIndex={setTabIndex}/>
                     </div>
-                    : null}
             </div>
+                : null}
+            {filterEnabled ?
             <div className="row">
                 <div className="col-10 pe-1">
 
@@ -56,11 +57,17 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     </div>
                 </div>
                 <div className="col-2 ps5">
-                    {filterEnabled ?
                     <Filter filterDto={filterDto} setFilterDto={setFilterDto}/>
-                        : null}
                 </div>
             </div>
+                : <div className="row">
+                    <div className="col-15 pe-1">
+
+                        <div className="bg-light-grey p-3">
+                            { viewData() }
+                        </div>
+                    </div>
+                </div>}
             <div  style={{position: 'fixed', bottom: 60,right:60}}>
                 {viewComponentIndex===3 ?
                     <PetCreation  buttonName="Create Pet" handleSubmitFunction={async(Pet)=>{

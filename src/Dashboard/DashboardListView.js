@@ -9,17 +9,31 @@ import {getShelterId, getUserId, getUserToken, isUserStaffOrManager} from "../Au
 import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes} from "../Dashboard/DashboardTypes";
 import {useNavigate} from "react-router-dom";
-import ApplicationHeader from "../Headers/ApplicationHeader";
+import ApplicationHeader from "./ApplicationHeader";
 
 
 export default function DashboardListView({data,tabIndex}) {
 
-    return (
-        data.map((card, index) => {
-            return (
-                <ApplicationHeader key={index} ApplicationHeader={card} tabIndex={tabIndex} />
-            );
-        })
+    const chunkArray = (array, size) => {
+        return Array.from({ length: Math.ceil(array.length / size) }, (v, i) =>
+            array.slice(i * size, i * size + size)
+        );
+    };
+    return(
+        <div>
+            {chunkArray(data, 2).map((row) => (
+                <div className="row">
+                    {
+                        row.map((card, index) => {
+                            return (
+                                <div className="col-sm-6" style={{marginBottom:'1%'}}>
+                                    <ApplicationHeader key={index} ApplicationHeader={card} tabIndex={tabIndex} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            ))}
+        </div>
     );
-
 }

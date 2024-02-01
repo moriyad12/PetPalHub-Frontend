@@ -7,7 +7,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import {Route , Routes} from "react-router-dom";
 import {BrowserRouter as Router} from "react-router-dom";
 import Profile from "./Profile/Profile";
-import ValidationPage from "./validationComponenet/validationPage";
+import ValidationPage from "./validation/validationPage";
 import Header from "./Header/Header";
 import React, {useState} from "react";
 import {ErrorMessageContextProvider} from "./ErrorMessage/ErrorMessageContextProvider";
