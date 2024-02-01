@@ -11,7 +11,6 @@ import {EditProfile} from "./EditProfile";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function Profile() {
-
     const { makeAlert } = useMyContext();
     const [profileAttributes, setProfileAttributes] = React.useState({
         firstName:"",
@@ -21,6 +20,7 @@ function Profile() {
         gender:"",
         phoneNumber:"",
     });
+    const [profileImage, setProfileImage] = React.useState({profileImage:""});
 
     useEffect(() => {
         const sendInformationRequest = async() => {
@@ -38,7 +38,7 @@ function Profile() {
         <div className="container bg-light emp-profile">
                 <div className="row">
                     <div className="col-md-4">
-                       <ProfileImage isProfile={1} />
+                       <ProfileImage isProfile={1} profileImage={profileImage} setProfileImage={setProfileImage} />
                     </div>
                     <div className="col-md-5 offset-1">
                        <ProfileHead profileAttributes={profileAttributes}/>
