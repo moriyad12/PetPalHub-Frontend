@@ -2,15 +2,14 @@ import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './signUpComponent.css';
 import ProxyApi from "../Apis/ProxyApis/ProxyApis";
-import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
 import {useNavigate} from "react-router-dom";
 import RadioButtons from "./RadioButtons";
 import ConditionalDivs from "./ConditionalDivs";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+import {useMyLoginContext} from "../Authentication/LoginContextProvider";
 
-function SignUpComponent({setIsUserLoggedIn}) {
+function SignUpComponent() {
     const navigate = useNavigate();
-
     const [selectedRadio, setSelectedRadio] = useState('ADOPTER');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -22,6 +21,7 @@ function SignUpComponent({setIsUserLoggedIn}) {
     const [shelterCode, setShelterCode] = useState('');
     const { makeAlert } = useMyContext();
     const { makeNormalMessage } = useMyContext();
+    const { login } = useMyLoginContext();
 
     const [error, setError] = useState({"email": "", "password": ""});
 
@@ -94,17 +94,15 @@ function SignUpComponent({setIsUserLoggedIn}) {
             "gender": "MALE",
             "signInWithEmail": false
         }
-        console.log(userDto)
         if (password !== confirmPass) {
             makeAlert("Password and Confirm Password are not same")
             return;
         }
         try {
             const response = await ProxyApi.post("basicSignUp", userDto)
-            setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
+            login(response.data.id, response.data.token, response.data.role, response.data.shelterId)
 
             makeNormalMessage("Please check your email for validationComponenet")
-            setIsUserLoggedIn(true)
             navigate("/validationComponenet");
         } catch (error) {
             makeAlert(error.response.data.message)
@@ -122,7 +120,6 @@ function SignUpComponent({setIsUserLoggedIn}) {
                                    placeholder={"First Name"}/>
                             {error.firstName && <span className="errorSpan">{error.firstName}</span>}
                         </div>
-                        {/*<div className={"col-1"}></div>*/}
                         <div className={"col p-0"}>
                             <input type='text' value={lastName}
                                    onChange={(e) => setLastName(e.target.value)}
@@ -147,7 +144,6 @@ function SignUpComponent({setIsUserLoggedIn}) {
                                    placeholder={"Password"}/>
                             {error.password && <span className="errorSpan">{error.password}</span>}
                         </div>
-                        {/*<div className={"col-1"}></div>*/}
                         <div className={"col p-0"}>
                             <input type='password' value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}
                                    placeholder={"Confirm Password"}/>
