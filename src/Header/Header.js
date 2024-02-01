@@ -49,12 +49,21 @@ export default function Header() {
                             </li>
                         : null}
 
-                        <Link to="/login">
-                            <button className="btn bg-brown custom-btn-font" onClick={
-                                () => {logout()}
-                            }>Logout
-                            </button>
-                        </Link>
+                        {isUserLoggedIn ? (
+                            <Link to="/login">
+                                <button className="btn bg-brown custom-btn-font" onClick={() => logout()}>Log Out</button>
+                            </Link>
+                        ) : (
+                            <>
+                                <Link to="/login">
+                                    <button className="btn bg-brown custom-btn-font me-2" >Log In</button>
+                                </Link>
+                                <Link to="/signUp">
+                                    <button className="btn bg-brown custom-btn-font" >Sign Up</button>
+                                </Link>
+                            </>
+                        )}
+
                     </ul>
                 </div>
             </div>
