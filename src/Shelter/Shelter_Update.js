@@ -92,7 +92,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                                            setPhoneNumber(event.target.value)
                                        }}
                             />
-                            <TextField variant={"outlined"} label={"Description"}
+                            <TextField style={{marginBottom: "-1%"}} variant={"outlined"} label={"Description"}
                                        value={description}
                                        onChange={(event) => {
                                            setDescription(event.target.value)
@@ -106,7 +106,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                                 req={true}
                             />
                             <Button type="submit" value="Submit" variant="contained" style={{
-                                width: "150px", color: "##150044",
+                                width: "150px", color: "##150044",backgroundColor:'#be5b01',position: 'fixed', bottom: 40,right:40
                             }}
                                     onClick={handleSubmit}>
                                 Submit
