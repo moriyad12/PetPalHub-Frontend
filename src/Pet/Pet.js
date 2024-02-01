@@ -54,6 +54,7 @@ function Pet() {
         try {
             const response = await AdopterApi.get("petForUser/" + id);
             setAttributes(response.data)
+            setImage(response.data.profilePicturePath)
         } catch (error) {
             makeAlert(error.response.data.message)
         }
@@ -74,7 +75,8 @@ function Pet() {
                 <div className="row">
                     <div className="col-md-4">
                         <ProfileImage viewComponentIndex={viewComponentIndex}
-                                      profileImage={image} setProfileImage={setImage} isUserProfile={false}/>
+                                      profileImage={image} setProfileImage={setImage} isUserProfile={false}
+                                        id={id}/>
                     </div>
                     <div className="col-md-1">
                     </div>

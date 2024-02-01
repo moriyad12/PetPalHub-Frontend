@@ -3,15 +3,21 @@ import axios from "axios";
 import UserApis from "../Apis/UserApis/UserApis";
 import {getUserId} from "../Authentication/UserAuthentication";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+import MasterApi from "../Apis/MasterApi";
 
-export const ImageUpdate = ({ setProfileImage, isUserProfile }) => {
+export const ImageUpdate = ({ setProfileImage, isUserProfile, id }) => {
 
     const [tempProfileImage, setTempProfileImage] = React.useState(null)
     const { makeAlert } = useMyContext();
 
     const makeUserUpdateImageRequest = async () => {
         try {
-            await UserApis.post("updateUserProfilePicture" + "/" + getUserId(), { image: tempProfileImage})
+            if (isUserProfile) {
+                await UserApis.post("updateUserProfilePicture" + "/" + getUserId(), { image: tempProfileImage})
+            } else {
+                await MasterApi.post("updatePetProfilePicture" + "/" + id, { image: tempProfileImage})
+            }
+
             setProfileImage(tempProfileImage)
         } catch (error) {
             makeAlert(error.response.data.message)

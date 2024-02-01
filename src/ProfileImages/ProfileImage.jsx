@@ -4,7 +4,7 @@ import {ImageUpdate} from "./ImageUpdate";
 
 export const ProfileImage = ({ viewComponentIndex, isProfile,
                                  profileImage, setProfileImage,
-                                    isUserProfile }) => {
+                                    isUserProfile, id }) => {
 
     useEffect(() => {
     }, [profileImage]);
@@ -38,7 +38,7 @@ export const ProfileImage = ({ viewComponentIndex, isProfile,
         <div className="profile-img">
             <img src={getProfileImageOrDefault()} alt="Profile" />
             {viewComponentIndex===3 ||isProfile===1?
-                ( <ImageUpdate setProfileImage={setProfileImage} isUserProfile={isUserProfile}/>)
+                ( <ImageUpdate setProfileImage={setProfileImage} isUserProfile={isUserProfile} id={id}/>)
             :null}
         </div>
     )
