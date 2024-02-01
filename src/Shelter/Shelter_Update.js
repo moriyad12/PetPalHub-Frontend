@@ -34,6 +34,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
     const [state, setState] = React.useState(defaultLocation.city);
     const [address, setAddress] = React.useState(defaultLocation.address);
     const [statesInCountry, setStatesInCountry] = React.useState([]);
+    const [description, setDescription] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const { makeAlert } = useMyContext();
 
@@ -47,6 +48,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
             id: getShelterId(),
             name: name,
             shelterLocation: {country: country, city: state, address: address},
+            description: description,
             phoneNumber: phoneNumber,
         }
         try {
@@ -72,9 +74,6 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Update Profile Info
-                    </Typography>
                     <Typography id="modal-modal-description" sx={{mt: 1}}>
                         <form className="profile-update-modal-form" onSubmit={handleInformationChange}>
 
@@ -93,7 +92,12 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                                            setPhoneNumber(event.target.value)
                                        }}
                             />
-
+                            <TextField variant={"outlined"} label={"Description"}
+                                       value={description}
+                                       onChange={(event) => {
+                                           setDescription(event.target.value)
+                                       }}
+                            />
 
                             <CountryCityStreet
                                 country={country} state={state} address={address} statesInCountry={statesInCountry}
@@ -101,8 +105,6 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                                 setStatesInCountry={setStatesInCountry}
                                 req={true}
                             />
-
-
                             <Button type="submit" value="Submit" variant="contained" style={{
                                 width: "150px", color: "##150044",
                             }}
