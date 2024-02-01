@@ -12,33 +12,31 @@ import React, {useState} from "react";
 import {ErrorMessageContextProvider} from "./ErrorMessage/ErrorMessageContextProvider";
 import LoginComponent from "./LogIn/loginComponent";
 import SignUpComponent from "./SignUp/signUpComponent";
-import {LoginContextProvider} from "./Authentication/loginContextProvider";
+import {LoginContextProvider} from "./Authentication/LoginContextProvider";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
-
     return (
-    <div className="App">
-        <Router >
-            <Header isloggedUseState={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <LoginContextProvider >
+        <div className="App">
+            <Router >
                 <ErrorMessageContextProvider >
-                    <Routes>
-                        <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
-                        <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />
-                        <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
-                        <Route path={"/login"} element={<LoginComponent setIsUserLoggedIn={setIsLoggedIn}/>} />
-                        <Route path={"/signUp"} element={<SignUpComponent setIsUserLoggedIn={setIsLoggedIn}/>} />
-                        <Route path={"/profile"} element={<Profile />} />
-                        <Route path={"/validation"} element={<ValidationPage />} />
-                        <Route path={"/shelter"} element={<Shelter />} />
-                        <Route path={"/petview"} element={<Pet />} />
-                        <Route path={"/myPets/petview"} element={<Pet />} />
-                    </Routes>
+                    <LoginContextProvider >
+                        <Header />
+                        <Routes>
+                            <Route path={"/"} element={<Dashboard filterEnabled={true}  viewComponentIndex={1}/>} />
+                            <Route path={"/myApplications"} element={<Dashboard filterEnabled={false}  viewComponentIndex={2}/>}  />
+                            <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
+                            <Route path={"/login"} element={<LoginComponent />} />
+                            <Route path={"/signUp"} element={<SignUpComponent />} />
+                            <Route path={"/profile"} element={<Profile />} />
+                            <Route path={"/validation"} element={<ValidationPage />} />
+                            <Route path={"/shelter"} element={<Shelter />} />
+                            <Route path={"/petview"} element={<Pet />} />
+                            <Route path={"/myPets/petview"} element={<Pet />} />
+                        </Routes>
+                    </LoginContextProvider>
                 </ErrorMessageContextProvider>
-            </LoginContextProvider>
-        </Router>
-    </div>
+            </Router>
+        </div>
   );
 }
 
