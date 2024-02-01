@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 import axios from "axios";
 
-export const ProfileImage = ({ viewComponentIndex, isProfile, profileImage, setProfileImage }) => {
+export const ProfileImage = ({ viewComponentIndex, isProfile,
+                                 profileImage, setProfileImage,
+                                    defaultPicture }) => {
 
     useEffect(() => {
-
     }, [profileImage]);
 
 
@@ -24,13 +25,10 @@ export const ProfileImage = ({ viewComponentIndex, isProfile, profileImage, setP
     }
 
     const getProfileImageOrDefault = () => {
-        if (profileImage && profileImage !== "") {
-            alert(JSON.stringify(profileImage))
+        if (profileImage && profileImage !== "")
             return profileImage
-        }
-        else {
-            return "https://i.ibb.co/7tBZ0bF/blank-profile-picture-973460-640.png"
-        }
+        else
+            return defaultPicture
     }
 
     return (

@@ -6,7 +6,7 @@ import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ProfileDetails} from "./ProfileDetails";
 import {ProfileHead} from "./ProfileHead";
-import {ProfileImage} from "./ProfileImage";
+import {ProfileImage} from "../ProfileImages/ProfileImage";
 import {EditProfile} from "./EditProfile";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
@@ -39,7 +39,10 @@ function Profile() {
         <div className="container bg-light emp-profile">
                 <div className="row">
                     <div className="col-md-4">
-                       <ProfileImage isProfile={1} profileImage={profileImage} setProfileImage={setProfileImage} />
+                       <ProfileImage
+                           isProfile={1}
+                           profileImage={profileImage} setProfileImage={setProfileImage}
+                           defaultPicture={"https://i.ibb.co/w4rYzVR/unkownuser.jpg"} />
                     </div>
                     <div className="col-md-5 offset-1">
                        <ProfileHead profileAttributes={profileAttributes}/>
