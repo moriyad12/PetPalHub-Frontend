@@ -20,13 +20,14 @@ function Profile() {
         gender:"",
         phoneNumber:"",
     });
-    const [profileImage, setProfileImage] = React.useState({profileImage:""});
+    const [profileImage, setProfileImage] = React.useState("");
 
     useEffect(() => {
         const sendInformationRequest = async() => {
             try {
                 const response = await userApis.get("getUserDto/"+getUserId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
                 setProfileAttributes(response.data)
+                // setProfileImage(response.data.profilePicturePath)
             } catch (error) {
                 makeAlert(error.response.data.message)
             }

@@ -1,7 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 
 export const ProfileImage = ({ viewComponentIndex, isProfile, profileImage, setProfileImage }) => {
+
+    useEffect(() => {
+
+    }, [profileImage]);
+
 
     const handleProfilePictureChange = async (e) => {
         const picture = e.target.files[0];
@@ -18,9 +23,19 @@ export const ProfileImage = ({ viewComponentIndex, isProfile, profileImage, setP
         setProfileImage(response.data.data.display_url)
     }
 
+    const getProfileImageOrDefault = () => {
+        if (profileImage && profileImage !== "") {
+            alert(JSON.stringify(profileImage))
+            return profileImage
+        }
+        else {
+            return "https://i.ibb.co/7tBZ0bF/blank-profile-picture-973460-640.png"
+        }
+    }
+
     return (
         <div className="profile-img">
-            <img src={profileImage} alt="Profile" />
+            <img src={getProfileImageOrDefault()} alt="Profile" />
             {viewComponentIndex===3 ||isProfile===1?
             <div className="file btn btn-lg btn-primary ">
                 Change Photo
