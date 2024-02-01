@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./loginComponent.css";
 import ProxyApi from "../Apis/ProxyApis/ProxyApis";
-import {setUserLocalStorageData} from "../Authentication/UserAuthentication";
 import {useNavigate} from "react-router-dom";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+import {useMyLoginContext} from "../Authentication/LoginContextProvider";
 
-function LoginComponent({setIsUserLoggedIn}) {
+export default function LoginComponent() {
+    const { login } = useMyLoginContext();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,9 +32,7 @@ function LoginComponent({setIsUserLoggedIn}) {
         console.log(authenticationRequest)
         try {
             const response = await ProxyApi.post("basicSignIn", authenticationRequest)
-            setUserLocalStorageData(response.data.id, response.data.token, response.data.role, response.data.shelterId)
-            console.log(response)
-            setIsUserLoggedIn(true)
+            login(response.data.id, response.data.token, response.data.role, response.data.shelterId)
             navigate("/");
         } catch (error) {
             makeAlert(error.response.data.message)
@@ -66,5 +65,3 @@ function LoginComponent({setIsUserLoggedIn}) {
         </div>
     );
 }
-
-export default LoginComponent;

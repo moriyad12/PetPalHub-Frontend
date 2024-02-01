@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
@@ -10,7 +11,6 @@ import MasterApi from "../Apis/MasterApi";
 import {dashboardTypes} from "../Dashboard/DashboardTypes";
 import {useNavigate} from "react-router-dom";
 import ApplicationHeader from "./ApplicationHeader";
-
 
 export default function DashboardListView({data,tabIndex}) {
 
