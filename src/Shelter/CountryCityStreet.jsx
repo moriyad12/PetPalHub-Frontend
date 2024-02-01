@@ -15,6 +15,7 @@ export const CountryCityStreet
     return (
         <div className="flex location">
             <Autocomplete
+                className={"my-2"}
                 required={true}
                 disablePortal
                 value={country}
@@ -38,6 +39,7 @@ export const CountryCityStreet
                 }}
             />
             <Autocomplete
+                className={"my-2"}
                 disablePortal
                 required={true}
                 value={state}
@@ -55,6 +57,7 @@ export const CountryCityStreet
                 }}
             />
             <TextField
+                className={"my-2"}
                 type={"text"}
                 label={"Address"}
                 value={address}
