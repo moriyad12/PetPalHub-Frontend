@@ -5,7 +5,7 @@ import {getUserId} from "../Authentication/UserAuthentication";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import MasterApi from "../Apis/MasterApi";
 
-export const ImageUpdate = ({ setProfileImage, isUserProfile, id }) => {
+export const ImageUpdate = ({ setProfileImage, isUserProfile, id,setIsLoading}) => {
 
     const [tempProfileImage, setTempProfileImage] = React.useState(null)
     const { makeAlert } = useMyContext();
@@ -19,6 +19,7 @@ export const ImageUpdate = ({ setProfileImage, isUserProfile, id }) => {
             }
 
             setProfileImage(tempProfileImage)
+            setIsLoading(false)
         } catch (error) {
             makeAlert(error.response.data.message)
         }
@@ -31,6 +32,7 @@ export const ImageUpdate = ({ setProfileImage, isUserProfile, id }) => {
     }, [tempProfileImage])
 
     const handleProfilePictureChange = async (e) => {
+        setIsLoading(true)
         const picture = e.target.files[0];
 
         let body = new FormData()

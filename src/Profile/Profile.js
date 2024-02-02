@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Profile.css'
 import userApis from "../Apis/UserApis/UserApis";
 
@@ -10,6 +10,7 @@ import {ProfileImage} from "../ProfileImages/ProfileImage";
 import {EditProfile} from "./EditProfile";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import {useLocation} from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 function Profile() {
     const { makeAlert } = useMyContext();
@@ -26,6 +27,7 @@ function Profile() {
     const params = location.state;
     const userId=params &&params.adopterId ? params.adopterId :getUserId()
     const isOwner = userId=== getUserId()
+    const [isLoading,setIsLoading] = useState(false);
 
     useEffect(() => {
         const sendInformationRequest = async() => {
@@ -41,20 +43,23 @@ function Profile() {
     }, []);
 
     return (
-        <div className="container bg-light emp-profile">
+        <div>
+            <div className="container bg-light emp-profile">
                 <div className="row">
                     <div className="col-md-4">
-                       <ProfileImage
-                           isProfile={1}
-                           profileImage={profileImage} setProfileImage={setProfileImage} isUserProfile={true} />
+                        <ProfileImage
+                            isProfile={1}
+                            profileImage={profileImage} setProfileImage={setProfileImage} isUserProfile={true}
+                            setIsLoading={setIsLoading}
+                        />
                     </div>
                     <div className="col-md-5 offset-1">
-                       <ProfileHead profileAttributes={profileAttributes}/>
+                        <ProfileHead profileAttributes={profileAttributes}/>
                     </div>
                     <div className="col-md-2" >
                         {isOwner?
-                           <EditProfile profileAttributes={profileAttributes} />
-                        :null}
+                            <EditProfile profileAttributes={profileAttributes} />
+                            :null}
                     </div>
                 </div>
                 <div className="row">
@@ -65,7 +70,14 @@ function Profile() {
                         <ProfileDetails profileAttributes={profileAttributes}/>
                     </div>
                 </div>
+            </div>
+            <div>
+                {
+                    isLoading ? <Loading/> :null
+                }
+            </div>
         </div>
+
     );
 }
 
