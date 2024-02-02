@@ -25,7 +25,7 @@ function Shelter() {
     const isOwner = shelterId=== getMyShelterId()
     const sendInformationRequest = async () => {
         try {
-            const response = await masterApis.get("getShelterDto/" + shelterId,{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
+            const response = await masterApis.get("getShelterDto/" + shelterId);
             setAttributes(response.data)
         } catch (error) {
             makeAlert(error.response.data.message)

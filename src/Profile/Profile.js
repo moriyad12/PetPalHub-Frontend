@@ -30,7 +30,7 @@ function Profile() {
     useEffect(() => {
         const sendInformationRequest = async() => {
             try {
-                const response = await userApis.get("getUserDto/"+userId,{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
+                const response = await userApis.get("getUserDto/"+userId);
                 setProfileAttributes(response.data)
             } catch (error) {
                 makeAlert(error.response.data.message)
