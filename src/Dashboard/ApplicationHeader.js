@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {Button} from '@mui/material';
-import {getUserId, getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import MasterApi from "../Apis/MasterApi"
 import {useNavigate} from "react-router-dom";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
@@ -19,7 +19,7 @@ function ApplicationHeader({ApplicationHeader, tabIndex,setTabIndex}) {
         setIsLoading(true)
         try {
             console.log(getUserToken())
-            await MasterApi.post("acceptApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {},{headers: {"Authorization": `Bearer ${getUserToken()}`}});
+            await MasterApi.post("acceptApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {}, {headers: {"Authorization": `Bearer ${getUserToken()}`}});
             navigate(0)
         } catch (error) {
             makeAlert(error.response.data.message)
@@ -29,26 +29,20 @@ function ApplicationHeader({ApplicationHeader, tabIndex,setTabIndex}) {
         setIsLoading(true)
         try {
             console.log(getUserToken())
-            await MasterApi.post("rejectApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {},{headers: {"Authorization": `Bearer ${getUserToken()}`}});
+            await MasterApi.post("rejectApplication/" + ApplicationHeader.petId + "/" + ApplicationHeader.adopterId, {}, {headers: {"Authorization": `Bearer ${getUserToken()}`}});
             navigate(0)
         } catch (error) {
             alert(error.response.data.message)
         }
     };
-    const handleClickOnAdopter =()=>{
-        const params = {
-            adopterId: ApplicationHeader.adopterId
-        };
-        navigate("adopterProfile",{state: params, replace: true });
+    const handleClickOnAdopter = () => {
+        navigate(`profile/${ApplicationHeader.adopterId}`)
     }
-    const handleClickOnPet =(id)=>{
-        const params = {
-            id: ApplicationHeader.petId,
-            ViewComponentIndex: isUserStaffOrManager()? 3: 1
-        };
-        navigate("petview", { state: params, replace: true });
+    const handleClickOnPet = () => {
+        navigate(`petview/${ApplicationHeader.petId}/${isUserStaffOrManager() ? 3 : 1}`)
     }
     return (
+      
         <div>
             <div className="card">
                 <div className="card-body" style={{color:'#4d4751'}} >
@@ -76,6 +70,7 @@ function ApplicationHeader({ApplicationHeader, tabIndex,setTabIndex}) {
                         </>
                         : null}
                 </div>
+
             </div>
 
             <div>

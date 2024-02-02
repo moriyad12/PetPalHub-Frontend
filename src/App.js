@@ -28,15 +28,12 @@ function App() {
                             <Route path={"/myPets"} element={<Dashboard filterEnabled={true}  viewComponentIndex={3}/>} />
                             <Route path={"/login"} element={<LoginComponent />} />
                             <Route path={"/signUp"} element={<SignUpComponent />} />
-                            <Route path={"/profile"} element={<Profile />} />
-                            <Route path={"/myApplications/adopterProfile"} element={<Profile />} />
+                            <Route path={"/profile/:id"} element={<Profile />} />
+                            <Route path={"/myApplications/profile/:id"} element={<Profile />} />
                             <Route path={"/validation"} element={<ValidationPage />} />
-                            <Route path={"/shelter"} element={<Shelter />} />
-                            <Route path={"/myPets/petview/petShelter"} element={<Shelter />} />
-                            <Route path={"/petview/petShelter"} element={<Shelter />} />
-                            <Route path={"/petview"} element={<Pet />} />
-                            <Route path={"/myPets/petview"} element={<Pet />} />
-                            <Route path={"/myApplications/petview"} element={<Pet />} />
+                            <Route path={"/shelter/:id"} element={<Shelter />} />
+                            <Route path={"/petview/:id/:ViewComponentIndex"} element={<Pet />} />
+                            <Route path={"/myApplications/petview/:id/:ViewComponentIndex"} element={<Pet />} />
                         </Routes>
                     </LoginContextProvider>
                 </ErrorMessageContextProvider>

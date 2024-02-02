@@ -2,19 +2,15 @@ import React, {useState, useEffect} from 'react';
 import "./CardsSquareView.css";
 import {useNavigate} from "react-router-dom";
 
-function CardsView({cards,ViewComponentIndex}) {
+function CardsView({cards, ViewComponentIndex}) {
     const chunkArray = (array, size) => {
-        return Array.from({ length: Math.ceil(array.length / size) }, (v, i) =>
+        return Array.from({length: Math.ceil(array.length / size)}, (v, i) =>
             array.slice(i * size, i * size + size)
         );
     };
     const navigate = useNavigate();
-    const handleClickOnCard =(id)=>{
-        const params = {
-            id: id,
-            ViewComponentIndex: ViewComponentIndex
-        };
-        navigate("petview", { state: params, replace: true });
+    const handleClickOnCard = (id) => {
+        navigate(`/petview/${id}/${ViewComponentIndex}`);
     }
 
     const getAnimalPicture = (picture) => {
@@ -24,7 +20,7 @@ function CardsView({cards,ViewComponentIndex}) {
             return "https://i.ibb.co/ccSKFsq/unknownpet.jpg"
     }
 
-    return(
+    return (
         <div>
             {chunkArray(cards, 4).map((row) => (
                 <div className="row mb-3">
@@ -32,11 +28,14 @@ function CardsView({cards,ViewComponentIndex}) {
                         row.map((card, index) => {
                             return (
                                 <div className="col-3 ">
-                                    <a href=""  onClick={()=>{handleClickOnCard(card.id)}} className="no-underline-link">
+                                    <a href="" onClick={() => {
+                                        handleClickOnCard(card.id)
+                                    }} className="no-underline-link">
                                         <div className="card animal-card ">
-                                            <img src={getAnimalPicture(card.profilePicturePath)} className="animal-img" alt="..."/>
+                                            <img src={getAnimalPicture(card.profilePicturePath)} className="animal-img"
+                                                 alt="..."/>
                                             <div className="card-body">
-                                                <h5  style={{ color: '#4d4751', fontSize: '30px',lineHeight: '1.2' }}>
+                                                <h5 style={{color: '#4d4751', fontSize: '30px', lineHeight: '1.2'}}>
                                                     {card.name.slice(0, 16)}
                                                 </h5>
                                                 <div className="large-text-container">

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
+import {getUserId, isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {Link} from "react-router-dom";
 import "../MyUtilities/Colors.css";
 import "../MyUtilities/CustomComponents.css";
 import "./Header.css";
 import {useMyLoginContext} from "../Authentication/LoginContextProvider";
+import {getMyShelterId} from "../Authentication/UserAuthentication";
 
 export default function Header() {
     const { isUserLoggedIn, logout } = useMyLoginContext();
@@ -30,12 +31,12 @@ export default function Header() {
                         </li>
                         {isUserStaffOrManager() || isUserAdopter() ?
                             <li className="nav-item">
-                                <a className="nav-link active text-primary fw-bold" href="/profile">Profile</a>
+                                <a className="nav-link active text-primary fw-bold" href={`/profile/${getUserId()}`}>Profile</a>
                             </li>
                         : null}
                         {isUserStaffOrManager() ?
                             <li className="nav-item">
-                                <a className="nav-link active text-primary fw-bold" href="/shelter">Shelter</a>
+                                <a className="nav-link active text-primary fw-bold" href={`/shelter/${getMyShelterId()}`}>Shelter</a>
                             </li>
                         : null}
                         {isUserStaffOrManager() ?
