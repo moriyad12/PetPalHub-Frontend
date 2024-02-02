@@ -13,6 +13,7 @@ import {PetTypeDetails} from "./PetTypeDetails";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import {ProfileImage} from "../ProfileImages/ProfileImage";
 import Loading from "../Loading/Loading";
+import {string} from "yup";
 
 function Pet() {
     const navigate = useNavigate();
@@ -87,7 +88,7 @@ function Pet() {
                 </div>
                 <div className="col-md-6">
                     <PetProfileHead attributes={attributes}/>
-                    {isUserAdopter()&&viewComponentIndex===1 ?
+                    {(isUserAdopter())&&(viewComponentIndex===1)&&(String(attributes.availability)!=="NOT_AVAILABLE") ?
                         <div className="shadow apply " >
                             Considering {attributes.name} for
                             <br/>
@@ -95,7 +96,7 @@ function Pet() {
                             <button  className="ghost" onClick={handleApplyApplication}>Apply Application</button>
                         </div>
                         : null}
-                    {viewComponentIndex===3 ?
+                    {(viewComponentIndex===3&&(String(attributes.availability)!=="NOT_AVAILABLE")) ?
                         <div className="shadow apply">
                             Update {attributes.name} Profile
                             <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
