@@ -15,13 +15,14 @@ export const CountryCityStreet
     return (
         <div className="flex location">
             <Autocomplete
+                className={"my-2"}
                 required={true}
                 disablePortal
                 value={country}
                 id="combo-box-demo"
                 options={countryNames}
                 sx={{width: 289}}
-                renderInput={(params) => <TextField required={req}{...params} label="Country"/>}
+                renderInput={(params) => <TextField  style={{marginBottom: "4%"}} required={req}{...params} label="Country"/>}
                 onChange={(event, value) => {
                     if (!value) {
                         setCountry(null);
@@ -38,13 +39,14 @@ export const CountryCityStreet
                 }}
             />
             <Autocomplete
+                className={"my-2"}
                 disablePortal
                 required={true}
                 value={state}
                 id="combo-box-demo"
                 options={statesInCountry}
                 sx={{width: 300}}
-                renderInput={(params) => <TextField {...params} required={req} label="State"/>}
+                renderInput={(params) => <TextField style={{marginBottom: "1%"}} {...params} required={req} label="State"/>}
                 onChange={(event, value) => {
                     if (!value) {
                         setState(null);
@@ -55,6 +57,7 @@ export const CountryCityStreet
                 }}
             />
             <TextField
+                className={"my-2"}
                 type={"text"}
                 label={"Address"}
                 value={address}

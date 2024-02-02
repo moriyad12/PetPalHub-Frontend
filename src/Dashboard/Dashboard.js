@@ -7,12 +7,12 @@ import Pagination from "./Pagination.js";
 import {dashboardTypes} from "./DashboardTypes";
 import DashboardListView from "./DashboardListView";
 import Tabs from "./Tabs/Tabs";
-import {getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import PetCreation from "../Pet/PetCreation";
 import MasterApi from "../Apis/MasterApi";
+import {getUserToken, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 
-function Dashboard({filterEnabled, viewComponentIndex}) {
+export default function Dashboard({filterEnabled, viewComponentIndex}) {
     const [filterDto, setFilterDto] = useState([]);
     const [page, setPage] = React.useState(1);
     const [tabIndex, setTabIndex] = React.useState("1");
@@ -41,13 +41,14 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
 
     return(
         <div>
+            {isTabsEnabled() ?
             <div className="row">
-                {isTabsEnabled() ?
                     <div className="content-header">
                         <Tabs setTabIndex={setTabIndex}/>
                     </div>
-                    : null}
             </div>
+                : null}
+            {filterEnabled ?
             <div className="row">
                 <div className="col-10 pe-1">
 
@@ -56,15 +57,20 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
                     </div>
                 </div>
                 <div className="col-2 ps5">
-                    {filterEnabled ?
                     <Filter filterDto={filterDto} setFilterDto={setFilterDto}/>
-                        : null}
                 </div>
             </div>
+                : <div className="row">
+                    <div className="col-15 pe-1">
+
+                        <div className="bg-light-grey p-3">
+                            { viewData() }
+                        </div>
+                    </div>
+                </div>}
             <div  style={{position: 'fixed', bottom: 60,right:60}}>
                 {viewComponentIndex===3 ?
                     <PetCreation  buttonName="Create Pet" handleSubmitFunction={async(Pet)=>{
-                        console.log(getUserToken())
                         await MasterApi.post("addPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
                     }}/>
                     : null}
@@ -73,5 +79,3 @@ function Dashboard({filterEnabled, viewComponentIndex}) {
         </div>
     );
 }
-
-export default Dashboard;

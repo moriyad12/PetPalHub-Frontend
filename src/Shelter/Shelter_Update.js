@@ -9,7 +9,7 @@ import {
     TextField,
     Typography
 } from '@mui/material';
-import {getShelterId, getUserToken} from "../Authentication/UserAuthentication";
+import {getMyShelterId, getUserToken} from "../Authentication/UserAuthentication";
 import {CountryCityStreet} from "./CountryCityStreet";
 import masterApis from "../Apis/MasterApis";
 
@@ -34,6 +34,7 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
     const [state, setState] = React.useState(defaultLocation.city);
     const [address, setAddress] = React.useState(defaultLocation.address);
     const [statesInCountry, setStatesInCountry] = React.useState([]);
+    const [description, setDescription] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const { makeAlert } = useMyContext();
 
@@ -44,9 +45,10 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
 
     const handleInformationChange = async () => {
         const newInformation = {
-            id: getShelterId(),
+            id: getMyShelterId(),
             name: name,
             shelterLocation: {country: country, city: state, address: address},
+            description: description,
             phoneNumber: phoneNumber,
         }
         try {
@@ -72,9 +74,6 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Update Profile Info
-                    </Typography>
                     <Typography id="modal-modal-description" sx={{mt: 1}}>
                         <form className="profile-update-modal-form" onSubmit={handleInformationChange}>
 
@@ -93,7 +92,12 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                                            setPhoneNumber(event.target.value)
                                        }}
                             />
-
+                            <TextField style={{marginBottom: "-1%"}} variant={"outlined"} label={"Description"}
+                                       value={description}
+                                       onChange={(event) => {
+                                           setDescription(event.target.value)
+                                       }}
+                            />
 
                             <CountryCityStreet
                                 country={country} state={state} address={address} statesInCountry={statesInCountry}
@@ -101,10 +105,8 @@ export default function Shelter_Update({defaultName, defaultPhoneNumber, default
                                 setStatesInCountry={setStatesInCountry}
                                 req={true}
                             />
-
-
                             <Button type="submit" value="Submit" variant="contained" style={{
-                                width: "150px", color: "##150044",
+                                width: "150px", color: "##150044",backgroundColor:'#be5b01',position: 'fixed', bottom: 40,right:40
                             }}
                                     onClick={handleSubmit}>
                                 Submit

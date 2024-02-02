@@ -2,13 +2,14 @@ import React, {useEffect} from 'react';
 import './Profile.css'
 import userApis from "../Apis/UserApis/UserApis";
 
-import {getUserId, getUserToken} from "../Authentication/UserAuthentication";
+import {getMyShelterId, getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ProfileDetails} from "./ProfileDetails";
 import {ProfileHead} from "./ProfileHead";
 import {ProfileImage} from "../ProfileImages/ProfileImage";
 import {EditProfile} from "./EditProfile";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+import {useLocation} from "react-router-dom";
 
 function Profile() {
     const { makeAlert } = useMyContext();
@@ -21,11 +22,15 @@ function Profile() {
         phoneNumber:"",
     });
     const [profileImage, setProfileImage] = React.useState("");
+    const location = useLocation();
+    const params = location.state;
+    const userId=params &&params.adopterId ? params.adopterId :getUserId()
+    const isOwner = userId=== getUserId()
 
     useEffect(() => {
         const sendInformationRequest = async() => {
             try {
-                const response = await userApis.get("getUserDto/"+getUserId(),{ headers: {"Authorization" : `Bearer ${getUserToken()}`} });
+                const response = await userApis.get("getUserDto/"+userId);
                 setProfileAttributes(response.data)
                 setProfileImage(response.data.profilePicturePath)
             } catch (error) {
@@ -47,7 +52,9 @@ function Profile() {
                        <ProfileHead profileAttributes={profileAttributes}/>
                     </div>
                     <div className="col-md-2" >
-                       <EditProfile profileAttributes={profileAttributes} />
+                        {isOwner?
+                           <EditProfile profileAttributes={profileAttributes} />
+                        :null}
                     </div>
                 </div>
                 <div className="row">

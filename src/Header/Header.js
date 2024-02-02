@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {isUserAdopter, isUserStaffOrManager, removeUserLocalStorageData} from "../Authentication/UserAuthentication";
+import {isUserAdopter, isUserStaffOrManager} from "../Authentication/UserAuthentication";
 import {Link} from "react-router-dom";
 import "../MyUtilities/Colors.css";
 import "../MyUtilities/CustomComponents.css";
 import "./Header.css";
+import {useMyLoginContext} from "../Authentication/LoginContextProvider";
 
-export default function Header({ isLoggedIn, setIsLoggedIn }) {
+export default function Header() {
+    const { isUserLoggedIn, logout } = useMyLoginContext();
 
     useEffect(() => {
-    }, [isLoggedIn]);
+    }, [isUserLoggedIn]);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3 sticky-top">
@@ -47,15 +49,21 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                             </li>
                         : null}
 
-                        <Link to="/login">
-                            <button className="btn bg-brown custom-btn-font" onClick={
-                                () => {
-                                    removeUserLocalStorageData();
-                                    setIsLoggedIn(false);
-                                }
-                            }>Logout
-                            </button>
-                        </Link>
+                        {isUserLoggedIn ? (
+                            <Link to="/login">
+                                <button className="btn bg-brown custom-btn-font" onClick={() => logout()}>Log Out</button>
+                            </Link>
+                        ) : (
+                            <>
+                                <Link to="/login">
+                                    <button className="btn bg-brown custom-btn-font me-2" >Log In</button>
+                                </Link>
+                                <Link to="/signUp">
+                                    <button className="btn bg-brown custom-btn-font" >Sign Up</button>
+                                </Link>
+                            </>
+                        )}
+
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,9 @@
+.custom-button {
+    color: #be5b01; /* Text color */
+    border-color: #be5b01; /* Border color (change to your desired color) */
+    width: 50%;
+    margin-top: 1%;
+}
+.custom-button:hover {
+       box-shadow: 0 0 10px #be5b01; /* Add shadow when the component is hovered */
+}

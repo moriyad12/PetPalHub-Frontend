@@ -12,7 +12,7 @@ import {HealthStatus} from "./HealthStatus";
 import {VaccineStatus} from "./VaccineStatus";
 import {Behaviour} from "./Behaviour";
 import {Breed} from "./Breed";
-import {getShelterId} from "../Authentication/UserAuthentication";
+import {getMyShelterId} from "../Authentication/UserAuthentication";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 const style = {
@@ -70,7 +70,7 @@ export default function PetCreation({ PetId,buttonName,handleSubmitFunction}) {
             dateOfBirth:dateOfBirth,
             species:species,
             description:description,
-            shelterId:getShelterId()
+            shelterId:getMyShelterId()
         }
         try {
             handleSubmitFunction(Pet)
