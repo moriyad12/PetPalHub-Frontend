@@ -90,7 +90,7 @@ function Pet() {
                                 <button  className="ghost" onClick={handleApplyApplication}>Apply Application</button>
                                  </div>
                                 : null}
-                            {viewComponentIndex===3||isUserStaffOrManager() ?
+                            {viewComponentIndex===3 ?
                                 <div className="shadow apply">
                                     Update {attributes.name} Profile
                                     <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{

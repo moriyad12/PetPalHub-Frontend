@@ -46,9 +46,14 @@ export const ImageUpdate = ({ setProfileImage, isUserProfile, id }) => {
     }
 
     return (
-        <div className="file btn btn-lg btn-primary ">
+        isUserProfile ?
+            <div className="file btn btn-lg btn-primary " style={{width:'revert-layer'}}>
             Change Photo
             <input type="file" name="file" onInput={handleProfilePictureChange}/>
-        </div>
+            </div>
+            :<div className="file btn btn-lg btn-primary " style={{width:'101%'}}>
+                Change Photo
+                <input type="file" name="file" onInput={handleProfilePictureChange}/>
+            </div>
     )
 }
