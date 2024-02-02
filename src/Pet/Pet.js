@@ -12,6 +12,7 @@ import {PetHealthDetails} from "./PetHealthDetails";
 import {PetTypeDetails} from "./PetTypeDetails";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import {ProfileImage} from "../ProfileImages/ProfileImage";
+import Loading from "../Loading/Loading";
 
 function Pet() {
     const navigate = useNavigate();
@@ -31,10 +32,13 @@ function Pet() {
         vaccineStatus: "",
     });
     const [image, setImage] = useState("");
+
+    const [isLoading,setIsLoading] = useState(false);
     const value = useParams();
     const params = value;
     const id= Number(params.id);
     const viewComponentIndex = Number(params.ViewComponentIndex);
+
 
     const fetchpets = async () => {
         const data = {
@@ -71,43 +75,50 @@ function Pet() {
         }
     };
 
-    return <div className="container bg-light emp-profile " style={{ width: '65%' }} >
-                <div className="row">
-                    <div className="col-md-4">
-                        <ProfileImage viewComponentIndex={viewComponentIndex}
-                                      profileImage={image} setProfileImage={setImage} isUserProfile={false}
-                                        id={id}/>
-                    </div>
-                    <div className="col-md-1">
-                    </div>
-                    <div className="col-md-6">
-                            <PetProfileHead attributes={attributes}/>
-                            {isUserAdopter()&&viewComponentIndex===1 ?
-                                <div className="shadow apply " >
-                                Considering {attributes.name} for
-                                <br/>
-                                adoption?
-                                <button  className="ghost" onClick={handleApplyApplication}>Apply Application</button>
-                                 </div>
-                                : null}
-                            {viewComponentIndex===3 ?
-                                <div className="shadow apply">
-                                    Update {attributes.name} Profile
-                                    <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
-                                        await MasterApi.post("editPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
-                                    }}/>
-                                </div>
-                                : null}
-                    </div>
+    return <div>
+        <div className="container bg-light emp-profile " style={{ width: '65%' }} >
+            <div className="row">
+                <div className="col-md-4">
+                    <ProfileImage viewComponentIndex={viewComponentIndex}
+                                  profileImage={image} setProfileImage={setImage} isUserProfile={false}
+                                  id={id} setIsLoading={setIsLoading}/>
                 </div>
-                <hr/>
-        <PetBasicDetails attributes={attributes}/>
-        <hr/>
-       <PetTypeDetails attributes={attributes}/>
-        <hr/>
-        <PetHealthDetails attributes={attributes}/>
-        <hr/>
-        <ProfileDescription attributes={attributes}/>
+                <div className="col-md-1">
+                </div>
+                <div className="col-md-6">
+                    <PetProfileHead attributes={attributes}/>
+                    {isUserAdopter()&&viewComponentIndex===1 ?
+                        <div className="shadow apply " >
+                            Considering {attributes.name} for
+                            <br/>
+                            adoption?
+                            <button  className="ghost" onClick={handleApplyApplication}>Apply Application</button>
+                        </div>
+                        : null}
+                    {viewComponentIndex===3 ?
+                        <div className="shadow apply">
+                            Update {attributes.name} Profile
+                            <PetCreation PetId={id}  buttonName="Update Pet" handleSubmitFunction={async(Pet)=>{
+                                await MasterApi.post("editPet", Pet,{headers: {"Authorization": `Bearer ${getUserToken()}`}});
+                            }}/>
+                        </div>
+                        : null}
+                </div>
+            </div>
+            <hr/>
+            <PetBasicDetails attributes={attributes}/>
+            <hr/>
+            <PetTypeDetails attributes={attributes}/>
+            <hr/>
+            <PetHealthDetails attributes={attributes}/>
+            <hr/>
+            <ProfileDescription attributes={attributes}/>
+        </div>
+        <div>
+            {
+                isLoading ? <Loading/> :null
+            }
+        </div>
     </div>
 }
 

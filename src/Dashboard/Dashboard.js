@@ -36,7 +36,7 @@ export default function Dashboard({filterEnabled, viewComponentIndex}) {
     const viewData = () => {
         if(viewComponentIndex ===1||viewComponentIndex ===3)
             return <CardsSquareView cards={data} ViewComponentIndex={viewComponentIndex}/>
-        return <DashboardListView tabIndex={tabIndex} data={data}/>
+        return <DashboardListView tabIndex={tabIndex} data={data} setTabIndex={setTabIndex}/>
     }
 
     return(

@@ -13,6 +13,7 @@ import {ErrorMessageContextProvider} from "./ErrorMessage/ErrorMessageContextPro
 import LoginComponent from "./LogIn/loginComponent";
 import SignUpComponent from "./SignUp/signUpComponent";
 import {LoginContextProvider} from "./Authentication/LoginContextProvider";
+import Loading from "./Loading/Loading";
 
 function App() {
     return (

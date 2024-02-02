@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import ApplicationHeader from "./ApplicationHeader";
 
-export default function DashboardListView({data, tabIndex}) {
+export default function DashboardListView({data,tabIndex,setTabIndex}) {
+
 
     const chunkArray = (array, size) => {
         return Array.from({length: Math.ceil(array.length / size)}, (v, i) =>
@@ -16,8 +17,10 @@ export default function DashboardListView({data, tabIndex}) {
                     {
                         row.map((card, index) => {
                             return (
-                                <div className="col-sm-6" style={{marginBottom: '1%'}}>
-                                    <ApplicationHeader key={index} ApplicationHeader={card} tabIndex={tabIndex}/>
+
+                                <div className="col-sm-6" style={{marginBottom:'1%'}}>
+                                    <ApplicationHeader key={index} ApplicationHeader={card} tabIndex={tabIndex}
+                                                       setTabIndex={setTabIndex} />
                                 </div>
                             )
                         })

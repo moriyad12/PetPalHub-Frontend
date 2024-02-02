@@ -7,6 +7,7 @@ import RadioButtons from "./RadioButtons";
 import ConditionalDivs from "./ConditionalDivs";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import {useMyLoginContext} from "../Authentication/LoginContextProvider";
+import Loading from "../Loading/Loading";
 
 function SignUpComponent() {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ function SignUpComponent() {
     const {makeAlert} = useMyContext();
     const {makeNormalMessage} = useMyContext();
     const {login} = useMyLoginContext();
+    const [isLoading,setIsloading] = useState(false);
 
     const [error, setError] = useState({"email": "", "password": ""});
 
@@ -108,6 +110,7 @@ function SignUpComponent() {
             return;
         }
         try {
+            setIsloading(true)
             const response = await ProxyApi.post("basicSignUp", userDto)
             login(response.data.id, response.data.token, response.data.role, response.data.shelterId)
 
@@ -175,6 +178,9 @@ function SignUpComponent() {
                 </div>
             </form>
         </div>
+        {
+            isLoading ? <Loading/> :null
+        }
     </div>);
 }
 
