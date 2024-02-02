@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {getMyShelterId, getUserId, getUserToken} from "../Authentication/UserAuthentication";
 import masterApis from "../Apis/MasterApis";
-import {useLocation, useNavigate,} from "react-router-dom";
+import {useLocation, useNavigate, useParams,} from "react-router-dom";
 import {ShelterTopRow} from "./ShelterTopRow";
 import {ShelterLocation} from "./ShelterLocation";
 import {ShelterContact} from "./ShelterContact";
@@ -9,8 +9,8 @@ import {ShelterDescription} from "./ShelterDescription";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 
 function Shelter() {
-    const navigate = useNavigate();
-    const { makeAlert } = useMyContext();
+    // const navigate = useNavigate();
+    const {makeAlert} = useMyContext();
 
     const [attributes, setAttributes] = React.useState({
         id: 0,
@@ -19,10 +19,11 @@ function Shelter() {
         shelterLocation: {country: "", city: "", address: ""},
         code: "",
     });
-    const location = useLocation();
-    const params = location.state;
-    const shelterId=params &&params.shelterId ? params.shelterId :getMyShelterId();
-    const isOwner = shelterId=== getMyShelterId()
+    // const location = useLocation();
+    const value = useParams();
+    // const params = location.state;
+    const shelterId = Number(value.id);
+    const isOwner = (shelterId === getMyShelterId())
     const sendInformationRequest = async () => {
         try {
             const response = await masterApis.get("getShelterDto/" + shelterId);
@@ -31,7 +32,6 @@ function Shelter() {
             makeAlert(error.response.data.message)
         }
     }
-
     useEffect(() => {
         sendInformationRequest()
     }, []);

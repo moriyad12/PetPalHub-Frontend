@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./Pet.css";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import AdopterApi from "../Apis/AdopterApi";
 import PetCreation from "./PetCreation";
 import MasterApi from "../Apis/MasterApi";
@@ -31,10 +31,10 @@ function Pet() {
         vaccineStatus: "",
     });
     const [image, setImage] = useState("");
-    const location = useLocation();
-    const params = location.state;
-    const id=params.id;
-    const viewComponentIndex = params.ViewComponentIndex;
+    const value = useParams();
+    const params = value;
+    const id= Number(params.id);
+    const viewComponentIndex = Number(params.ViewComponentIndex);
 
     const fetchpets = async () => {
         const data = {
