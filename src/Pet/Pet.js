@@ -10,8 +10,8 @@ import {ProfileDescription} from "./ProfileDescription";
 import {PetBasicDetails} from "./PetBasicDetails";
 import {PetHealthDetails} from "./PetHealthDetails";
 import {PetTypeDetails} from "./PetTypeDetails";
-import {PetProfileImage} from "./PetProfileImage";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
+import {ProfileImage} from "../ProfileImages/ProfileImage";
 
 function Pet() {
     const navigate = useNavigate();
@@ -30,6 +30,7 @@ function Pet() {
         behaviour: "",
         vaccineStatus: "",
     });
+    const [image, setImage] = useState("");
     const location = useLocation();
     const params = location.state;
     const id=params.id;
@@ -53,6 +54,7 @@ function Pet() {
         try {
             const response = await AdopterApi.get("petForUser/" + id);
             setAttributes(response.data)
+            setImage(response.data.profilePicturePath)
         } catch (error) {
             makeAlert(error.response.data.message)
         }
@@ -62,7 +64,6 @@ function Pet() {
     }, []);
     const handleApplyApplication=async () => {
         try {
-            console.log(getUserToken())
             await AdopterApi.post("applyForPet/" + id+ "/" + getUserId(),{},{headers: {"Authorization": `Bearer ${getUserToken()}`}} );
             navigate("/myApplications")
         } catch (error) {
@@ -73,7 +74,9 @@ function Pet() {
     return <div className="container bg-light emp-profile " style={{ width: '65%' }} >
                 <div className="row">
                     <div className="col-md-4">
-                        <PetProfileImage viewComponentIndex={viewComponentIndex} />
+                        <ProfileImage viewComponentIndex={viewComponentIndex}
+                                      profileImage={image} setProfileImage={setImage} isUserProfile={false}
+                                        id={id}/>
                     </div>
                     <div className="col-md-1">
                     </div>

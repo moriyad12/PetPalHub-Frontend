@@ -17,6 +17,13 @@ function CardsView({cards,ViewComponentIndex}) {
         navigate("petview", { state: params, replace: true });
     }
 
+    const getAnimalPicture = (picture) => {
+        if (picture && picture !== "")
+            return picture;
+        else
+            return "https://i.ibb.co/ccSKFsq/unknownpet.jpg"
+    }
+
     return(
         <div>
             {chunkArray(cards, 4).map((row) => (
@@ -27,7 +34,7 @@ function CardsView({cards,ViewComponentIndex}) {
                                 <div className="col-3 ">
                                     <a href=""  onClick={()=>{handleClickOnCard(card.id)}} className="no-underline-link">
                                         <div className="card animal-card ">
-                                            <img src="/pet2.jpg" className="animal-img" alt="..."/>
+                                            <img src={getAnimalPicture(card.profilePicturePath)} className="animal-img" alt="..."/>
                                             <div className="card-body">
                                                 <h5  style={{ color: '#4d4751', fontSize: '30px',lineHeight: '1.2' }}>
                                                     {card.name.slice(0, 16)}

@@ -6,13 +6,12 @@ import {getMyShelterId, getUserId, getUserToken} from "../Authentication/UserAut
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ProfileDetails} from "./ProfileDetails";
 import {ProfileHead} from "./ProfileHead";
-import {ProfileImage} from "./ProfileImage";
+import {ProfileImage} from "../ProfileImages/ProfileImage";
 import {EditProfile} from "./EditProfile";
 import {useMyContext} from "../ErrorMessage/ErrorMessageContextProvider";
 import {useLocation} from "react-router-dom";
 
 function Profile() {
-
     const { makeAlert } = useMyContext();
     const [profileAttributes, setProfileAttributes] = React.useState({
         firstName:"",
@@ -22,6 +21,7 @@ function Profile() {
         gender:"",
         phoneNumber:"",
     });
+    const [profileImage, setProfileImage] = React.useState("");
     const location = useLocation();
     const params = location.state;
     const userId=params &&params.adopterId ? params.adopterId :getUserId()
@@ -32,6 +32,7 @@ function Profile() {
             try {
                 const response = await userApis.get("getUserDto/"+userId);
                 setProfileAttributes(response.data)
+                setProfileImage(response.data.profilePicturePath)
             } catch (error) {
                 makeAlert(error.response.data.message)
             }
@@ -43,7 +44,9 @@ function Profile() {
         <div className="container bg-light emp-profile">
                 <div className="row">
                     <div className="col-md-4">
-                       <ProfileImage isProfile={1} />
+                       <ProfileImage
+                           isProfile={1}
+                           profileImage={profileImage} setProfileImage={setProfileImage} isUserProfile={true} />
                     </div>
                     <div className="col-md-5 offset-1">
                        <ProfileHead profileAttributes={profileAttributes}/>
