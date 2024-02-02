@@ -5,15 +5,17 @@ import {getUserToken, isUserAdopter} from "../Authentication/UserAuthentication"
 import MasterApi from "../Apis/MasterApi";
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {getMyShelterId} from "../Authentication/UserAuthentication";
 
 export const PetProfileHead = ({attributes}) => {
 
     const navigate = useNavigate();
     const handleClickOnCard =()=>{
-        const params = {
-            shelterId: attributes.shelterId
-        };
-        navigate("petShelter",{state: params, replace: true });
+        // const params = {
+        //     shelterId: attributes.shelterId
+        // };
+        // navigate("petShelter",{state: params, replace: true });
+        navigate(`/shelter/${getMyShelterId()}`)
     }
     return (
         <div className="profile-head" >
