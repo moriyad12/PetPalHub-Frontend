@@ -52,7 +52,7 @@ function Profile() {
                         <ProfileImage
                             isProfile={1}
                             profileImage={profileImage} setProfileImage={setProfileImage} isUserProfile={true}
-                            setIsLoading={setIsLoading}
+                            setIsLoading={setIsLoading} isOwner={isOwner}
                         />
                     </div>
                     <div className="col-md-5 offset-1">

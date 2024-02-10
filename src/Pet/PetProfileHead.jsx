@@ -11,11 +11,7 @@ export const PetProfileHead = ({attributes}) => {
 
     const navigate = useNavigate();
     const handleClickOnCard =()=>{
-        // const params = {
-        //     shelterId: attributes.shelterId
-        // };
-        // navigate("petShelter",{state: params, replace: true });
-        navigate(`/shelter/${getMyShelterId()}`)
+        navigate(`/shelter/${attributes.shelterId}`)
     }
     return (
         <div className="profile-head" >

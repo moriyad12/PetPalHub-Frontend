@@ -1,11 +1,12 @@
 import React, {useEffect} from "react";
 import axios from "axios";
 import {ImageUpdate} from "./ImageUpdate";
+import {getUserId, isUserAdopter} from "../Authentication/UserAuthentication";
 
 export const ProfileImage = ({ viewComponentIndex, isProfile,
                                  profileImage, setProfileImage,
                                     isUserProfile, id
-                                 ,setIsLoading}) => {
+                                 ,setIsLoading, isOwner}) => {
 
     useEffect(() => {
     }, [profileImage]);
@@ -38,7 +39,7 @@ export const ProfileImage = ({ viewComponentIndex, isProfile,
     return (
         <div className="profile-img">
             <img src={getProfileImageOrDefault()} alt="Profile" />
-            {viewComponentIndex===3 ||isProfile===1?
+            {viewComponentIndex===3 ||(isProfile===1&&isOwner)?
                 ( <ImageUpdate setProfileImage={setProfileImage} isUserProfile={isUserProfile} id={id}
                                setIsLoading={setIsLoading}/>)
             :null}
